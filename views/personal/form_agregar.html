@@ -37,6 +37,8 @@
                           <span class="step">3</span>
                           <span class="step">4</span>
                           <span class="step">5</span>
+                          <span class="step">6</span>
+                          <span class="step">7</span>
                         </div>
                         <!-- Aqui va la informacion -->
                         <div class="col-sm-11 col11Body">
@@ -182,6 +184,8 @@
                           <span class="step">3</span>
                           <span class="step">4</span>
                           <span class="step">5</span>
+                          <span class="step">6</span>
+                          <span class="step">7</span>
                         </div>
 
                         <!-- Aqui va la informacion -->
@@ -303,6 +307,8 @@
                         <span class="step activePass">3</span>
                         <span class="step">4</span>
                         <span class="step">5</span>
+                        <span class="step">6</span>
+                        <span class="step">7</span>
                       </div>
 
                       <!-- Aqui va la informacion -->
@@ -409,7 +415,9 @@
                           <span class="step">2</span>
                           <span class="step">3</span>
                           <span class="step activePass">4</span>
-                          <span class="step">3</span>
+                          <span class="step">5</span>
+                          <span class="step">6</span>
+                          <span class="step">7</span>
                         </div>
 
                         <!-- Aqui va la informacion -->
@@ -454,6 +462,8 @@
                         <span class="step">3</span>
                         <span class="step">4</span>
                         <span class="step activePass">5</span>
+                        <span class="step">6</span>
+                        <span class="step">7</span>
                       </div>
 
                       <!-- Aqui va la informacion -->
@@ -758,13 +768,6 @@
                           </div>
 
                         </div>
-
-
-
-
-
-                        
-
                       </div>
 
 
@@ -781,9 +784,10 @@
                      }
                    </script>
                         
+
                     <div class="botones-form" style="margin-top: 1rem;margin-bottom: 2em;">
-                        <button type="button" class="btn btn-previous botonForm"><span class="fa fa-arrow-left" title="Anterior"/></button>
-                        <button type="button" class="btn btn-submit botonForm" form="formularioCarga" name="envio" value="agregar" id="submit"><span class="fa fa-floppy-o" title="Enviar"/></button>
+                      <button type="button" class="btn btn-previous botonForm"><span class="fa fa-arrow-left" title="Anterior"/></button>
+                      <button type="button" class="btn btn-next botonForm"><span class="fa fa-arrow-right" title="Siguiente"/></button>
                     </div>
                     
 
@@ -791,8 +795,781 @@
                     <!-- Fin Quinto Paso -->
 
 
+                    <!-- Sexto paso -->
+
+                    <fieldset class="formField" id="p6">
+                      <div class="form-bottom" data-step="6" data-title="Sexto Paso">
+                        <!-- Aqui va la barra lateral -->
+                        <div class="col-sm-1 col1Body">
+                          <span class="step">1</span>
+                          <span class="step">2</span>
+                          <span class="step">3</span>
+                          <span class="step">4</span>
+                          <span class="step">5</span>
+                          <span class="step activePass">6</span>
+                          <span class="step">7</span>
+                        </div>
+
+                        <!-- Aqui va la informacion -->
+                        <div class="col-sm-11 col11Body">
+                          <h4 class="titulosForm">Materias impartidas (Máximo 5)</h4>
+
+                            <div class="form-group">
+                              <div class="col-sm-12" style="margin-top: 2rem;">
+                                <label>Aplica</label>
+                              </div>
+                            </div>
+
+                            <div class="custom-control custom-radio">
+                              <div class="col-sm-6">
+                              <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                              <label class="custom-control-label" for="customRadio1">Si</label>
+                              <font color="red"><div id="err_celular" hidden></div></font>
+                            </div>
+
+                            <div class="custom-control custom-radio">
+                              <div class="col-sm-6">
+                              <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                              <label class="custom-control-label" for="customRadio2">No</label>
+                              <font color="red"><div id="err_celular" hidden></div></font>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="col-sm-12" style="margin-top: 2rem;">
+                                <label>Período</label>
+                              </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                              <label>Fecha(desde):</label>
+                              <input class="datepicker" name = "fecha_desde_add" type="text" id="input-desde" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
+                              <font color="red"><div id="err_celular" hidden></div></font>
+                            </div>
+
+                            <div class="col-sm-6">
+                              <label>Fecha(hasta):</label> <input class="datepicker" name = "fecha_hasta_add" type="text" id="input-hasta" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
+                              <font color="red"><div id="err_celular" hidden></div></font>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="col-sm-12" style="margin-top: 2rem;">
+                                <br>
+                                <label>Área</label>
+                                <select class="custom-select" style="margin-left: 2rem;">
+                                  <div class="col-sm-12">
+                                    <option selected>Área</option>
+                                    <option value="1">Administración</option>
+                                    <option value="2">Alimentación</option>
+                                    <option value="3">Ambiente</option>
+                                    <option value="4">Arquitectura</option>
+                                    <option value="5">Arte</option>
+                                    <option value="6">Biología</option>
+                                    <option value="7">Calidad</option>
+                                    <option value="8">Ciencias del Agro</option>
+                                    <option value="9">Ciencias del mar</option>
+                                    <option value="10">Comunicación</option>
+                                    <option value="11">Contaduría</option>
+                                    <option value="12">crecimiento Personal</option>
+                                    <option value="13">Derecho</option>
+                                    <option value="14">Dietética</option>
+                                    <option value="15">Docencia</option>
+                                    <option value="16">Economía</option>
+                                    <option value="17">Electrónica</option>
+                                    <option value="18">Estadística</option>
+                                    <option value="19">Filosofía</option>
+                                    <option value="20">Física</option>
+                                    <option value="21">Gerencia</option>
+                                    <option value="22">Gestión</option>
+                                    <option value="23">Humanidades</option>
+                                    <option value="24">Idiomas</option>
+                                    <option value="25">Información</option>
+                                    <option value="26">Informática</option>
+                                    <option value="27">Ingeniería</option>
+                                    <option value="28">Letras</option>
+                                    <option value="29">Liderazgo</option>
+                                    <option value="30">Matemáticas</option>
+                                    <option value="31">Medicina</option>
+                                    <option value="32">Música</option>
+                                    <option value="33">Negocio</option>
+                                    <option value="34">Nutrición</option>
+                                    <option value="35">Química</option>
+                                    <option value="36">Recreación</option>
+                                    <option value="37">Salud Laboral</option>
+                                    <option value="38">Seguridad</option>
+                                    <option value="39">Tecnología</option>
+                                    <option value="40">Urbanismo</option>
+                                </select>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="col-sm-6">
+                                <br>
+                                <label>Código de materia</label>
+                                <input type="text" class="form-control" name="codigo_add" placeholder="Código" id="input-codigo">
+                                <font color="red"><div id="err_celular" hidden></div></font>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="col-sm-6">
+                                <br>
+                                <label>Materia</label>
+                                <input type="text" class="form-control" name="materia_add" placeholder="Materia" id="input-materia">
+                                <font color="red"><div id="err_celular" hidden></div></font>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="col-sm-12">
+                                <p onclick="toggleMateria('materia2', 'texto6', 'texto7')" style="display: block;color: #3679B5;font-size: 15px; cursor:pointer;margin-top: 1rem;" id="texto6">Agregar otra materia</p>
+                              </div>
+                            </div>
+
+                            <div style="display: none;" id = "materia2">
+                            
+                              <div class="form-group">
+                                <div class="col-sm-12" style="margin-top: 2rem;">
+                                  <label>Período</label>
+                                </div>
+                              </div>
+
+                              <div class="col-sm-6">
+                                <label>Fecha(desde):</label>
+                                <input class="datepicker" name = "fecha_desde_add" type="text" id="input-desde" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
+                                <font color="red"><div id="err_celular" hidden></div></font>
+                              </div>
+
+                              <div class="col-sm-6">
+                                <label>Fecha(hasta):</label> <input class="datepicker" name = "fecha_hasta_add" type="text" id="input-hasta" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
+                                <font color="red"><div id="err_celular" hidden></div></font>
+                              </div>
+
+                              <div class="form-group">
+                                <div class="col-sm-12" style="margin-top: 2rem;">
+                                  <br>
+                                  <label>Área</label>
+                                  <select class="custom-select" style="margin-left: 2rem;">
+                                    <div class="col-sm-12">
+                                      <option selected>Área</option>
+                                      <option value="1">Administración</option>
+                                      <option value="2">Alimentación</option>
+                                      <option value="3">Ambiente</option>
+                                      <option value="4">Arquitectura</option>
+                                      <option value="5">Arte</option>
+                                      <option value="6">Biología</option>
+                                      <option value="7">Calidad</option>
+                                      <option value="8">Ciencias del Agro</option>
+                                      <option value="9">Ciencias del mar</option>
+                                      <option value="10">Comunicación</option>
+                                      <option value="11">Contaduría</option>
+                                      <option value="12">crecimiento Personal</option>
+                                      <option value="13">Derecho</option>
+                                      <option value="14">Dietética</option>
+                                      <option value="15">Docencia</option>
+                                      <option value="16">Economía</option>
+                                      <option value="17">Electrónica</option>
+                                      <option value="18">Estadística</option>
+                                      <option value="19">Filosofía</option>
+                                      <option value="20">Física</option>
+                                      <option value="21">Gerencia</option>
+                                      <option value="22">Gestión</option>
+                                      <option value="23">Humanidades</option>
+                                      <option value="24">Idiomas</option>
+                                      <option value="25">Información</option>
+                                      <option value="26">Informática</option>
+                                      <option value="27">Ingeniería</option>
+                                      <option value="28">Letras</option>
+                                      <option value="29">Liderazgo</option>
+                                      <option value="30">Matemáticas</option>
+                                      <option value="31">Medicina</option>
+                                      <option value="32">Música</option>
+                                      <option value="33">Negocio</option>
+                                      <option value="34">Nutrición</option>
+                                      <option value="35">Química</option>
+                                      <option value="36">Recreación</option>
+                                      <option value="37">Salud Laboral</option>
+                                      <option value="38">Seguridad</option>
+                                      <option value="39">Tecnología</option>
+                                      <option value="40">Urbanismo</option>
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <div class="col-sm-6">
+                                  <br>
+                                  <label>Código de materia</label>
+                                  <input type="text" class="form-control" name="codigo_add" placeholder="Código" id="input-codigo">
+                                  <font color="red"><div id="err_celular" hidden></div></font>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <div class="col-sm-6">
+                                  <br>
+                                  <label>Materia</label>
+                                  <input type="text" class="form-control" name="materia_add" placeholder="Materia" id="input-materia">
+                                  <font color="red"><div id="err_celular" hidden></div></font>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="col-sm-12">
+                                <p onclick="toggleMateria('materia3', 'texto7', 'texto8')" style="display: none;color: #3679B5;font-size: 15px; cursor:pointer;margin-top: 1rem;" id="texto7">Agregar otra materia</p>
+                              </div>
+                            </div>
+
+                            <div style="display: none;" id = "materia3">
+                            
+                              <div class="form-group">
+                                <div class="col-sm-12" style="margin-top: 2rem;">
+                                  <label>Período</label>
+                                </div>
+                              </div>
+
+                              <div class="col-sm-6">
+                                <label>Fecha(desde):</label>
+                                <input class="datepicker" name = "fecha_desde_add" type="text" id="input-desde" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
+                                <font color="red"><div id="err_celular" hidden></div></font>
+                              </div>
+
+                              <div class="col-sm-6">
+                                <label>Fecha(hasta):</label> <input class="datepicker" name = "fecha_hasta_add" type="text" id="input-hasta" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
+                                <font color="red"><div id="err_celular" hidden></div></font>
+                              </div>
+
+                              <div class="form-group">
+                                <div class="col-sm-12" style="margin-top: 2rem;">
+                                  <br>
+                                  <label>Área</label>
+                                  <select class="custom-select" style="margin-left: 2rem;">
+                                    <div class="col-sm-12">
+                                      <option selected>Área</option>
+                                      <option value="1">Administración</option>
+                                      <option value="2">Alimentación</option>
+                                      <option value="3">Ambiente</option>
+                                      <option value="4">Arquitectura</option>
+                                      <option value="5">Arte</option>
+                                      <option value="6">Biología</option>
+                                      <option value="7">Calidad</option>
+                                      <option value="8">Ciencias del Agro</option>
+                                      <option value="9">Ciencias del mar</option>
+                                      <option value="10">Comunicación</option>
+                                      <option value="11">Contaduría</option>
+                                      <option value="12">crecimiento Personal</option>
+                                      <option value="13">Derecho</option>
+                                      <option value="14">Dietética</option>
+                                      <option value="15">Docencia</option>
+                                      <option value="16">Economía</option>
+                                      <option value="17">Electrónica</option>
+                                      <option value="18">Estadística</option>
+                                      <option value="19">Filosofía</option>
+                                      <option value="20">Física</option>
+                                      <option value="21">Gerencia</option>
+                                      <option value="22">Gestión</option>
+                                      <option value="23">Humanidades</option>
+                                      <option value="24">Idiomas</option>
+                                      <option value="25">Información</option>
+                                      <option value="26">Informática</option>
+                                      <option value="27">Ingeniería</option>
+                                      <option value="28">Letras</option>
+                                      <option value="29">Liderazgo</option>
+                                      <option value="30">Matemáticas</option>
+                                      <option value="31">Medicina</option>
+                                      <option value="32">Música</option>
+                                      <option value="33">Negocio</option>
+                                      <option value="34">Nutrición</option>
+                                      <option value="35">Química</option>
+                                      <option value="36">Recreación</option>
+                                      <option value="37">Salud Laboral</option>
+                                      <option value="38">Seguridad</option>
+                                      <option value="39">Tecnología</option>
+                                      <option value="40">Urbanismo</option>
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <div class="col-sm-6">
+                                  <br>
+                                  <label>Código de materia</label>
+                                  <input type="text" class="form-control" name="codigo_add" placeholder="Código" id="input-codigo">
+                                  <font color="red"><div id="err_celular" hidden></div></font>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <div class="col-sm-6">
+                                  <br>
+                                  <label>Materia</label>
+                                  <input type="text" class="form-control" name="materia_add" placeholder="Materia" id="input-materia">
+                                  <font color="red"><div id="err_celular" hidden></div></font>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="col-sm-12">
+                                <p onclick="toggleMateria('materia4', 'texto8', 'texto9')" style="display: none;color: #3679B5;font-size: 15px; cursor:pointer;margin-top: 1rem;" id="texto8">Agregar otra materia</p>
+                              </div>
+                            </div>
+
+                            <div style="display: none;" id = "materia4">
+                            
+                              <div class="form-group">
+                                <div class="col-sm-12" style="margin-top: 2rem;">
+                                  <label>Período</label>
+                                </div>
+                              </div>
+
+                              <div class="col-sm-6">
+                                <label>Fecha(desde):</label>
+                                <input class="datepicker" name = "fecha_desde_add" type="text" id="input-desde" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
+                                <font color="red"><div id="err_celular" hidden></div></font>
+                              </div>
+
+                              <div class="col-sm-6">
+                                <label>Fecha(hasta):</label> <input class="datepicker" name = "fecha_hasta_add" type="text" id="input-hasta" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
+                                <font color="red"><div id="err_celular" hidden></div></font>
+                              </div>
+
+                              <div class="form-group">
+                                <div class="col-sm-12" style="margin-top: 2rem;">
+                                  <br>
+                                  <label>Área</label>
+                                  <select class="custom-select" style="margin-left: 2rem;">
+                                    <div class="col-sm-12">
+                                      <option selected>Área</option>
+                                      <option value="1">Administración</option>
+                                      <option value="2">Alimentación</option>
+                                      <option value="3">Ambiente</option>
+                                      <option value="4">Arquitectura</option>
+                                      <option value="5">Arte</option>
+                                      <option value="6">Biología</option>
+                                      <option value="7">Calidad</option>
+                                      <option value="8">Ciencias del Agro</option>
+                                      <option value="9">Ciencias del mar</option>
+                                      <option value="10">Comunicación</option>
+                                      <option value="11">Contaduría</option>
+                                      <option value="12">crecimiento Personal</option>
+                                      <option value="13">Derecho</option>
+                                      <option value="14">Dietética</option>
+                                      <option value="15">Docencia</option>
+                                      <option value="16">Economía</option>
+                                      <option value="17">Electrónica</option>
+                                      <option value="18">Estadística</option>
+                                      <option value="19">Filosofía</option>
+                                      <option value="20">Física</option>
+                                      <option value="21">Gerencia</option>
+                                      <option value="22">Gestión</option>
+                                      <option value="23">Humanidades</option>
+                                      <option value="24">Idiomas</option>
+                                      <option value="25">Información</option>
+                                      <option value="26">Informática</option>
+                                      <option value="27">Ingeniería</option>
+                                      <option value="28">Letras</option>
+                                      <option value="29">Liderazgo</option>
+                                      <option value="30">Matemáticas</option>
+                                      <option value="31">Medicina</option>
+                                      <option value="32">Música</option>
+                                      <option value="33">Negocio</option>
+                                      <option value="34">Nutrición</option>
+                                      <option value="35">Química</option>
+                                      <option value="36">Recreación</option>
+                                      <option value="37">Salud Laboral</option>
+                                      <option value="38">Seguridad</option>
+                                      <option value="39">Tecnología</option>
+                                      <option value="40">Urbanismo</option>
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <div class="col-sm-6">
+                                  <br>
+                                  <label>Código de materia</label>
+                                  <input type="text" class="form-control" name="codigo_add" placeholder="Código" id="input-codigo">
+                                  <font color="red"><div id="err_celular" hidden></div></font>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <div class="col-sm-6">
+                                  <br>
+                                  <label>Materia</label>
+                                  <input type="text" class="form-control" name="materia_add" placeholder="Materia" id="input-materia">
+                                  <font color="red"><div id="err_celular" hidden></div></font>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="col-sm-12">
+                                <p onclick="toggleMateria('materia5', 'texto9', null)" style="display: none;color: #3679B5;font-size: 15px; cursor:pointer;margin-top: 1rem;" id="texto9">Agregar otra materia</p>
+                              </div>
+                            </div>
+                            
+                            <div style="display: none;" id = "materia5">
+                            
+                              <div class="form-group">
+                                <div class="col-sm-12" style="margin-top: 2rem;">
+                                  <label>Período</label>
+                                </div>
+                              </div>
+
+                              <div class="col-sm-6">
+                                <label>Fecha(desde):</label>
+                                <input class="datepicker" name = "fecha_desde_add" type="text" id="input-desde" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
+                                <font color="red"><div id="err_celular" hidden></div></font>
+                              </div>
+
+                              <div class="col-sm-6">
+                                <label>Fecha(hasta):</label> <input class="datepicker" name = "fecha_hasta_add" type="text" id="input-hasta" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
+                                <font color="red"><div id="err_celular" hidden></div></font>
+                              </div>
+
+                              <div class="form-group">
+                                <div class="col-sm-12" style="margin-top: 2rem;">
+                                  <br>
+                                  <label>Área</label>
+                                  <select class="custom-select" style="margin-left: 2rem;">
+                                    <div class="col-sm-12">
+                                      <option selected>Área</option>
+                                      <option value="1">Administración</option>
+                                      <option value="2">Alimentación</option>
+                                      <option value="3">Ambiente</option>
+                                      <option value="4">Arquitectura</option>
+                                      <option value="5">Arte</option>
+                                      <option value="6">Biología</option>
+                                      <option value="7">Calidad</option>
+                                      <option value="8">Ciencias del Agro</option>
+                                      <option value="9">Ciencias del mar</option>
+                                      <option value="10">Comunicación</option>
+                                      <option value="11">Contaduría</option>
+                                      <option value="12">crecimiento Personal</option>
+                                      <option value="13">Derecho</option>
+                                      <option value="14">Dietética</option>
+                                      <option value="15">Docencia</option>
+                                      <option value="16">Economía</option>
+                                      <option value="17">Electrónica</option>
+                                      <option value="18">Estadística</option>
+                                      <option value="19">Filosofía</option>
+                                      <option value="20">Física</option>
+                                      <option value="21">Gerencia</option>
+                                      <option value="22">Gestión</option>
+                                      <option value="23">Humanidades</option>
+                                      <option value="24">Idiomas</option>
+                                      <option value="25">Información</option>
+                                      <option value="26">Informática</option>
+                                      <option value="27">Ingeniería</option>
+                                      <option value="28">Letras</option>
+                                      <option value="29">Liderazgo</option>
+                                      <option value="30">Matemáticas</option>
+                                      <option value="31">Medicina</option>
+                                      <option value="32">Música</option>
+                                      <option value="33">Negocio</option>
+                                      <option value="34">Nutrición</option>
+                                      <option value="35">Química</option>
+                                      <option value="36">Recreación</option>
+                                      <option value="37">Salud Laboral</option>
+                                      <option value="38">Seguridad</option>
+                                      <option value="39">Tecnología</option>
+                                      <option value="40">Urbanismo</option>
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <div class="col-sm-6">
+                                  <br>
+                                  <label>Código de materia</label>
+                                  <input type="text" class="form-control" name="codigo_add" placeholder="Código" id="input-codigo">
+                                  <font color="red"><div id="err_celular" hidden></div></font>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <div class="col-sm-6">
+                                  <br>
+                                  <label>Materia</label>
+                                  <input type="text" class="form-control" name="materia_add" placeholder="Materia" id="input-materia">
+                                  <font color="red"><div id="err_celular" hidden></div></font>
+                                </div>
+                              </div>
+                            </div>
+                      </div>
+
+                      <script type="text/javascript">
+                        function toggleMateria(id, idText, idText2) {
+                        var trabajo = document.getElementById(id);
+                        var texto = document.getElementById(idText);
+                        if (idText2) {
+                          var texto2 = document.getElementById(idText2);
+                        }
+                        trabajo.style.display = 'block';
+                        texto.style.display = 'none';
+                        texto2.style.display = 'block';
+                        }
+                      </script>
+
+                      <div class="botones-form" style="margin-top: 1rem;margin-bottom: 2em;">
+                        <button type="button" class="btn btn-previous botonForm"><span class="fa fa-arrow-left" title="Anterior"/></button>
+                        <button type="button" class="btn btn-next botonForm"><span class="fa fa-arrow-right" title="Siguiente"/></button>
+                      </div>
+                    </fieldset>
+
+                    <!-- Fin Sexto Paso -->
 
 
+                    <!-- Séptimo paso -->
+
+                    <fieldset class="formField" id="p6">
+                      <div class="form-bottom" data-step="6" data-title="Sexto Paso">
+                        <!-- Aqui va la barra lateral -->
+                        <div class="col-sm-1 col1Body">
+                          <span class="step">1</span>
+                          <span class="step">2</span>
+                          <span class="step">3</span>
+                          <span class="step">4</span>
+                          <span class="step">5</span>
+                          <span class="step">6</span>
+                          <span class="step activePass">7</span>
+                        </div>
+
+                        <!-- Aqui va la informacion -->
+                        <div class="col-sm-11 col11Body">
+                          <h4 class="titulosForm">Trabajos dirigidos (Máximo 5)</h4>
+
+                            <div class="form-group">
+                              <div class="col-sm-12" style="margin-top: 2rem;">
+                              <label>Aplica</label>
+                              </div>
+                            </div>
+
+                            <div class="custom-control custom-radio">
+                              <div class="col-sm-6">
+                              <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                              <label class="custom-control-label" for="customRadio1">Si</label>
+                              <font color="red"><div id="err_celular" hidden></div></font>
+                            </div>
+
+                            <div class="custom-control custom-radio">
+                              <div class="col-sm-6">
+                              <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                              <label class="custom-control-label" for="customRadio2">No</label>
+                              <font color="red"><div id="err_celular" hidden></div></font>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="col-sm-6">
+                                <br>
+                                <label>Fecha</label>
+                                <input type="text" maxlength="4" class="form-control" name="fecha_add" placeholder="Año" id="input-anio">
+                                <font color="red"><div id="err_celular" hidden></div></font>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="col-sm-6">
+                                <br>
+                                <label>Título del trabajo</label>
+                                <input type="text" class="form-control" name="titulo_add" placeholder="Título" id="input-titulo">
+                                <font color="red"><div id="err_celular" hidden></div></font>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="col-sm-6">
+                                <br>
+                                <label>Estudiante</label>
+                                <input type="text" class="form-control" name="estudiante_add" placeholder="Nombre" id="input-estudiante">
+                                <font color="red"><div id="err_celular" hidden></div></font>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="col-sm-6">
+                                <br>
+                                <label>Institución</label>
+                                <input type="text" class="form-control" name="institucion_add" placeholder="Institución" id="input-institucion">
+                                <font color="red"><div id="err_celular" hidden></div></font>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="col-sm-6">
+                                <br>
+                                <label>Nivel</label>
+                                <select class="custom-select">
+                                  <div class="col-sm-6">
+                                  <option selected>Nivel</option>
+                                  <option value="1">Bachillerato</option>
+                                  <option value="2">Técnico Medio</option>
+                                  <option value="3">TSU</option>
+                                  <option value="4">Licenciatura</option>
+                                  <option value="5">Especialización</option>
+                                  <option value="6">Maestría</option>
+                                  <option value="7">Doctorado</option>
+                                  <option value="8">Post-Doctorado</option>
+                                </select>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <div class="col-sm-12">
+                                <p onclick="toggleEstudiante('estudiante2', 'texto10', 'texto11')" style="display: block;color: #3679B5;font-size: 15px; cursor:pointer;margin-top: 1rem;" id="texto10">Agregar otro estudiante</p>
+                              </div>
+                            </div>
+
+                            <div style="display: none;" id = "estudiante2">
+
+                              <div class="form-group">
+                                <div class="col-sm-6">
+                                  <br>
+                                  <label>Fecha</label>
+                                  <input type="text" maxlength="4" class="form-control" name="aio_add" placeholder="Año" id="input-anio">
+                                  <font color="red"><div id="err_celular" hidden></div></font>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <div class="col-sm-6">
+                                  <br>
+                                  <label>Título del trabajo</label>
+                                  <input type="text" class="form-control" name="titulo_add" placeholder="Título" id="input-titulo">
+                                  <font color="red"><div id="err_celular" hidden></div></font>
+                                </div>
+                              </div>
+                          
+                              <div class="form-group">
+                                <div class="col-sm-6">
+                                  <br>
+                                  <label>Estudiante</label>
+                                  <input type="text" class="form-control" name="estudiante_add" placeholder="Nombre" id="input-estudiante">
+                                  <font color="red"><div id="err_celular" hidden></div></font>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <div class="col-sm-6">
+                                  <br>
+                                  <label>Institución</label>
+                                  <input type="text" class="form-control" name="institucion_add" placeholder="Institución" id="input-institucion">
+                                  <font color="red"><div id="err_celular" hidden></div></font>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <div class="col-sm-6">
+                                  <br>
+                                  <label>Nivel</label>
+                                  <select class="custom-select">
+                                    <div class="col-sm-6">
+                                    <option selected>Nivel</option>
+                                    <option value="1">Bachillerato</option>
+                                    <option value="2">Técnico Medio</option>
+                                    <option value="3">TSU</option>
+                                    <option value="4">Licenciatura</option>
+                                    <option value="5">Especialización</option>
+                                    <option value="6">Maestría</option>
+                                    <option value="7">Doctorado</option>
+                                    <option value="8">Post-Doctorado</option>
+                                  </select>
+                                </div>
+                              </div>
+
+                            </div>
+
+                            <div class="form-group">
+                              <div class="col-sm-12">
+                                <p onclick="toggleEstudiante('estudiante3', 'texto11', null)" style="display: none;color: #3679B5;font-size: 15px; cursor:pointer;margin-top: 1rem;" id="texto11">Agregar otro estudiante</p>
+                              </div>
+                            </div>
+                            
+                            <div style="display: none;" id = "estudiante3">
+
+                              <div class="form-group">
+                                <div class="col-sm-6">
+                                  <br>
+                                  <label>Fecha</label>
+                                  <input type="text" maxlength="4" class="form-control" name="aio_add" placeholder="Año" id="input-anio">
+                                  <font color="red"><div id="err_celular" hidden></div></font>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <div class="col-sm-6">
+                                  <br>
+                                  <label>Título del trabajo</label>
+                                  <input type="text" class="form-control" name="titulo_add" placeholder="Título" id="input-titulo">
+                                  <font color="red"><div id="err_celular" hidden></div></font>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <div class="col-sm-6">
+                                  <br>
+                                  <label>Estudiante</label>
+                                  <input type="text" class="form-control" name="estudiante_add" placeholder="Nombre" id="input-estudiante">
+                                  <font color="red"><div id="err_celular" hidden></div></font>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <div class="col-sm-6">
+                                  <br>
+                                  <label>Institución</label>
+                                  <input type="text" class="form-control" name="institucion_add" placeholder="Institución" id="input-institucion">
+                                  <font color="red"><div id="err_celular" hidden></div></font>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <div class="col-sm-6">
+                                  <br>
+                                  <label>Nivel</label>
+                                  <select class="custom-select">
+                                    <div class="col-sm-6">
+                                    <option selected>Nivel</option>
+                                    <option value="1">Bachillerato</option>
+                                    <option value="2">Técnico Medio</option>
+                                    <option value="3">TSU</option>
+                                    <option value="4">Licenciatura</option>
+                                    <option value="5">Especialización</option>
+                                    <option value="6">Maestría</option>
+                                    <option value="7">Doctorado</option>
+                                    <option value="8">Post-Doctorado</option>
+                                  </select>
+                                </div>
+                              </div>
+
+                            </div>
+
+                        </div>
+
+                        <script type="text/javascript">
+                          function toggleEstudiante(id, idText, idText2) {
+                          var trabajo = document.getElementById(id);
+                          var texto = document.getElementById(idText);
+                          if (idText2) {
+                            var texto2 = document.getElementById(idText2);
+                          }
+                          trabajo.style.display = 'block';
+                          texto.style.display = 'none';
+                          texto2.style.display = 'block';
+                          }
+                        </script>      
+
+                      <div class="botones-form" style="margin-top: 1rem;margin-bottom: 2em;">
+                        <button type="button" class="btn btn-previous botonForm"><span class="fa fa-arrow-left" title="Anterior"/></button>
+                        <button type="button" class="btn btn-submit botonForm" form="formularioCarga" name="envio" value="agregar" id="submit"><span class="fa fa-floppy-o" title="Enviar"/></button>
+                      </div>
+
+                    </fieldset>
+
+                    <!-- Fin Séptimo Paso -->
                 </form>
             </div>
           </div>

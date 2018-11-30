@@ -143,7 +143,7 @@
             exportOptions: {
                     columns: ':visible'
                 },
-            customize: function ( doc ) {
+            customize: function ( doc ) {	
                 var now = new Date();
 				var jsDate = now.getDate()+'-'+(now.getMonth()+1)+'-'+now.getFullYear();
                 doc.content[1].margin = [50, 0, 50, 0 ];
@@ -155,23 +155,25 @@
 					},
                     {
                         alignment: 'center',
-                        text: 'Listado de Personal - ULAB'
+                        fontsize: 18,
+                        text: ['Listado de Personal - ULAB\t', 'Reporte generado el: ', { text: jsDate.toString() }],
+                        margin: [50, 0, 50, 10]
                         
-                    });
+                    },
+                    );
 
 					doc['footer']=(function(page, pages) {
 							return {
 								columns: [
-									{
-										alignment: 'left',
-										text: ['Reporte generado el: ', { text: jsDate.toString() }]
-									},
                                     {
                                         alignment: 'center',
-                                        text: 'Universidad Simón Bolívar, Unidad de Laboratorios'  
+                                        fontsize: 14,
+                                        text: 'Universidad Simón Bolívar, Unidad de Laboratorios',
+                                        margin: [50, 0, 50,0]  
                                     },
 									{
 										alignment: 'right',
+                                        fontsize: 14,
 										text: ['Página ', { text: page.toString() },	' de ',	{ text: pages.toString() }]
 									}
 								],

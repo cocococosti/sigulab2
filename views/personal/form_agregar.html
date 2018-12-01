@@ -421,26 +421,9 @@
                         </div>
 
                         <!-- Aqui va la informacion -->
-                        <div class="col-sm-11 col11Body">
-                          <h4 class="titulosForm">Competencias (Máximo 10)</h4>
+                        <div class="col-sm-11 col11Body" >
 
-                          {{ for ind, comp in enumerate(competencias): }}
-                          <div class="form-group competencias">
-                            {{if comp in comp_list:}}
-                            <div class="col-sm-12">
-                              <input class="comp-check" type="checkbox" name="check-competencia-{{=ind}}" checked />
-                              <label>{{=comp}}</label><br/>
-                              <input type="text" name="competencia-{{=ind}}" value="{{=comp_list[comp]}}" maxlength="150">
-                            </div>
-                            {{else:}}
-                            <div class="col-sm-12">
-                              <input class="comp-check" type="checkbox" name="check-competencia-{{=ind}}" />
-                              <label>{{=comp}}</label><br/>
-                              <input type="text" name="competencia-{{=ind}}" maxlength="150">
-                            </div>
-                            {{pass}}
-                          </div>
-                          {{pass}}
+                          {{ include 'personal/form-competencias.html' }}
 
                         </div>
 
@@ -453,8 +436,8 @@
                     <!-- Fin Cuarto Paso -->
 
                   <!-- Quinto paso Paso -->
-                  <fieldset class="formField" id="p4">
-                    <div class="form-bottom" data-step="4" data-title="Quinto Paso">
+                  <fieldset class="formField" id="p5">
+                    <div class="form-bottom" data-step="5" data-title="Quinto Paso">
                       <!-- Aqui va la barra lateral -->
                       <div class="col-sm-1 col1Body">
                         <span class="step">1</span>
@@ -651,9 +634,6 @@
                           </div>
                         </div>
 
-
-
-
                         <div style="display: none;" id = "trabajo4">
                           
                           <div class="form-group">
@@ -713,9 +693,6 @@
                           </div>
                         </div>
 
-
-
-
                         <div style="display: none;" id = "trabajo5">
                           
                           <div class="form-group">
@@ -770,20 +747,7 @@
                         </div>
                       </div>
 
-
-                   <script type="text/javascript">
-                     function toggleTrabajo(id, idText, idText2) {
-                      var trabajo = document.getElementById(id);
-                      var texto = document.getElementById(idText);
-                      if (idText2) {
-                        var texto2 = document.getElementById(idText2);
-                      }
-                      trabajo.style.display = 'block';
-                      texto.style.display = 'none';
-                      texto2.style.display = 'block';
-                     }
-                   </script>
-                        
+                      <!--  Formulario para agregar historial laboral en el menu modal -->
 
                     <div class="botones-form" style="margin-top: 1rem;margin-bottom: 2em;">
                       <button type="button" class="btn btn-previous botonForm"><span class="fa fa-arrow-left" title="Anterior"/></button>
@@ -1536,3 +1500,17 @@
       </div>
     </div>
 </div>
+
+<!-- Para agregar formularios de trabajos al hacer a "Agregar otro trabajo" -->
+<script type="text/javascript">
+ function toggleTrabajo(id, idText, idText2) {
+  var trabajo = document.getElementById(id);
+  var texto = document.getElementById(idText);
+  if (idText2) {
+    var texto2 = document.getElementById(idText2);
+  }
+  trabajo.style.display = 'block';
+  texto.style.display = 'none';
+  texto2.style.display = 'block';
+ }
+</script>

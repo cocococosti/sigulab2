@@ -4,7 +4,7 @@
     <div class="tabbable">
       <ul class="nav nav-tabs " id="myTab" role="tablist">
         <li role="presentation" class="nav-item active">
-          <a href="#docencia" class="nav-link active " data-toggle="tab" role="tab" aria-controls="cargos_desempe"><b>Dcocencia</b></a>
+          <a href="#docencia" class="nav-link active " data-toggle="tab" role="tab" aria-controls="cargos_desempe"><b>Docencia</b></a>
         </li>
 
         <li class="nav-item ">
@@ -12,7 +12,7 @@
         </li>
 
         <li class="nav-item ">
-          <a class="nav-link  " id="tab_datos_personales" href="#extension" data-toggle="tab" role="tab" aria-controls="comisiones_comites"><b>Extensión</b></a>
+          <a class="nav-link  " id="tab_datos_personales" href="#eventosAcad" data-toggle="tab" role="tab" aria-controls="comisiones_comites"><b>Extensión</b></a>
         </li>
 
       </ul>
@@ -26,6 +26,11 @@
         </div>
 
         <div class="tab-pane" id="extension">
+          {{include 'personal/extension.html'}}
+        </div>
+
+        <div class="tab-pane" id="eventosAcad">
+          <p>Aqui van los eventos academicos</p>
         </div>
 
 

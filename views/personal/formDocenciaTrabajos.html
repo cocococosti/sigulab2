@@ -1,0 +1,634 @@
+<div class="col-sm-11 col11Body">
+	<h4 class="titulosForm">Trabajos dirigidos (Máximo 5)</h4>
+
+    <div class="col-sm-6">
+      <br>
+      <label>Fecha</label>
+      {{if bool(trabajo['f_anio_1']) :}}
+      <input value="{{=trabajo['f_anio_1']}}" type="text" class="form-control" name="anio_1_add" placeholder="Año" required
+         data-content="Este campo es requerido" data-valido="true" maxlength="4">
+      <font color="red"><div id="err_celular" hidden></div></font>
+      {{else:}}
+      <input value="{{=''}}" type="text" class="form-control" name="anio_1_add" placeholder="Año" required
+         data-content="Este campo es requerido" data-valido="true" maxlength="4">
+      <font color="red"><div id="err_celular" hidden></div></font>
+      {{pass}}
+    </div>
+
+    <div class="col-sm-6">
+      <br>
+      <label>Título del Trabajo</label>
+      {{if bool(trabajo['f_titulo_1']) :}}
+      <input value="{{=trabajo['f_titulo_1']}}" type="text" class="form-control" name="titulo_1_add" required
+         data-content="Este campo es requerido" data-valido="true">
+      <font color="red"><div id="err_celular" hidden></div></font>
+      {{else:}}
+      <input value="{{=''}}" type="text" class="form-control" name="titulo_1_add" required
+         data-content="Este campo es requerido" data-valido="true">
+      <font color="red"><div id="err_celular" hidden></div></font>
+      {{pass}}
+    </div>
+
+    <div class="col-sm-12">
+      <br>
+      <label>Estudiante</label>
+      {{if bool(trabajo['f_estudiante_1_1']) :}}
+      <input value="{{=trabajo['f_estudiante_1_1']}}" type="text" class="form-control" name="estudiante_1_1_add" placeholder="Nombre" required
+         data-content="Este campo es requerido" data-valido="true">
+      <font color="red"><div id="err_celular" hidden></div></font>
+      {{else:}}
+      <input value="{{=''}}" type="text" class="form-control" name="estudiante_1_1_add" placeholder="Nombre" required
+         data-content="Este campo es requerido" data-valido="true">
+      <font color="red"><div id="err_celular" hidden></div></font>
+      {{pass}}
+    </div>
+
+    <div class="col-sm-12">
+      <br>
+      <label>Estudiante</label>
+      {{if bool(trabajo['f_estudiante_1_2']) :}}
+      <input value="{{=trabajo['f_estudiante_1_2']}}" type="text" class="form-control" name="estudiante_1_2_add" placeholder="Nombre" required
+         data-content="Este campo es requerido" data-valido="true">
+      <font color="red"><div id="err_celular" hidden></div></font>
+      {{else:}}
+      <input value="{{=''}}" type="text" class="form-control" name="estudiante_1_2_add" placeholder="Nombre" required
+         data-content="Este campo es requerido" data-valido="true">
+      <font color="red"><div id="err_celular" hidden></div></font>
+      {{pass}}
+    </div>
+
+    <div class="col-sm-12">
+      <br>
+      <label>Estudiante</label>
+      {{if bool(trabajo['f_estudiante_1_3']) :}}
+      <input value="{{=trabajo['f_estudiante_1_3']}}" type="text" class="form-control" name="estudiante_1_3_add" placeholder="Nombre" required
+         data-content="Este campo es requerido" data-valido="true">
+      <font color="red"><div id="err_celular" hidden></div></font>
+      {{else:}}
+      <input value="{{=''}}" type="text" class="form-control" name="estudiante_1_3_add" placeholder="Nombre" required
+         data-content="Este campo es requerido" data-valido="true">
+      <font color="red"><div id="err_celular" hidden></div></font>
+      {{pass}}
+    </div>
+
+    <div class="col-sm-6">
+      <br>
+      <label>Institución</label>
+      {{if bool(trabajo['f_institucion_1']) :}}
+      <input value="{{=trabajo['f_institucion_1']}}" type="text" class="form-control" name="institucion_1_add" required
+         data-content="Este campo es requerido" data-valido="true">
+      <font color="red"><div id="err_celular" hidden></div></font>
+      {{else:}}
+      <input value="{{=''}}" type="text" class="form-control" name="institucion_1_add" required
+         data-content="Este campo es requerido" data-valido="true">
+      <font color="red"><div id="err_celular" hidden></div></font>
+      {{pass}}
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-6">
+        <br>
+        <label for="FormControlNivel1">Nivel</label>
+        {{if bool(trabajo['f_nivel_1']) :}}
+        <select class="form-control" value="{{=trabajo['f_nivel_1']}}" name="nivel_1_add" id="input-nivel-1">
+          <option selected>Seleccione</option>
+          <option>Bachillerato</option>
+          <option>Técnico Medio</option>
+          <option>TSU</option>
+          <option>Licenciatura</option>
+          <option>Especialización</option>
+          <option>Maestría</option>
+          <option>Doctorado</option>
+          <option>Post-Doctorado</option>
+        </select>
+        {{else:}}
+        <select class="form-control" value="{{''}}" name="nivel_1_add" id="input-nivel-1">
+          <option selected>Seleccione</option>
+          <option>Bachillerato</option>
+          <option>Técnico Medio</option>
+          <option>TSU</option>
+          <option>Licenciatura</option>
+          <option>Especialización</option>
+          <option>Maestría</option>
+          <option>Doctorado</option>
+          <option>Post-Doctorado</option>
+        </select>
+        {{pass}}
+      </div>  
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <p onclick="toggleTrabajo('estudiante2', 'texto10', 'texto11')" style="display: block;color: #3679B5;font-size: 15px; cursor:pointer;margin-top: 1rem;" id="texto10">Agregar otro trabajo</p>
+      </div>
+    </div>
+
+    <div style="display: none;" id = "estudiante2">
+
+      <div class="col-sm-6">
+        <br>
+        <label>Fecha</label>
+        {{if bool(trabajo['f_anio_2']) :}}
+        <input maxlength="4" value="{{=trabajo['f_anio_2']}}" type="text" class="form-control" name="anio_2_add" placeholder="Año" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input maxlength="4" value="{{=''}}" type="text" class="form-control" name="anio_2_add" placeholder="Año" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+
+      <div class="col-sm-6">
+        <br>
+        <label>Título del Trabajo</label>
+        {{if bool(trabajo['f_titulo_2']) :}}
+        <input value="{{=trabajo['f_titulo_2']}}" type="text" class="form-control" name="titulo_2_add" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input value="{{=''}}" type="text" class="form-control" name="titulo_2_add" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+  
+      <div class="col-sm-12">
+        <br>
+        <label>Estudiante</label>
+        {{if bool(trabajo['f_estudiante_2_1']) :}}
+        <input value="{{=trabajo['f_estudiante_2_1']}}" type="text" class="form-control" name="estudiante_2_1_add" placeholder="Nombre" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input value="{{=''}}" type="text" class="form-control" name="estudiante_2_1_add" placeholder="Nombre" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+
+      <div class="col-sm-12">
+        <br>
+        <label>Estudiante</label>
+        {{if bool(trabajo['f_estudiante_2_2']) :}}
+        <input value="{{=trabajo['f_estudiante_2_2']}}" type="text" class="form-control" name="estudiante_2_2_add" placeholder="Nombre" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input value="{{=''}}" type="text" class="form-control" name="estudiante_2_2_add" placeholder="Nombre" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+
+      <div class="col-sm-12">
+        <br>
+        <label>Estudiante</label>
+        {{if bool(trabajo['f_estudiante_2_3']) :}}
+        <input value="{{=trabajo['f_estudiante_2_3']}}" type="text" class="form-control" name="estudiante_2_3_add" placeholder="Nombre" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input value="{{=''}}" type="text" class="form-control" name="estudiante_2_3_add" placeholder="Nombre" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+
+      <div class="col-sm-6">
+        <br>
+        <label>Institución</label>
+        {{if bool(trabajo['f_institucion_2']) :}}
+        <input value="{{=trabajo['f_institucion_2']}}" type="text" class="form-control" name="institucion_2_add" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input value="{{=''}}" type="text" class="form-control" name="institucion_2_add" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-6">
+          <br>
+          <label for="FormControlNivel2">Nivel</label>
+          {{if bool(trabajo['f_nivel_2']) :}}
+          <select class="form-control" value="{{=trabajo['f_nivel_2']}}" name="nivel_2_add" id="input-nivel-2">
+            <option selected>Seleccione</option>
+            <option>Bachillerato</option>
+            <option>Técnico Medio</option>
+            <option>TSU</option>
+            <option>Licenciatura</option>
+            <option>Especialización</option>
+            <option>Maestría</option>
+            <option>Doctorado</option>
+            <option>Post-Doctorado</option>
+          </select>
+          {{else:}}
+          <select class="form-control" value="{{''}}" name="nivel_2_add" id="input-nivel-2">
+            <option selected>Seleccione</option>
+            <option>Bachillerato</option>
+            <option>Técnico Medio</option>
+            <option>TSU</option>
+            <option>Licenciatura</option>
+            <option>Especialización</option>
+            <option>Maestría</option>
+            <option>Doctorado</option>
+            <option>Post-Doctorado</option>
+          </select>
+          {{pass}}
+        </div>  
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <p onclick="toggleTrabajo('estudiante3', 'texto11', 'texto12')" style="display: none;color: #3679B5;font-size: 15px; cursor:pointer;margin-top: 1rem;" id="texto11">Agregar otro trabajo</p>
+      </div>
+    </div>
+    
+    <div style="display: none;" id = "estudiante3">
+
+      <div class="col-sm-6">
+        <br>
+        <label>Fecha</label>
+        {{if bool(trabajo['f_anio_3']) :}}
+        <input maxlength="4" value="{{=trabajo['f_anio_3']}}" type="text" class="form-control" name="anio_3_add" placeholder="Año" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input maxlength="4" value="{{=''}}" type="text" class="form-control" name="anio_3_add" placeholder="Año" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+
+      <div class="col-sm-6">
+        <br>
+        <label>Título del Trabajo</label>
+        {{if bool(trabajo['f_titulo_3']) :}}
+        <input value="{{=trabajo['f_titulo_3']}}" type="text" class="form-control" name="titulo_3_add" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input value="{{=''}}" type="text" class="form-control" name="titulo_3_add" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+
+      <div class="col-sm-12">
+        <br>
+        <label>Estudiante</label>
+        {{if bool(trabajo['f_estudiante_3_1']) :}}
+        <input value="{{=trabajo['f_estudiante_3_1']}}" type="text" class="form-control" name="estudiante_3_1_add" placeholder="Nombre" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input value="{{=''}}" type="text" class="form-control" name="estudiante_3_1_add" placeholder="Nombre" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+
+      <div class="col-sm-12">
+        <br>
+        <label>Estudiante</label>
+        {{if bool(trabajo['f_estudiante_3_2']) :}}
+        <input value="{{=trabajo['f_estudiante_3_2']}}" type="text" class="form-control" name="estudiante_3_2_add" placeholder="Nombre" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input value="{{=''}}" type="text" class="form-control" name="estudiante_3_2_add" placeholder="Nombre" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+
+      <div class="col-sm-12">
+        <br>
+        <label>Estudiante</label>
+        {{if bool(trabajo['f_estudiante_3_3']) :}}
+        <input value="{{=trabajo['f_estudiante_3_3']}}" type="text" class="form-control" name="estudiante_3_3_add" placeholder="Nombre" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input value="{{=''}}" type="text" class="form-control" name="estudiante_3_3_add" placeholder="Nombre" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+
+      <div class="col-sm-6">
+        <br>
+        <label>Institución</label>
+        {{if bool(trabajo['f_institucion_3']) :}}
+        <input value="{{=trabajo['f_institucion_3']}}" type="text" class="form-control" name="institucion_3_add" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input value="{{=''}}" type="text" class="form-control" name="institucion_3_add" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-6">
+          <br>
+          <label for="FormControlNivel3">Nivel</label>
+          {{if bool(trabajo['f_nivel_3']) :}}
+          <select class="form-control" value="{{=trabajo['f_nivel_3']}}" name="nivel_3_add" id="input-nivel-3">
+            <option selected>Seleccione</option>
+            <option>Bachillerato</option>
+            <option>Técnico Medio</option>
+            <option>TSU</option>
+            <option>Licenciatura</option>
+            <option>Especialización</option>
+            <option>Maestría</option>
+            <option>Doctorado</option>
+            <option>Post-Doctorado</option>
+          </select>
+          {{else:}}
+          <select class="form-control" value="{{''}}" name="nivel_3_add" id="input-nivel-3">
+            <option selected>Seleccione</option>
+            <option>Bachillerato</option>
+            <option>Técnico Medio</option>
+            <option>TSU</option>
+            <option>Licenciatura</option>
+            <option>Especialización</option>
+            <option>Maestría</option>
+            <option>Doctorado</option>
+            <option>Post-Doctorado</option>
+          </select>
+          {{pass}}
+        </div>  
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <p onclick="toggleTrabajo('estudiante4', 'texto12', 'texto13')" style="display: none;color: #3679B5;font-size: 15px; cursor:pointer;margin-top: 1rem;" id="texto12">Agregar otro trabajo</p>
+      </div>
+    </div>
+
+    <div style="display: none;" id = "estudiante4">
+
+      <div class="col-sm-6">
+        <br>
+        <label>Fecha</label>
+        {{if bool(trabajo['f_anio_4']) :}}
+        <input maxlength="4" value="{{=trabajo['f_anio_4']}}" type="text" class="form-control" name="anio_4_add" placeholder="Año" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input maxlength="4" value="{{=''}}" type="text" class="form-control" name="anio_4_add" placeholder="Año" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+
+      <div class="col-sm-6">
+        <br>
+        <label>Título del Trabajo</label>
+        {{if bool(trabajo['f_titulo_4']) :}}
+        <input value="{{=trabajo['f_titulo_4']}}" type="text" class="form-control" name="titulo_4_add" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input value="{{=''}}" type="text" class="form-control" name="titulo_4_add" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+
+      <div class="col-sm-12">
+        <br>
+        <label>Estudiante</label>
+        {{if bool(trabajo['f_estudiante_4_1']) :}}
+        <input value="{{=trabajo['f_estudiante_4_1']}}" type="text" class="form-control" name="estudiante_4_1_add" placeholder="Nombre" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input value="{{=''}}" type="text" class="form-control" name="estudiante_4_1_add" placeholder="Nombre" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+
+      <div class="col-sm-12">
+        <br>
+        <label>Estudiante</label>
+        {{if bool(trabajo['f_estudiante_4_2']) :}}
+        <input value="{{=trabajo['f_estudiante_4_2']}}" type="text" class="form-control" name="estudiante_4_2_add" placeholder="Nombre" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input value="{{=''}}" type="text" class="form-control" name="estudiante_4_2_add" placeholder="Nombre" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+
+      <div class="col-sm-12">
+        <br>
+        <label>Estudiante</label>
+        {{if bool(trabajo['f_estudiante_4_3']) :}}
+        <input value="{{=trabajo['f_estudiante_4_3']}}" type="text" class="form-control" name="estudiante_4_3_add" placeholder="Nombre" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input value="{{=''}}" type="text" class="form-control" name="estudiante_4_3_add" placeholder="Nombre" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+
+      <div class="col-sm-6">
+        <br>
+        <label>Institución</label>
+        {{if bool(trabajo['f_institucion_4']) :}}
+        <input value="{{=trabajo['f_institucion_4']}}" type="text" class="form-control" name="institucion_4_add" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input value="{{=''}}" type="text" class="form-control" name="institucion_4_add" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-6">
+          <br>
+          <label for="FormControlNivel3">Nivel</label>
+          {{if bool(trabajo['f_nivel_4']) :}}
+          <select class="form-control" value="{{=trabajo['f_nivel_4']}}" name="nivel_4_add" id="input-nivel-4">
+            <option selected>Seleccione</option>
+            <option>Bachillerato</option>
+            <option>Técnico Medio</option>
+            <option>TSU</option>
+            <option>Licenciatura</option>
+            <option>Especialización</option>
+            <option>Maestría</option>
+            <option>Doctorado</option>
+            <option>Post-Doctorado</option>
+          </select>
+          {{else:}}
+          <select class="form-control" value="{{''}}" name="nivel_4_add" id="input-nivel-4">
+            <option selected>Seleccione</option>
+            <option>Bachillerato</option>
+            <option>Técnico Medio</option>
+            <option>TSU</option>
+            <option>Licenciatura</option>
+            <option>Especialización</option>
+            <option>Maestría</option>
+            <option>Doctorado</option>
+            <option>Post-Doctorado</option>
+          </select>
+          {{pass}}
+        </div>  
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <p onclick="toggleTrabajo('estudiante5', 'texto13', null)" style="display: none;color: #3679B5;font-size: 15px; cursor:pointer;margin-top: 1rem;" id="texto13">Agregar otro trabajo</p>
+      </div>
+    </div>
+
+    <div style="display: none;" id = "estudiante5">
+
+      <div class="col-sm-6">
+        <br>
+        <label>Fecha</label>
+        {{if bool(trabajo['f_anio_5']) :}}
+        <input maxlength="4" value="{{=trabajo['f_anio_5']}}" type="text" class="form-control" name="anio_5_add" placeholder="Año" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input maxlength="4" value="{{=''}}" type="text" class="form-control" name="anio_5_add" placeholder="Año" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+
+      <div class="col-sm-6">
+        <br>
+        <label>Título del Trabajo</label>
+        {{if bool(trabajo['f_titulo_5']) :}}
+        <input value="{{=trabajo['f_titulo_5']}}" type="text" class="form-control" name="titulo_5_add" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input value="{{=''}}" type="text" class="form-control" name="titulo_5_add" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+
+      <div class="col-sm-12">
+        <br>
+        <label>Estudiante</label>
+        {{if bool(trabajo['f_estudiante_5_1']) :}}
+        <input value="{{=trabajo['f_estudiante_5_1']}}" type="text" class="form-control" name="estudiante_5_1_add" placeholder="Nombre" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input value="{{=''}}" type="text" class="form-control" name="estudiante_5_1_add" placeholder="Nombre" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+
+      <div class="col-sm-12">
+        <br>
+        <label>Estudiante</label>
+        {{if bool(trabajo['f_estudiante_5_2']) :}}
+        <input value="{{=trabajo['f_estudiante_5_2']}}" type="text" class="form-control" name="estudiante_5_2_add" placeholder="Nombre" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input value="{{=''}}" type="text" class="form-control" name="estudiante_5_2_add" placeholder="Nombre" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+
+      <div class="col-sm-12">
+      <br>
+      <label>Estudiante</label>
+      {{if bool(trabajo['f_estudiante_5_3']) :}}
+      <input value="{{=trabajo['f_estudiante_5_3']}}" type="text" class="form-control" name="estudiante_5_3_add" placeholder="Nombre" required
+         data-content="Este campo es requerido" data-valido="true">
+      <font color="red"><div id="err_celular" hidden></div></font>
+      {{else:}}
+      <input value="{{=''}}" type="text" class="form-control" name="estudiante_5_3_add" placeholder="Nombre" required
+         data-content="Este campo es requerido" data-valido="true">
+      <font color="red"><div id="err_celular" hidden></div></font>
+      {{pass}}
+    </div>
+
+      <div class="col-sm-6">
+        <br>
+        <label>Institución</label>
+        {{if bool(trabajo['f_institucion_5']) :}}
+        <input value="{{=trabajo['f_institucion_5']}}" type="text" class="form-control" name="institucion_5_add" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{else:}}
+        <input value="{{=''}}" type="text" class="form-control" name="institucion_5_add" required
+           data-content="Este campo es requerido" data-valido="true">
+        <font color="red"><div id="err_celular" hidden></div></font>
+        {{pass}}
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-6">
+          <br>
+          <label for="FormControlNivel3">Nivel</label>
+          {{if bool(trabajo['f_nivel_5']) :}}
+          <select class="form-control" value="{{=trabajo['f_nivel_5']}}" name="nivel_5_add" id="input-nivel-5">
+            <option selected>Seleccione</option>
+            <option>Bachillerato</option>
+            <option>Técnico Medio</option>
+            <option>TSU</option>
+            <option>Licenciatura</option>
+            <option>Especialización</option>
+            <option>Maestría</option>
+            <option>Doctorado</option>
+            <option>Post-Doctorado</option>
+          </select>
+          {{else:}}
+          <select class="form-control" value="{{''}}" name="nivel_5_add" id="input-nivel-5">
+            <option selected>Seleccione</option>
+            <option>Bachillerato</option>
+            <option>Técnico Medio</option>
+            <option>TSU</option>
+            <option>Licenciatura</option>
+            <option>Especialización</option>
+            <option>Maestría</option>
+            <option>Doctorado</option>
+            <option>Post-Doctorado</option>
+          </select>
+          {{pass}}
+        </div>  
+      </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+  function toggleTrabajo(id, idText, idText2) {
+  var trabajo = document.getElementById(id);
+  var texto = document.getElementById(idText);
+  if (idText2) {
+    var texto2 = document.getElementById(idText2);
+  }
+  trabajo.style.display = 'block';
+  texto.style.display = 'none';
+  texto2.style.display = 'block';
+  }
+</script>   

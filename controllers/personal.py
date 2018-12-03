@@ -256,6 +256,67 @@ def add_form():
              "organizacion_5" : request.post_vars.organizacion_5_add,
              "cargo_hist_5": request.post_vars.cargo_hist_5_add,
              "rol_hist_5": request.post_vars.rol_hist_5_add,
+             "fecha_inicio_materia_1": transformar_fecha_formato_original(request.post_vars.fecha_inicio_materia_1_add),
+             "fecha_final_materia_1": transformar_fecha_formato_original(request.post_vars.fecha_final_materia_1_add),
+             "area_1": request.post_vars.area_1_add,
+             "codigo_1": request.post_vars.codigo_1_add,
+             "nombre_materia_1": request.post_vars.nombre_materia_1_add,
+             "fecha_inicio_materia_2": transformar_fecha_formato_original(request.post_vars.fecha_inicio_materia_2_add),
+             "fecha_final_materia_2": transformar_fecha_formato_original(request.post_vars.fecha_final_materia_2_add),
+             "area_2": request.post_vars.area_2_add,
+             "codigo_2": request.post_vars.codigo_2_add,
+             "nombre_materia_2": request.post_vars.nombre_materia_2_add,
+             "fecha_inicio_materia_3": transformar_fecha_formato_original(request.post_vars.fecha_inicio_materia_3_add),
+             "fecha_final_materia_3": transformar_fecha_formato_original(request.post_vars.fecha_final_materia_3_add),
+             "area_3": request.post_vars.area_3_add,
+             "codigo_3": request.post_vars.codigo_3_add,
+             "nombre_materia_3": request.post_vars.nombre_materia_3_add,
+             "fecha_inicio_materia_4": transformar_fecha_formato_original(request.post_vars.fecha_inicio_materia_4_add),
+             "fecha_final_materia_4": transformar_fecha_formato_original(request.post_vars.fecha_final_materia_4_add),
+             "area_4": request.post_vars.area_4_add,
+             "codigo_4": request.post_vars.codigo_4_add,
+             "nombre_materia_4": request.post_vars.nombre_materia_4_add,
+             "fecha_inicio_materia_5": transformar_fecha_formato_original(request.post_vars.fecha_inicio_materia_5_add),
+             "fecha_final_materia_5": transformar_fecha_formato_original(request.post_vars.fecha_final_materia_5_add),
+             "area_5": request.post_vars.area_5_add,
+             "codigo_5": request.post_vars.codigo_5_add,
+             "nombre_materia_5": request.post_vars.nombre_materia_5_add,
+             "anio_1": request.post_vars.anio_1_add,
+             "nivel_1": request.post_vars.nivel_1_add,
+             "estudiante_1_1": request.post_vars.estudiante_1_1_add,
+             "estudiante_1_2": request.post_vars.estudiante_1_2_add,
+             "estudiante_1_3": request.post_vars.estudiante_1_3_add,
+             "institucion_1": request.post_vars.institucion_1_add,
+             "titulo_1": request.post_vars.titulo_1,
+             "anio_2": request.post_vars.anio_2_add,
+             "nivel_2": request.post_vars.nivel_2_add,
+             "estudiante_2_1": request.post_vars.estudiante_2_1_add,
+             "estudiante_2_2": request.post_vars.estudiante_2_2_add,
+             "estudiante_2_3": request.post_vars.estudiante_2_3_add,
+             "institucion_2": request.post_vars.institucion_2_add,
+             "titulo_2": request.post_vars.titulo_2,
+             "anio_3": request.post_vars.anio_3_add,
+             "nivel_3": request.post_vars.nivel_3_add,
+             "estudiante_3_1": request.post_vars.estudiante_3_1_add,
+             "estudiante_3_2": request.post_vars.estudiante_3_2_add,
+             "estudiante_3_3": request.post_vars.estudiante_3_3_add,
+             "institucion_3": request.post_vars.institucion_3_add,
+             "titulo_3": request.post_vars.titulo_3,
+             "anio_4": request.post_vars.anio_4_add,
+             "nivel_4": request.post_vars.nivel_4_add,
+             "estudiante_4_1": request.post_vars.estudiante_4_1_add,
+             "estudiante_4_2": request.post_vars.estudiante_4_2_add,
+             "estudiante_4_3": request.post_vars.estudiante_4_3_add,
+             "institucion_4": request.post_vars.institucion_4_add,
+             "titulo_4": request.post_vars.titulo_4,
+             "anio_5": request.post_vars.anio_5_add,
+             "nivel_5": request.post_vars.nivel_5_add,
+             "estudiante_5_1": request.post_vars.estudiante_5_1_add,
+             "estudiante_5_2": request.post_vars.estudiante_5_2_add,
+             "estudiante_5_3": request.post_vars.estudiante_5_3_add,
+             "institucion_5": request.post_vars.institucion_5_add,
+             "titulo_5": request.post_vars.titulo_5,
+
             }
 
     ubicaciones = request.post_vars.ubicacion_add
@@ -327,6 +388,80 @@ def add_form():
             f_cargo_hist_5 = dic["cargo_hist_5"],
             f_rol_hist_5 = dic["rol_hist_5"],
             f_Historial_trabajo_Personal= personal.select().first().id
+            )
+
+        # Añadir a la lista de materias
+
+        db.t_Materia_nueva.update_or_insert(
+            db.t_Materia_nueva.f_Materia_Personal == personal.select().first().id,
+            f_fecha_inicio_materia1 = dic["f_fecha_inicio_materia1"],
+            f_fecha_final_materia1 = dic["f_fecha_final_materia1"],
+            f_area_1 = dic["f_area_1"],
+            f_codigo_1 = dic["f_codigo_1"],
+            f_nombre_materia_1 = dic["f_nombre_materia_1"],
+            f_fecha_inicio_materia2 = dic["f_fecha_inicio_materia2"],
+            f_fecha_final_materia2 = dic["f_fecha_final_materia2"],
+            f_area_2 = dic["f_area_2"],
+            f_codigo_2 = dic["f_codigo_2"],
+            f_nombre_materia_2 = dic["f_nombre_materia_2"],
+            f_fecha_inicio_materia3 = dic["f_fecha_inicio_materia3"],
+            f_fecha_final_materia3 = dic["f_fecha_final_materia3"],
+            f_area_3 = dic["f_area_3"],
+            f_codigo_3 = dic["f_codigo_3"],
+            f_nombre_materia_3 = dic["f_nombre_materia_3"],
+            f_fecha_inicio_materia4 = dic["f_fecha_inicio_materia4"],
+            f_fecha_final_materia4 = dic["f_fecha_final_materia4"],
+            f_area_4 = dic["f_area_4"],
+            f_codigo_4 = dic["f_codigo_4"],
+            f_nombre_materia_4 = dic["f_nombre_materia_4"],
+            f_fecha_inicio_materia5 = dic["f_fecha_inicio_materia5"],
+            f_fecha_final_materia5 = dic["f_fecha_final_materia5"],
+            f_area_5 = dic["f_area_5"],
+            f_codigo_5 = dic["f_codigo_5"],
+            f_nombre_materia_5 = dic["f_nombre_materia_5"],
+            f_Materia_Personal = personal.select().first().id
+            )
+
+        #Añadir a la lista de trabajos dirigidos
+
+        db.t_Trabajo_nuevo.update_or_insert(
+            db.t_Trabajo_nuevo.f_Trabajo_Personal == personal.select().first().id,
+            f_anio_1 = dic["f_anio_1"],
+            f_nivel_1 = dic["f_nivel_1"],
+            f_estudiante_1_1 = ["f_estudiante_1_1"],
+            f_estudiante_1_2 = ["f_estudiante_1_2"],
+            f_estudiante_1_3 = ["f_estudiante_1_3"],
+            f_institucion_1 = ["f_institucion_1"],
+            f_titulo_1 = ["f_titulo_1"],
+            f_anio_2 = dic["f_anio_2"],
+            f_nivel_2 = dic["f_nivel_2"],
+            f_estudiante_2_1 = ["f_estudiante_2_1"],
+            f_estudiante_2_2 = ["f_estudiante_2_2"],
+            f_estudiante_2_3 = ["f_estudiante_2_3"],
+            f_institucion_2 = ["f_institucion_2"],
+            f_titulo_2 = ["f_titulo_2"],
+            f_anio_3 = dic["f_anio_3"],
+            f_nivel_3 = dic["f_nivel_3"],
+            f_estudiante_3_1 = ["f_estudiante_3_1"],
+            f_estudiante_3_2 = ["f_estudiante_3_2"],
+            f_estudiante_3_3 = ["f_estudiante_3_3"],
+            f_institucion_3 = ["f_institucion_3"],
+            f_titulo_3 = ["f_titulo_3"],
+            f_anio_4 = dic["f_anio_4"],
+            f_nivel_4 = dic["f_nivel_4"],
+            f_estudiante_4_1 = ["f_estudiante_4_1"],
+            f_estudiante_4_2 = ["f_estudiante_4_2"],
+            f_estudiante_4_3 = ["f_estudiante_4_3"],
+            f_institucion_4 = ["f_institucion_4"],
+            f_titulo_4 = ["f_titulo_4"],
+            f_anio_5 = dic["f_anio_5"],
+            f_nivel_5 = dic["f_nivel_5"],
+            f_estudiante_5_1 = ["f_estudiante_5_1"],
+            f_estudiante_5_2 = ["f_estudiante_5_2"],
+            f_estudiante_5_3 = ["f_estudiante_5_3"],
+            f_institucion_5 = ["f_institucion_5"],
+            f_titulo_5 = ["f_titulo_5"],
+            f_Trabajo_Personal = personal.select().first().id
             )
 
         session.ficha_negada=""
@@ -466,6 +601,9 @@ def listado():
     idUser = db(db.t_Personal.f_ci == usuario.f_ci).select().first().id
     historial_rows = db(db.t_Historial_trabajo_nuevo.f_Historial_trabajo_Personal == idUser).select().first()
 
+    materia_rows = db(db.t_Materia_nueva.f_Materia_Personal == idUser).select().first()
+    trabajo_rows = db(db.t_Trabajo_nuevo.f_Trabajo_Personal == idUser).select().first()
+
 
     return dict(
         grid=tabla,
@@ -481,7 +619,9 @@ def listado():
         empleados = empleados,
         competencias=competencias,
         comp_list=lista_competencias(usuario.f_ci),
-        historial = getDictHistorial(historial_rows)
+        historial = getDictHistorial(historial_rows),
+        materia = getMateria(materia_rows),
+        trabajo = getTrabajo(trabajo_rows),
 
         )
 
@@ -593,6 +733,9 @@ def ficha():
 
     historial_rows = db(db.t_Historial_trabajo_nuevo.f_Historial_trabajo_Personal == elm.id).select().first()
 
+    materia_rows = db(db.t_Materia_nueva.f_Materia_Personal == elm.id).select().first()
+    trabajo_rows = db(db.t_Trabajo_nuevo.f_Trabajo_Personal == elm.id).select().first()
+
     return dict(
         personal=personal,
         categorias=categorias,
@@ -607,7 +750,9 @@ def ficha():
         usuario=usuario,
         competencias=competencias,
         comp_list=lista_competencias(personal['ci']),
-        historial=getDictHistorial(historial_rows)
+        historial=getDictHistorial(historial_rows),
+        materia=getMateria(materia_rows),
+        trabajo=getTrabajo(trabajo_rows),
 
     )
 
@@ -743,6 +888,11 @@ def lista_competencias(ci):
     rows = query.select(db.t_Competencias2.ALL, orderby=db.t_Competencias2.f_numero)
     return rows
 
+def lista_materias(ci):
+    query = db((db.tPersonal.f.ci == ci) & (db.t_Personal.id == db.t_Materia.f_Materia_Personal))
+    rows = query.select(db.t_Materia.ALL, orderby=db.t_Materia.f_area)
+    return rows
+
 def getDictHistorial(historial):
     dic = {}
     if (historial != None):
@@ -808,6 +958,145 @@ def getDictHistorial(historial):
                  "f_organizacion_5" : '',
                  "f_cargo_hist_5": '',
                  "f_rol_hist_5": '',
+        }
+    return dic
+
+def getMateria(materia):
+    dic = {}
+    if (materia != None):
+        dic = {  "f_fecha_inicio_materia_1" : transformar_fecha(materia.f_fecha_inicio_materia1),
+                 "f_fecha_final_materia_1" : transformar_fecha(materia.f_fecha_final_materia_1),
+                 "f_area_1" : materia.f_area_1,
+                 "f_codigo_1" : materia.f_codigo_1,
+                 "f_nombre_materia_1": materia.f_nombre_materia_1,
+                 "f_fecha_inicio_materia_2" : transformar_fecha(materia.f_fecha_inicio_materia2),
+                 "f_fecha_final_materia_2" : transformar_fecha(materia.f_fecha_final_materia_2),
+                 "f_area_2" : materia.f_area_2,
+                 "f_codigo_2" : materia.f_codigo_2,
+                 "f_nombre_materia_2": materia.f_nombre_materia_2,
+                 "f_fecha_inicio_materia_3" : transformar_fecha(materia.f_fecha_inicio_materia3),
+                 "f_fecha_final_materia_3" : transformar_fecha(materia.f_fecha_final_materia_3),
+                 "f_area_3" : materia.f_area_3,
+                 "f_codigo_3" : materia.f_codigo_3,
+                 "f_nombre_materia_3": materia.f_nombre_materia_3,
+                 "f_fecha_inicio_materia_4" : transformar_fecha(materia.f_fecha_inicio_materia4),
+                 "f_fecha_final_materia_4" : transformar_fecha(materia.f_fecha_final_materia_4),
+                 "f_area_4" : materia.f_area_4,
+                 "f_codigo_4" : materia.f_codigo_4,
+                 "f_nombre_materia_4": materia.f_nombre_materia_4,
+                 "f_fecha_inicio_materia_5" : transformar_fecha(materia.f_fecha_inicio_materia5),
+                 "f_fecha_final_materia_5" : transformar_fecha(materia.f_fecha_final_materia_5),
+                 "f_area_5" : materia.f_area_5,
+                 "f_codigo_5" : materia.f_codigo_5,
+                 "f_nombre_materia_5": materia.f_nombre_materia_5,
+                 
+        }
+    else:
+        dic = {  "f_fecha_inicio_materia_1" : '',
+                 "f_fecha_final_materia_1" : '',
+                 "f_area_1" : '',
+                 "f_codigo_1" : '',
+                 "f_nombre_materia_1": '',
+                 "f_fecha_inicio_materia_2" : '',
+                 "f_fecha_final_materia_2" : '',
+                 "f_area_2" : '',
+                 "f_codigo_2" : '',
+                 "f_nombre_materia_2": '',
+                 "f_fecha_inicio_materia_3" : '',
+                 "f_fecha_final_materia_3" : '',
+                 "f_area_3" : '',
+                 "f_codigo_3" : '',
+                 "f_nombre_materia_3": '',
+                 "f_fecha_inicio_materia_4" : '',
+                 "f_fecha_final_materia_4" : '',
+                 "f_area_4" : '',
+                 "f_codigo_4" : '',
+                 "f_nombre_materia_4": '',
+                 "f_fecha_inicio_materia_5" : '',
+                 "f_fecha_final_materia_5" : '',
+                 "f_area_5" : '',
+                 "f_codigo_5" : '',
+                 "f_nombre_materia_5": '',
+        }
+    return dic
+
+def getTrabajo(trabajo):
+    dic = {}
+    if (trabajo != None):
+        dic = { "f_anio_1" : trabajo.f_anio_1,
+                "f_nivel_1" : nivel.f_nivel_1,
+                "f_estudiante_1_1" : trabajo.f_estudiante_1_1,
+                "f_estudiante_1_2" : trabajo.f_estudiante_1_2,
+                "f_estudiante_1_3" : trabajo.f_estudiante_1_3,
+                "f_institucion_1" : trabajo.f_institucion_1,
+                "f_titulo_1" : trabajo.f_titulo_1,
+                "f_anio_2" : trabajo.f_anio_2,
+                "f_nivel_2" : nivel.f_nivel_2,
+                "f_estudiante_2_1" : trabajo.f_estudiante_2_1,
+                "f_estudiante_2_2" : trabajo.f_estudiante_2_2,
+                "f_estudiante_2_3" : trabajo.f_estudiante_2_3,
+                "f_institucion_2" : trabajo.f_institucion_2,
+                "f_titulo_2" : trabajo.f_titulo_2,
+                "f_anio_3" : trabajo.f_anio_3,
+                "f_nivel_3" : nivel.f_nivel_3,
+                "f_estudiante_3_1" : trabajo.f_estudiante_3_1,
+                "f_estudiante_3_2" : trabajo.f_estudiante_3_2,
+                "f_estudiante_3_3" : trabajo.f_estudiante_3_3,
+                "f_institucion_3" : trabajo.f_institucion_3,
+                "f_titulo_3" : trabajo.f_titulo_3,
+                "f_anio_4" : trabajo.f_anio_4,
+                "f_nivel_4" : nivel.f_nivel_4,
+                "f_estudiante_4_1" : trabajo.f_estudiante_4_1,
+                "f_estudiante_4_2" : trabajo.f_estudiante_4_2,
+                "f_estudiante_4_3" : trabajo.f_estudiante_4_3,
+                "f_institucion_4" : trabajo.f_institucion_4,
+                "f_titulo_4" : trabajo.f_titulo_4,
+                "f_anio_5" : trabajo.f_anio_5,
+                "f_nivel_5" : nivel.f_nivel_5,
+                "f_estudiante_5_1" : trabajo.f_estudiante_5_1,
+                "f_estudiante_5_2" : trabajo.f_estudiante_5_2,
+                "f_estudiante_5_3" : trabajo.f_estudiante_5_3,
+                "f_institucion_5" : trabajo.f_institucion_5,
+                "f_titulo_5" : trabajo.f_titulo_5,
+
+        }
+    else:
+        dic = { "f_anio_1" : '',
+                "f_nivel_1" : '',
+                "f_estudiante_1_1" : '',
+                "f_estudiante_1_2" : '',
+                "f_estudiante_1_3" : '',
+                "f_institucion_1" : '',
+                "f_titulo_1" : '',
+                "f_anio_2" : '',
+                "f_nivel_2" : '',
+                "f_estudiante_2_1" : '',
+                "f_estudiante_2_2" : '',
+                "f_estudiante_2_3" : '',
+                "f_institucion_2" : '',
+                "f_titulo_2" : '',
+                "f_anio_3" : '',
+                "f_nivel_3" : '',
+                "f_estudiante_3_1" : '',
+                "f_estudiante_3_2" : '',
+                "f_estudiante_3_3" : '',
+                "f_institucion_3" : '',
+                "f_titulo_3" : '',
+                "f_anio_4" : '',
+                "f_nivel_4" : '',
+                "f_estudiante_4_1" : '',
+                "f_estudiante_4_2" : '',
+                "f_estudiante_4_3" : '',
+                "f_institucion_4" : '',
+                "f_titulo_4" : '',
+                "f_anio_5" : '',
+                "f_nivel_5" : '',
+                "f_estudiante_5_1" : '',
+                "f_estudiante_5_2" : '',
+                "f_estudiante_5_3" : '',
+                "f_institucion_5" : '',
+                "f_titulo_5" : '',
+
         }
     return dic
 

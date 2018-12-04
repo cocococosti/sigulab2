@@ -417,26 +417,9 @@
                         </div>
 
                         <!-- Aqui va la informacion -->
-                        <div class="col-sm-11 col11Body">
-                          <h4 class="titulosForm">Competencias (Máximo 10)</h4>
+                        <div class="col-sm-11 col11Body" >
 
-                          {{ for ind, comp in enumerate(competencias): }}
-                          <div class="form-group competencias">
-                            {{if comp in comp_list:}}
-                            <div class="col-sm-12">
-                              <input class="comp-check" type="checkbox" name="check-competencia-{{=ind}}" checked />
-                              <label>{{=comp}}</label><br/>
-                              <input type="text" name="competencia-{{=ind}}" value="{{=comp_list[comp]}}" maxlength="150">
-                            </div>
-                            {{else:}}
-                            <div class="col-sm-12">
-                              <input class="comp-check" type="checkbox" name="check-competencia-{{=ind}}" />
-                              <label>{{=comp}}</label><br/>
-                              <input type="text" name="competencia-{{=ind}}" maxlength="150">
-                            </div>
-                            {{pass}}
-                          </div>
-                          {{pass}}
+                          {{ include 'personal/form-competencias.html' }}
 
                         </div>
 
@@ -463,18 +446,21 @@
 
                       <!-- Aqui va la informacion -->
                       
+                      <!--  Formulario para agregar historial laboral en el menu modal -->
+
                       {{include 'personal/formHistorial.html'}}
+
                         
-                    <div class="botones-form" style="margin-top: 1rem;margin-bottom: 2em;">
+                      <div class="botones-form" style="margin-top: 1rem;margin-bottom: 2em;">
                         <button type="button" class="btn btn-previous botonForm"><span class="fa fa-arrow-left" title="Anterior"/></button>
                         <button type="button" class="btn btn-next botonForm"><span class="fa fa-arrow-right" title="Siguiente"/></button>
-                    </div>
+                      </div>
                     
 
                   </fieldset>
                     <!-- Fin Quinto Paso -->
 
-                  <!-- Sexto Paso -->
+                  <!-- Sexto paso Paso -->
                   <fieldset class="formField" id="p6">
                     <div class="form-bottom" data-step="6" data-title="Sexto Paso">
                       <!-- Aqui va la barra lateral -->
@@ -489,7 +475,10 @@
 
                       <!-- Aqui va la informacion -->
                       
-                      {{include 'personal/formInvestigacion.html'}}
+                      <!--  Formulario para agregar historial laboral en el menu modal -->
+
+                      {{include 'personal/formInvestigacion2.html'}}
+
                         
                     <div class="botones-form" style="margin-top: 1rem;margin-bottom: 2em;">
                         <button type="button" class="btn btn-previous botonForm"><span class="fa fa-arrow-left" title="Anterior"/></button>
@@ -498,7 +487,7 @@
                     
 
                   </fieldset>
-                    <!-- Fin Quinto Paso -->
+                    <!-- Fin Sexto Paso -->
 
 
                 </form>
@@ -508,3 +497,17 @@
       </div>
     </div>
 </div>
+
+<!-- Para agregar formularios de trabajos al hacer a "Agregar otro trabajo" -->
+<script type="text/javascript">
+ function toggleTrabajo(id, idText, idText2) {
+  var trabajo = document.getElementById(id);
+  var texto = document.getElementById(idText);
+  if (idText2) {
+    var texto2 = document.getElementById(idText2);
+  }
+  trabajo.style.display = 'block';
+  texto.style.display = 'none';
+  texto2.style.display = 'block';
+ }
+</script>

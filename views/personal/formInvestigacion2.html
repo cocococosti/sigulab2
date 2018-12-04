@@ -1,0 +1,199 @@
+ <div class="col-sm-11 col11Body">
+ <h4 class="titulosForm">Proyectos de Investigación (Máximo 10)</h4>   
+    <div class="form-group">
+            <div class="col-sm-12">
+                <label>Categoría</label>                
+                <select class="form-control" name="categoria_proyecto_add" data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido">
+                {{for competencia in competencias:}}
+                <option value="{{=competencia}}">{{=competencia}}</option>
+                {{pass}}
+                </select>
+                <br>
+            </div>
+
+            <div class="col-sm-12">
+                <label>Período</label>
+            </div>
+
+            <div class="col-sm-6">
+                <br>
+                
+                <label>Desde:</label>
+                {{if bool(proyectos['fecha_inicio_proyecto_1']) :}}
+                <input class="datepicker" value="{{=proyectos['fecha_inicio_proyecto_1']}}"
+                name = "fecha_inicio_proyecto_1_add" type="text" id="input-ingreso" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha" placeholder="Ingrese la fecha de inicio del proyecto">
+                {{else:}}
+                <input class="datepicker" value="{{''}}"
+                name = "fecha_inicio_proyecto_1_add" type="text" id="input-ingreso" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha" placeholder="Ingrese la fecha de inicio del proyecto">
+                {{pass}}
+                </div>
+
+            <div class="col-sm-6">
+                <br>
+                <label>Hasta:</label> 
+                {{if bool(proyectos['fecha_final_proyecto_1']) :}}
+                <input class="datepicker" value="{{=proyectos['fecha_final_proyecto_1']}}"
+                name = "fecha_final_proyecto_1_add" type="text" id="input-ingreso" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha" placeholder="Ingrese la fecha de finalizacion del proyecto">
+                {{else:}}
+                <input class="datepicker" value="{{''}}"
+                name = "fecha_final_proyecto_1_add" type="text" id="input-ingreso" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha" placeholder="Ingrese la fecha de finalizacion del proyecto">
+                {{pass}}
+            </div>             
+
+            <div class="col-sm-12">
+                <br>
+                <label>Título del Proyecto</label>
+                {{if bool(proyectos['titulo_proyecto_1']) :}}
+                <input value="{{=proyectos['titulo_proyecto_1']}}" type="text" class="form-control" name="titulo_proyecto_1_add" placeholder="Ingrese el título del proyecto" required
+                data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                <font color="red"><div id="err_celular" hidden></div></font>
+                {{else:}}
+                <input value="{{=''}}" type="text" class="form-control" name="titulo_proyecto_1_add" placeholder="Ingrese el título del proyecto" required
+                data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                <font color="red"><div id="err_celular" hidden></div></font>
+                {{pass}}        
+            </div>
+
+            <div class="col-sm-12">
+                <br>
+                <label>Responsabilidad</label>
+                {{if bool(proyectos['responsabilidad_proyecto_1']) :}}
+                <input value="{{=proyectos['responsabilidad_proyecto_1']}}" type="text" class="form-control" name="responsabilidad_proyecto_1_add" placeholder="Ingrese la responsabilidad del proyecto" required
+                data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                <font color="red"><div id="err_celular" hidden></div></font>
+                {{else:}}
+                <input value="{{=''}}" type="text" class="form-control" name="responsabilidad_proyecto_1_add" placeholder="Ingrese la responsabilidad del proyecto" required
+                data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                <font color="red"><div id="err_celular" hidden></div></font>
+                {{pass}}
+                </div>                
+   
+            <div class="col-sm-12">
+                <br>
+                <label>Resultados</label>
+                {{if bool(proyectos['resultados_proyecto_1']) :}}
+                <input value="{{=proyectos['resultados_proyecto_1']}}" type="text" class="form-control" name="resultados_proyecto_1_add" placeholder="Ingrese los resultados del proyecto"
+                data-toggle="popover" data-placement="bottom" data-trigger="manual">
+                {{else:}}
+                <input value="{{=''}}" type="text" class="form-control" name="resultados_proyecto_1_add" placeholder="Ingrese los resultados del proyecto"
+                data-toggle="popover" data-placement="bottom" data-trigger="manual">
+                {{pass}}
+            </div>
+
+            <div class="col-sm-12">
+                <br>
+                <label>Institutción</label>
+                {{if bool(proyectos['institucion_proyecto_1']) :}}
+                <input value="{{=proyectos['institucion_proyecto_1']}}" type="text" class="form-control" name="institucion_proyecto_1_add" placeholder="Ingrese la institucion del proyecto" required
+                data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                <font color="red"><div id="err_celular" hidden></div></font>
+                {{else:}}
+                <input value="{{=''}}" type="text" class="form-control" name="institucion_proyecto_1_add" placeholder="Ingrese la institucion del proyecto" required
+                data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                <font color="red"><div id="err_celular" hidden></div></font>
+                {{pass}}
+            </div>
+
+      <div class="col-sm-12">
+        <p onclick="toggleTrabajo('proyecto2', 'p2', '')" style="display: none;color: #3679B5;font-size: 15px; cursor:pointer;margin-top: 1rem;" id="p2">Agregar otro proyecto</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none;" id = "proyecto2">
+      <div class="form-group">
+            <div class="col-sm-12">
+                <label>Categoría</label>                
+                <select class="form-control" name="categoria_proyecto_2_add" data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido">
+                {{for competencia in competencias:}}
+                <option value="{{=competencia}}">{{=competencia}}</option>
+                {{pass}}
+                </select>
+                <br>
+            </div>
+
+            <div class="col-sm-12">
+                <label>Período</label>
+            </div>
+
+            <div class="col-sm-6">
+                <br>
+                
+                <label>Desde:</label>
+                {{if bool(proyectos['fecha_inicio_proyecto_2']) :}}
+                <input class="datepicker" value="{{=proyectos['fecha_inicio_proyecto_2']}}"
+                name = "fecha_inicio_proyecto_2_add" type="text" id="input-ingreso" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha" placeholder="Ingrese la fecha de inicio del proyecto">
+                {{else:}}
+                <input class="datepicker" value="{{''}}"
+                name = "fecha_inicio_proyecto_2_add" type="text" id="input-ingreso" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha" placeholder="Ingrese la fecha de inicio del proyecto">
+                {{pass}}
+                </div>
+
+            <div class="col-sm-6">
+                <br>
+                <label>Hasta:</label> 
+                {{if bool(proyectos['fecha_final_proyecto_2']) :}}
+                <input class="datepicker" value="{{=proyectos['fecha_final_proyecto_2']}}"
+                name = "fecha_final_proyecto_2_add" type="text" id="input-ingreso" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha" placeholder="Ingrese la fecha de finalizacion del proyecto">
+                {{else:}}
+                <input class="datepicker" value="{{''}}"
+                name = "fecha_final_proyecto_2_add" type="text" id="input-ingreso" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha" placeholder="Ingrese la fecha de finalizacion del proyecto">
+                {{pass}}
+            </div>             
+
+            <div class="col-sm-12">
+                <br>
+                <label>Título del Proyecto</label>
+                {{if bool(proyectos['titulo_proyecto_2']) :}}
+                <input value="{{=proyectos['titulo_proyecto_2']}}" type="text" class="form-control" name="titulo_proyecto_2_add" placeholder="Ingrese el título del proyecto" required
+                data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                <font color="red"><div id="err_celular" hidden></div></font>
+                {{else:}}
+                <input value="{{=''}}" type="text" class="form-control" name="titulo_proyecto_2_add" placeholder="Ingrese el título del proyecto" required
+                data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                <font color="red"><div id="err_celular" hidden></div></font>
+                {{pass}}        
+            </div>
+
+            <div class="col-sm-12">
+                <br>
+                <label>Responsabilidad</label>
+                {{if bool(proyectos['responsabilidad_proyecto_2']) :}}
+                <input value="{{=proyectos['responsabilidad_proyecto_2']}}" type="text" class="form-control" name="responsabilidad_proyecto_2_add" placeholder="Ingrese la responsabilidad del proyecto" required
+                data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                <font color="red"><div id="err_celular" hidden></div></font>
+                {{else:}}
+                <input value="{{=''}}" type="text" class="form-control" name="responsabilidad_proyecto_2_add" placeholder="Ingrese la responsabilidad del proyecto" required
+                data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                <font color="red"><div id="err_celular" hidden></div></font>
+                {{pass}}
+                </div>                
+   
+            <div class="col-sm-12">
+                <br>
+                <label>Resultados</label>
+                {{if bool(proyectos['resultados_proyecto_2']) :}}
+                <input value="{{=proyectos['resultados_proyecto_2']}}" type="text" class="form-control" name="resultados_proyecto_1_add" placeholder="Ingrese los resultados del proyecto"
+                data-toggle="popover" data-placement="bottom" data-trigger="manual">
+                {{else:}}
+                <input value="{{=''}}" type="text" class="form-control" name="resultados_proyecto_1_add" placeholder="Ingrese los resultados del proyecto"
+                data-toggle="popover" data-placement="bottom" data-trigger="manual">
+                {{pass}}
+            </div>
+
+            <div class="col-sm-12">
+                <br>
+                <label>Institutción</label>
+                {{if bool(proyectos['institucion_proyecto_2']) :}}
+                <input value="{{=proyectos['institucion_proyecto_2']}}" type="text" class="form-control" name="institucion_proyecto_2_add" placeholder="Ingrese la institucion del proyecto" required
+                data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                <font color="red"><div id="err_celular" hidden></div></font>
+                {{else:}}
+                <input value="{{=''}}" type="text" class="form-control" name="institucion_proyecto_2_add" placeholder="Ingrese la institucion del proyecto" required
+                data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                <font color="red"><div id="err_celular" hidden></div></font>
+                {{pass}}
+            </div>    
+    </div>
+  </div>
+</div>            

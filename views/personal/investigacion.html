@@ -5,24 +5,20 @@
 
       <ul class="nav nav-tabs " id="myTab" role="tablist">
         <li role="presentation" class="nav-item active">
-          <a href="#proyectos" class="nav-link active " data-toggle="tab" role="tab" aria-controls="cargos_desempe"><b>Proyectos</b></a>
+          <a href="#proyectos" class="nav-link active " data-toggle="tab" role="tab" aria-controls="tab_proyectos"><b>Proyectos</b></a>
         </li>
 
         <li class="nav-item ">
-          <a class="nav-link  " id="tab_datos_personales" href="#pubArb" data-toggle="tab" role="tab" aria-controls="comisiones_comites"><b>Publicaciones Arbitradas</b></a>
-        </li>
-
-        <li class="nav-item ">
-          <a class="nav-link  " id="tab_datos_personales" href="#pubNoArb" data-toggle="tab" role="tab" aria-controls="comisiones_comites"><b>Publicaciones No Arbitradas</b></a>
+          <a class="nav-link  " id="tab_datos_personales" href="#pubArb" data-toggle="tab" role="tab" aria-controls="tab_publicacione"><b>Publicaciones</b></a>
         </li>
       </ul>
 
       <div class="tab-content">
         <div class="tab-pane active" id="proyectos">
+          <br>
           <table class="table contenidoFicha" id="tab_proyectos">
             <tbody>
-
-                <tr> 
+                <tr style="color: White;"> 
                     <th> Categoría </th>
                     <th> Desde </th>
                     <th> Hasta </th>
@@ -31,99 +27,75 @@
                     <th> Resultados </th>
                     <th> Institución </th>
                 </tr>
+
                 <tr>
-                    {{if bool(proyectos['f_categoria']) :}}
-                    <td id="field_categoria">{{=proyectos['f_categoria']}}</td>
+                    {{if bool(proyectos['categoria_proyecto_1']) :}}
+                    <td id="field_categoria">{{=proyectos['categoria_proyecto_1']}}</td>
                     {{pass}}
-                    {{if bool(proyectos['f_fecha_inicio']) :}}
-                    <td id="field_desde">{{=proyectos['f_fecha_inicio']}}</td>
+                    {{if bool(proyectos['fecha_inicio_proyecto_1']) :}}
+                    <td id="field_desde">{{=proyectos['fecha_inicio_proyecto_1']}}</td>
                     {{pass}}
-                    {{if bool(proyectos['f_fecha_fin']) :}}
-                    <td id="field_hasta">{{=proyectos['f_fecha_fin']}}</td>
+                    {{if bool(proyectos['fecha_final_proyecto_1']) :}}
+                    <td id="field_hasta">{{=proyectos['fecha_final_proyecto_1']}}</td>
                     {{pass}}
-                    {{if bool(proyectos['f_titulo']) :}}
-                    <td id="field_titulo">{{=proyectos['f_titulo']}}</td>
+                    {{if bool(proyectos['titulo_proyecto_1']) :}}
+                    <td id="field_titulo">{{=proyectos['titulo_proyecto_1']}}</td>
                     {{pass}}
-                    {{if bool(proyectos['f_responsabilidad']) :}}
-                    <td id="field_responsabilidad">{{=proyectos['f_responsabilidad']}}</td>
+                    {{if bool(proyectos['responsabilidad_proyecto_1']) :}}
+                    <td id="field_responsabilidad">{{=proyectos['responsabilidad_proyecto_1']}}</td>
                     {{pass}}
-                    {{if bool(proyectos['f_resultados']) :}}
-                    <td id="field_resultados">{{=proyectos['f_resultados']}}</td>
+                    {{if bool(proyectos['resultados_proyecto_1']) :}}
+                    <td id="field_resultados">{{=proyectos['resultados_proyecto_1']}}</td>
                     {{pass}}
-                    {{if bool(proyectos['f_institucion']) :}}
-                    <td id="field_institucion">{{=proyectos['f_institucion']}}</td>
+                    {{if bool(proyectos['institucion_proyecto_1']) :}}
+                    <td id="field_institucion">{{=proyectos['institucion_proyecto_1']}}</td>
                     {{pass}}
                       
-                </tr>
+                </tr>          
+
+                <tr>
+                    {{if bool(proyectos['categoria_proyecto_2']) :}}
+                    <td id="field_categoria">{{=proyectos['categoria_proyecto_2']}}</td>
+                    {{pass}}
+                    {{if bool(proyectos['fecha_inicio_proyecto_2']) :}}
+                    <td id="field_desde">{{=proyectos['fecha_inicio_proyecto_2']}}</td>
+                    {{pass}}
+                    {{if bool(proyectos['fecha_final_proyecto_2']) :}}
+                    <td id="field_hasta">{{=proyectos['fecha_final_proyecto_2']}}</td>
+                    {{pass}}
+                    {{if bool(proyectos['titulo_proyecto_2']) :}}
+                    <td id="field_titulo">{{=proyectos['titulo_proyecto_2']}}</td>
+                    {{pass}}
+                    {{if bool(proyectos['responsabilidad_proyecto_2']) :}}
+                    <td id="field_responsabilidad">{{=proyectos['responsabilidad_proyecto_2']}}</td>
+                    {{pass}}
+                    {{if bool(proyectos['resultados_proyecto_2']) :}}
+                    <td id="field_resultados">{{=proyectos['resultados_proyecto_2']}}</td>
+                    {{pass}}
+                    {{if bool(proyectos['institucion_proyecto_2']) :}}
+                    <td id="field_institucion">{{=proyectos['institucion_proyecto_2']}}</td>
+                    {{pass}}
+                      
+                </tr>                              
             </tbody>
           </table>
         </div>
 
         <div class="tab-pane" id="pubArb">
-           <table class="table contenidoFicha" id="tab_publicaciones_arbitradas">
+            <br>
+           <table class="table contenidoFicha" id="tab_publicaciones">
             <tbody>
-              <tr> 
+              <tr style="color: White;"> 
                   <th> Categoría </th>
                   <th> Año </th>
                   <th> Título del Trabajo </th>
                   <th> Autor(es) </th>
                   <th> Referencia </th>
-              </tr>
-              <tr>
-                  {{if bool(publicaciones['f_categoria']) :}}
-                  <td id="field_categoria">{{=publicaciones['f_categoria']}}</td>
-                  {{pass}}
-                  {{if bool(publicaciones['f_anio']) :}}
-                  <td id="field_anio">{{=publicaciones['f_anio']}}</td>
-                  {{pass}}
-                  {{if bool(publicaciones['f_titulo']) :}}
-                  <td id="field_titulo">{{=publicaciones['f_titulo']}}</td>
-                  {{pass}}
-                  {{if bool(publicaciones['f_autores']) :}}
-                  <td id="field_autores">{{=publicaciones['f_autores']}}</td>
-                  {{pass}}
-                  {{if bool(publicaciones['f_referencia']) :}}
-                  <td id="field_referencia">{{=publicaciones['f_referencia']}}</td>
-                  {{pass}}
-              </tr>   
+              </tr> 
 
             </tbody>
            </table>
         </div>
-
-        <div class="tab-pane" id="pubNoArb">
-           <table class="table contenidoFicha" id="tab_publicaciones_no_arbitradas">
-            <tbody>
-              <tr> 
-                  <th> Categoría </th>
-                  <th> Año </th>
-                  <th> Título del Trabajo </th>
-                  <th> Autor(es) </th>
-                  <th> Referencia </th>
-              </tr>
-              <tr>
-                  {{if bool(publicaciones_na['f_categoria']) :}}
-                  <td id="field_categoria">{{=publicaciones_na['f_categoria']}}</td>
-                  {{pass}}
-                  {{if bool(publicaciones_na['f_anio']) :}}
-                  <td id="field_anio">{{=publicaciones_na['f_anio']}}</td>
-                  {{pass}}
-                  {{if bool(publicaciones_na['f_titulo']) :}}
-                  <td id="field_titulo">{{=publicaciones_na['f_titulo']}}</td>
-                  {{pass}}
-                  {{if bool(publicaciones_na['f_autores']) :}}
-                  <td id="field_autores">{{=publicaciones_na['f_autores']}}</td>
-                  {{pass}}
-                  {{if bool(publicaciones_na['f_referencia']) :}}
-                  <td id="field_referencia">{{=publicaciones_na['f_referencia']}}</td>
-                  {{pass}}
-              </tr>
-
-
-            </tbody>
-           </table>
-        </div>
-
       </div>
     </div>
   </div>

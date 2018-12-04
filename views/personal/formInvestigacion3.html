@@ -1,0 +1,64 @@
+ <div class="col-sm-11 col11Body">
+ <h4 class="titulosForm">Proyectos de Investigación (Máximo 10)</h4>   
+    <div class="form-group">
+            <div class="col-sm-12">
+                <label>Categoría</label>                
+                <select class="form-control" name="categoria_proyecto_add" data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido">
+                {{for competencia in competencias:}}
+                <option value="{{=competencia}}">{{=competencia}}</option>
+                {{pass}}
+                </select>
+                <br>
+            </div>
+
+            <div class="col-sm-12">
+                <label>Período</label>
+            </div>
+
+            <div class="col-sm-6">
+                <br>
+                
+                <label>Desde:</label>
+                <input class="datepicker" value="{{''}}"
+                name = "fecha_inicio_proyecto_1_add" type="text" id="input-ingreso" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha" placeholder="Ingrese la fecha de inicio del proyecto">
+                </div>
+
+            <div class="col-sm-6">
+                <br>
+                <label>Hasta:</label> 
+                <input class="datepicker" value="{{''}}"
+                name = "fecha_final_proyecto_1_add" type="text" id="input-ingreso" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha" placeholder="Ingrese la fecha de finalizacion del proyecto">
+            </div>             
+
+            <div class="col-sm-12">
+                <br>
+                <label>Título del Proyecto</label>
+                <input value="{{''}}" type="text" class="form-control" name="titulo_proyecto_1_add" placeholder="Ingrese el título del proyecto" required
+                data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                <font color="red"><div id="err_celular" hidden></div></font> 
+            </div>
+
+            <div class="col-sm-12">
+                <br>
+                <label>Responsabilidad</label>
+                <input value="{{''}}" type="text" class="form-control" name="responsabilidad_proyecto_1_add" placeholder="Ingrese la responsabilidad del proyecto" required
+                data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                <font color="red"><div id="err_celular" hidden></div></font>
+                </div>                
+   
+            <div class="col-sm-12">
+                <br>
+                <label>Resultados</label>
+                <input value="{{''}}" type="text" class="form-control" name="resultados_proyecto_1_add" placeholder="Ingrese los resultados del proyecto"
+                data-toggle="popover" data-placement="bottom" data-trigger="manual">
+            </div>
+
+            <div class="col-sm-12">
+                <br>
+                <label>Institutción</label>
+                <input value="{{''}}" type="text" class="form-control" name="institucion_proyecto_1_add" placeholder="Ingrese la institucion del proyecto" required
+                data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                <font color="red"><div id="err_celular" hidden></div></font>
+            </div>
+    </div>            
+</div> 

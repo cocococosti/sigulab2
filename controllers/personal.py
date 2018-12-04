@@ -15,13 +15,16 @@ def busqueda():
     )
 
 def resultados_busqueda():
+
     from gluon.serializers import json
     from datetime import date, datetime
+
     rows = db((db.t_Personal.id == db.t_Competencias2.f_Competencia_Personal)
             & (db.t_Personal.id == db.t_Historial_trabajo_nuevo.f_Historial_trabajo_Personal)).select()
     lista = []
     hoy = date.today()
     aniversario_ulab = datetime.strptime('05-06', '%d-%m').date()
+    
     if request.post_vars['fecha_busqueda']:
         aniversario_ulab=aniversario_ulab.replace(
                 year=int(request.post_vars['fecha_busqueda'][-4:]))
@@ -31,8 +34,26 @@ def resultados_busqueda():
 
     for row in rows:
         ingreso = row.t_Personal.f_fecha_ingreso_ulab
+        aniosAdmin = row.t_Personal.f_fecha_ingreso_admin_publica
+        fechaAdmin = request.post_vars.fecha_admin_busqueda
+
+        if (fechaAdmin==""):
+            fechaAdmin = date.today()
+        else:
+            fechaAdmin = datetime.strptime(fechaAdmin, "%d-%m-%Y")
+            fechaAdmin = fechaAdmin.date()
+
+        cargos = [row.t_Historial_trabajo_nuevo.f_cargo_hist_1, row.t_Historial_trabajo_nuevo.f_cargo_hist_2,
+        row.t_Historial_trabajo_nuevo.f_cargo_hist_3, row.t_Historial_trabajo_nuevo.f_cargo_hist_4, row.t_Historial_trabajo_nuevo.f_cargo_hist_5]
+
+        encontrado = "False"
+        for cargo in cargos:
+            if (request.post_vars.cargo_busqueda.lower() in cargo.lower()):
+                encontrado = "True"
+                break
         
         lista.append({
+            'ci' : row.t_Personal.f_ci,
             'nombre' : row.t_Personal.f_nombre+' '+row.t_Personal.f_apellido,
             'correo' : row.t_Personal.f_email,
             'telefono' : row.t_Personal.f_telefono,
@@ -41,11 +62,8 @@ def resultados_busqueda():
             'competencia' : row.t_Competencias2.f_nombre,
             'categorias' : row.t_Competencias2.f_categorias,
             'anios-servicio': (aniversario_ulab-ingreso).days/365 if ingreso else 0,
-            'cargo1' : row.t_Historial_trabajo_nuevo.f_cargo_hist_1,
-            'cargo2' : row.t_Historial_trabajo_nuevo.f_cargo_hist_2,
-            'cargo3' : row.t_Historial_trabajo_nuevo.f_cargo_hist_3,
-            'cargo4' : row.t_Historial_trabajo_nuevo.f_cargo_hist_4,
-            'cargo5' : row.t_Historial_trabajo_nuevo.f_cargo_hist_5,
+            'anios-admin': (fechaAdmin-aniosAdmin).days/365 if aniosAdmin else 0,
+            'cargo' : encontrado
             })
     return dict(lista=lista, filtros=request.post_vars, ani=aniversario_ulab)
 #Enviar info a la tabla del listado
@@ -363,6 +381,7 @@ def add_form():
 
         personal = db(db.t_Personal.f_email == dic['email'] ).select().first()
         __get_competencias(request, personal)
+        __get_eventos(request, personal)
         redirect(URL('listado_estilo'))
 
 
@@ -462,7 +481,8 @@ def listado():
         usuario=usuario,
         empleados = empleados,
         competencias=competencias,
-        comp_list=lista_competencias(usuario),
+        comp_list=lista_competencias(usuario.f_ci),
+        curso_list=lista_cursos(usuario.f_ci),
         historial = getDictHistorial(historial_rows)
 
         )
@@ -588,7 +608,8 @@ def ficha():
         usuario_logged=usuario_logged,
         usuario=usuario,
         competencias=competencias,
-        comp_list=lista_competencias(personal),
+        comp_list=lista_competencias(personal['ci']),
+        curso_list=lista_cursos(personal['ci']),
         historial=getDictHistorial(historial_rows)
 
     )
@@ -719,9 +740,16 @@ def reporte_listado():
         db.bitacora_general.insert(f_accion = accion)
     return redirect(URL('listado_estilo'))
 
-def lista_competencias(personal):
-    query = db(db.t_Personal.id == db.t_Competencias2.f_Competencia_Personal)
+def lista_competencias(ci):
+    query = db((db.t_Personal.id == db.t_Competencias2.f_Competencia_Personal)
+            & (db.t_Personal.f_ci == ci))
     rows = query.select(db.t_Competencias2.ALL, orderby=db.t_Competencias2.f_numero)
+    return rows
+
+def lista_cursos(ci):
+    query = db((db.t_Personal.id == db.t_Cursos2.f_Competencia_Personal)
+            & (db.t_Personal.f_ci == ci))
+    rows = query.select(db.t_Cursos2.ALL, orderby=db.t_Cursos2.f_numero)
     return rows
 
 def getDictHistorial(historial):
@@ -821,6 +849,48 @@ def __get_competencias(request, personal):
                         f_nombre=params['f_nombre'],
                         f_categorias=params['f_categoria'],
                         f_observaciones= params['f_observaciones'],
+                        f_numero= params['f_numero'],
+                        f_Competencia_Personal= params['f_Competencia_Personal'],
+                        )
+                fies.append(params)
+
+    # if 'competencia{0}._nombre'.format(i) in request.post_vars.keys():
+    #     params['f_nombre{0}'.format(i)] = request.post_vars('competencias')
+    return fies
+
+def __get_eventos(request, personal):
+    params = {}
+    # params = {
+    #         'f_nombre1': request.post_vars.competencia1_nombre,
+    #         'f_categorias1':request.post_vars.competencia1_categoria,
+    #         'f_observaciones1': request.post_vars.competencia1_observaciones,
+    #         'f_nombre2': request.post_vars.competencia2_nombre,
+    #         'f_categorias2':request.post_vars.competencia2_categoria,
+    #         'f_observaciones2': request.post_vars.competencia2_observaciones
+    #         }
+    fies = []
+    for i in range(1,11):
+        if 'competencia{0}_categorias'.format(i) in request.post_vars:
+            params = {
+                    'f_categorias' : request.post_vars['competencia{}_categorias'.format(i)],
+                    'f_anio' : request.post_vars['competencia{}_anio'.format(i)],
+                    'f_formacion' : request.post_vars['competencia{}_formacion'.format(i)],
+                    'f_horas' : request.post_vars['competencia{}_horas'.format(i)],
+                    'f_dictadoPor' : request.post_vars['competencia{}_dictadoPor'.format(i)],
+                    'f_numero': i,
+                    'f_Competencia_Personal': personal.id
+                    }
+            if not(
+                    (None or '') ==  params['f_anio']
+                    or (None or '') == params['f_categorias']):
+                db.t_Competencias2.update_or_insert(
+                        (db.t_Cursos2.f_numero==i)&
+                        (db.t_Cursos2.f_Competencia_Personal==personal.id),
+                        f_categorias=params['f_categorias'],
+                        f_anio=params['f_anio'],
+                        f_formacion= params['f_formacion'],
+                        f_horas= params['f_horas'],
+                        f_dictadoPor= params['f_dictadoPor'],
                         f_numero= params['f_numero'],
                         f_Competencia_Personal= params['f_Competencia_Personal'],
                         )

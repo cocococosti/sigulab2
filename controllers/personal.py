@@ -1,4 +1,4 @@
-#-----------------------------------#
+    #-----------------------------------#
 #                                   #
 #  Controlador del Modulo Personal  #
 #                                   #
@@ -481,8 +481,8 @@ def listado():
         empleados = empleados,
         competencias=competencias,
         comp_list=lista_competencias(usuario.f_ci),
-        historial = getDictHistorial(historial_rows)
-
+        historial = getDictHistorial(historial_rows),
+        curso_list=lista_cursos2(usuario.f_ci)
         )
 
 def transformar_fecha(fecha):
@@ -607,7 +607,8 @@ def ficha():
         usuario=usuario,
         competencias=competencias,
         comp_list=lista_competencias(personal['ci']),
-        historial=getDictHistorial(historial_rows)
+        historial=getDictHistorial(historial_rows),
+        curso_list=lista_cursos2(personal['ci'])
 
     )
 
@@ -741,6 +742,11 @@ def lista_competencias(ci):
     query = db((db.t_Personal.id == db.t_Competencias2.f_Competencia_Personal)
             & (db.t_Personal.f_ci == ci))
     rows = query.select(db.t_Competencias2.ALL, orderby=db.t_Competencias2.f_numero)
+    return rows
+
+def lista_cursos2(ci):
+    query = db(db.t_Personal.f_ci == ci)
+    rows = query.select(db.t_Curso2.ALL, orderby=db.t_Curso2.f_numero)
     return rows
 
 def getDictHistorial(historial):

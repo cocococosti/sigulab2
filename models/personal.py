@@ -143,6 +143,25 @@ db.define_table(
 db.t_Curso._plural = 'Curso'
 db.t_Curso._singular = 'Curso'
 
+
+#t_Personal: Tabla de Cursos.
+db.define_table(
+    #Nombre de la entidad
+    't_Curso2', 
+    #Atributos;
+    Field('f_aplica',           'integer', requires=IS_NOT_EMPTY(), notnull=True, label=T('Aplica')),
+    Field('f_categorias', 'list:string', default='', label=T('Categorías')),
+    Field('f_anio',          'integer', requires=IS_INT_IN_RANGE(minimum=1900,maximum=2100, error_message='Introduzca un año válido'), notnull=True, label=T('Año')),
+    Field('f_curso',          'string', label=T('Curso')),
+    Field('f_dictado_por',          'string', label=T('Dictado por')),
+    Field('f_horas',          'integer', label=T('Horas')),
+    Field('f_numero', 'integer', default=1,label=T('Numero')),
+    )
+
+db.t_Curso2._plural = 'Curso2'
+db.t_Curso2._singular = 'Curso2'
+
+
 #t_Personal: Tabla de Trabajos.
 db.define_table(
     #Nombre de la entidad

@@ -17,6 +17,20 @@ db.define_table(
 db.t_Publicacion._plural = 'Publicaciones'
 db.t_Publicacion._singular = 'Publicacion'
 
+db.define_table(
+    't_Titulos',
+    # Atributos
+    Field('f_titulo', 'list:string', requires=IS_NOT_EMPTY(), label=T('Titulo Universitario')),
+    Field('f_area', 'list:string', requires=IS_NOT_EMPTY(), label=T('Area de estudio')),
+    Field('f_numero', 'list:integer', default=1,label=T('Año')),
+    Field('f_Titulo_Personal', 'reference t_Personal', requires=IS_IN_DB(db, db.t_Personal.id, '%(f_Personal)s', zero=None) ),
+    migrate=True
+    )
+
+db.t_Titulos._plural = 'Titulos'
+db.t_Titulos._singular = 'Titulos'
+
+
 #t_Personal: Tabla de eventos.
 db.define_table(
     #Nombre de la entidad

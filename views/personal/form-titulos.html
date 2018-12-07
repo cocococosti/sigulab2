@@ -1,0 +1,53 @@
+<h4 class="titulosForm">Estudios Superiores</h4>
+
+<h5>Los campos con * son obligatorios</h5>
+
+{{ for i in range(1,6): }}
+<div class="carreras-container" id="carreras-container{{=i}}"{{if len(carreras_list)<i and 1!=i:}} hidden {{pass}}>
+<h5>Carrera {{=i}}</h5>
+    <div class="form-group">
+        <label for="titulos{{=i}}_titulo">Titulo: *</label>
+      <select {{if len(carreras_list)<i and 1!=i:}} disabled {{pass}}
+             class="form-control seleccion-carreras"
+             type="select" name="titulos{{=i}}_titulo" id="titulos{{=i}}_titulo" multiple required
+              data-placeholder="Seleccione el Grado de estudio">
+        <option value""> Seleccione una opcion</option>
+
+        {{ for carr in titulos: }}
+
+          <option  {{ if len(carreras_list)>=i and (carr in (carreras_list[i-1].f_titulo )):}}
+            selected
+            {{pass}}
+        value"{{=carr}}">{{=carr}}</option>
+        {{pass}}
+
+      </select>
+    </div>
+
+    <div class="form-group">
+        <label for="nombre">Area: *</label>
+        <input {{if len(carreras_list)<i and 1!=i:}} disabled {{pass}}
+               value="{{='' if len(carreras_list)<i else carreras_list[i-1].f_titulo}}"
+               type="text" class="titulos_titulo" name="titulos{{=i}}_titulo" id="titulos{{=i}}_titulo" placeholder="Introduzca el Area de estudios" required/>
+    </div>
+{{pass}}
+</div>
+<br>
+
+<a href="#" id="add_field" onclick="add_field()">Agregar Competencia</a>
+
+
+<script charset="utf-8">
+    var num = 2
+    function add_field(){
+        if(num < 11){
+            $('#carreras-container'+num).show();
+            $('#titulos'+num+'_titulo').prop('disabled', false).trigger("chosen:updated");
+            $('#titulos'+num+'_nombre').prop('disabled', false);
+        num = num+1;
+        if (num >10){
+            $('#add_field').remove();
+            }
+        }
+    }
+</script>

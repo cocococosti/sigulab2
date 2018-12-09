@@ -381,6 +381,10 @@ def add_form():
 
         personal = db(db.t_Personal.f_email == dic['email'] ).select().first()
         __get_competencias(request, personal)
+
+        personal = db(db.t_Personal.f_email == dic['email'] ).select().first()
+        __get_cursos(request, personal)
+
         redirect(URL('listado_estilo'))
 
 
@@ -745,8 +749,9 @@ def lista_competencias(ci):
     return rows
 
 def lista_cursos2(ci):
-    query = db(db.t_Personal.f_ci == ci)
-    rows = query.select(db.t_Curso2.ALL, orderby=db.t_Curso2.f_numero)
+    query = db((db.t_Personal.id == db.t_Curso_2.f_Curso_Personal)
+            & (db.t_Personal.f_ci == ci))
+    rows = query.select(db.t_Curso_2.ALL, orderby=db.t_Curso_2.f_numero)
     return rows
 
 def getDictHistorial(historial):
@@ -848,6 +853,51 @@ def __get_competencias(request, personal):
                         f_observaciones= params['f_observaciones'],
                         f_numero= params['f_numero'],
                         f_Competencia_Personal= params['f_Competencia_Personal'],
+                        )
+                fies.append(params)
+
+    # if 'competencia{0}._nombre'.format(i) in request.post_vars.keys():
+    #     params['f_nombre{0}'.format(i)] = request.post_vars('competencias')
+    return fies
+
+def __get_cursos(request, personal):
+    params = {}
+    # params = {
+    #         'f_nombre1': request.post_vars.competencia1_nombre,
+    #         'f_categorias1':request.post_vars.competencia1_categoria,
+    #         'f_observaciones1': request.post_vars.competencia1_observaciones,
+    #         'f_nombre2': request.post_vars.competencia2_nombre,
+    #         'f_categorias2':request.post_vars.competencia2_categoria,
+    #         'f_observaciones2': request.post_vars.competencia2_observaciones
+    #         }
+    fies = []
+    for i in range(1,11):
+        if 'curso{0}_nombre'.format(i) in request.post_vars:
+            params = {
+                    'f_nombre' : request.post_vars['curso{}_nombre'.format(i)],
+                    'f_categorias' : request.post_vars['curso{}_categorias'.format(i)],
+                    'f_anio' : request.post_vars['curso{}_anio'.format(i)],
+                    'f_dictado_por' : request.post_vars['curso{}_dictado_por'.format(i)],
+                    'f_horas' : request.post_vars['curso{}_horas'.format(i)],
+                    'f_numero': i,
+                    'f_Curso_Personal': personal.id
+                    }
+            if not(
+                    (None or '') ==  params['f_nombre']
+                    or (None or '') == params['f_categorias']
+                    or (None or '') == params['f_anio'] 
+                    or (None or '') == params['f_dictado_por']
+                    or (None or '') == params['f_horas']):
+                db.t_Curso_2.update_or_insert(
+                        (db.t_Curso_2.f_numero==i)&
+                        (db.t_Curso_2.f_Curso_Personal==personal.id),
+                        f_nombre=params['f_nombre'],
+                        f_categorias=params['f_categorias'],
+                        f_anio= params['f_anio'],
+                        f_dictado_por= params['f_dictado_por'],
+                        f_horas= params['f_horas'],
+                        f_numero= params['f_numero'],
+                        f_Curso_Personal= params['f_Curso_Personal'],
                         )
                 fies.append(params)
 

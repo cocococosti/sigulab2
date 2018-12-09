@@ -43,6 +43,17 @@ const inputs = [
     'competencia8_nombre',
     'competencia9_nombre',
     'competencia10_nombre',
+    // Cursos
+    'curso1_nombre',
+    'curso2_nombre',
+    'curso3_nombre',
+    'curso4_nombre',
+    'curso5_nombre',
+    'curso6_nombre',
+    'curso7_nombre',
+    'curso8_nombre',
+    'curso9_nombre',
+    'curso10_nombre',
 ]
 
 const inputSelectorsAll = inputs.map(i => `[name="${i}"]`).join(',')
@@ -900,7 +911,45 @@ const validadoresCuartoPaso = [
 // ESCRIBE AQUI TUS FUNCIONES
 
 
+function validaCursos(){
+    var valid=true;
+    for(var i=1; i<11;i++){
+        if($('#curso-container'+i).is(':hidden'))
+            continue;
 
+        var nombre = $('#curso'+i+'_nombre');
+        var chosenval = $('#curso'+i+'_categorias').trigger("chosen-updated").val().length;
+        chosen_container = $('#curso'+i+'_categorias_chosen');
+        if (chosenval == 0){
+            chosen_container.attr("data-content", requiredFieldMessage);
+            chosen_container.addClass('input-error');
+            chosen_container.attr("data-valido", 'false');
+            chosen_container.popover('show');
+            valid = valid && false
+        }
+        else {
+            chosen_container.removeClass('input-error');
+            chosen_container.popover('hide');
+            valid = valid && true;
+        }
+        if (nombre.val()==='') {
+            nombre.attr("data-content", requiredFieldMessage);
+            nombre.popover('show');
+            nombre.addClass('input-error');
+            valid = valid && false;
+        }
+        else {
+            nombre.removeClass('input-error');
+            nombre.popover('hide');
+            valid = valid && true;
+        }
+    }
+    return valid
+
+}
+const validadoresSextoPaso = [
+    validaCursos
+]
 
 
 
@@ -1031,6 +1080,10 @@ $(document).ready(function () {
             next_step = validadoresCorrectos(validadoresCuartoPaso)
         }
 
+        else if(parent_fieldset.attr('id') === 'p5'){
+            next_step = validadoresCorrectos(validadoresQuintoPaso)
+        }
+
 
 
 
@@ -1098,7 +1151,7 @@ $(document).ready(function () {
         
         var parent_fieldset = $(this).parents('fieldset');
         
-        var enviar = validadoresCorrectos(validadoresQuintoPaso);
+        var enviar = validadoresCorrectos(validadoresSextoPaso);
 
 
 

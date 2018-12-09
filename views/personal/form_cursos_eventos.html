@@ -9,17 +9,17 @@
 
     <div class="form-group">
         <label for="categorias">Categoría:</label>
-      <select {{if len(comp_list)<i and 1!=i:}} disabled {{pass}}
+      <select {{if len(curso_list)<i and 1!=i:}} disabled {{pass}}
              class="form-control seleccion-competencia"
              type="select" name=curso{{=i}}_categorias" id="curso{{=i}}_categorias" multiple required
               data-placeholder="Seleccione las categorías que apliquen">
         <option value""> Seleccione una opcion</option>
-        {{ for comp in competencias: }}
+        {{ for curs in competencias: }}
         <option
-            {{ if len(comp_list)>=i and (comp in (comp_list[i-1].f_categorias or ['Arte'])):}}
+            {{ if len(curso_list)>=i and (curs in (curso_list[i-1].f_categorias or ['Arte'])):}}
             selected
             {{pass}}
-        value"{{=comp}}">{{=comp}}</option>
+        value"{{=curs}}">{{=curs}}</option>
         {{pass}}
       </select>
     </div>
@@ -33,10 +33,10 @@
 
 
     <div class="form-group">
-        <label for="curso">Curso de Formación:</label>
+        <label for="nombre">Curso de Formación:</label>
         <input {{if len(curso_list)<i and 1!=i:}} disabled {{pass}}
-               value="{{='' if len(curso_list)<i else curso_list[i-1].f_curso}}"
-               type="text" class="curso_curso" name="curso{{=i}}_curso" id="curso{{=i}}_curso" placeholder="Nombre del curso"/>
+               value="{{='' if len(curso_list)<i else curso_list[i-1].f_nombre}}"
+               type="text" class="curso_nombre" name="curso{{=i}}_nombre" id="curso{{=i}}_nombre" placeholder="Nombre del curso"/>
     </div>
 
 
@@ -66,9 +66,11 @@
     function add_field(){
         if(num < 11){
             $('#curso-container'+num).show();
-            $('#curso'+num+'_categoria').prop('disabled', false).trigger("chosen:updated");
+            $('#curso'+num+'_categorias').prop('disabled', false).trigger("chosen:updated");
+            $('#curso'+num+'_anio').prop('disabled', false);
             $('#curso'+num+'_nombre').prop('disabled', false);
-            $('#curso'+num+'_observaciones').prop('disabled', false);
+            $('#curso'+num+'_dictado_por').prop('disabled', false);
+            $('#curso'+num+'_horas').prop('disabled', false);
         num = num+1;
         if (num >10){
             $('#add_field').remove();

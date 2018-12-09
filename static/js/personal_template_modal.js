@@ -882,7 +882,7 @@ function validaCompetencia(){
             chosen_container.addClass('input-error');
             chosen_container.attr("data-valido", 'false');
             chosen_container.popover('show');
-            valid = valid && false
+            valid = valid && false;
         }
         else {
             chosen_container.removeClass('input-error');
@@ -918,14 +918,18 @@ function validaCursos(){
             continue;
 
         var nombre = $('#curso'+i+'_nombre');
+        var anio = $('#curso'+i+'_anio');
+        var dictado_por = $('#curso'+i+'_dictado_por');
+        var horas = $('#curso'+i+'_horas');
         var chosenval = $('#curso'+i+'_categorias').trigger("chosen-updated").val().length;
         chosen_container = $('#curso'+i+'_categorias_chosen');
+
         if (chosenval == 0){
             chosen_container.attr("data-content", requiredFieldMessage);
             chosen_container.addClass('input-error');
             chosen_container.attr("data-valido", 'false');
             chosen_container.popover('show');
-            valid = valid && false
+            valid = valid && false;
         }
         else {
             chosen_container.removeClass('input-error');
@@ -941,6 +945,39 @@ function validaCursos(){
         else {
             nombre.removeClass('input-error');
             nombre.popover('hide');
+            valid = valid && true;
+        }
+        if (anio.val()==='') {
+            anio.attr("data-content", requiredFieldMessage);
+            anio.popover('show');
+            anio.addClass('input-error');
+            valid = valid && false;
+        }
+        else {
+            anio.removeClass('input-error');
+            anio.popover('hide');
+            valid = valid && true;
+        }
+        if (dictado_por.val()==='') {
+            dictado_por.attr("data-content", requiredFieldMessage);
+            dictado_por.popover('show');
+            dictado_por.addClass('input-error');
+            valid = valid && false;
+        }
+        else {
+            dictado_por.removeClass('input-error');
+            dictado_por.popover('hide');
+            valid = valid && true;
+        }
+        if (horas.val()==='') {
+            horas.attr("data-content", requiredFieldMessage);
+            horas.popover('show');
+            horas.addClass('input-error');
+            valid = valid && false;
+        }
+        else {
+            horas.removeClass('input-error');
+            horas.popover('hide');
             valid = valid && true;
         }
     }
@@ -1080,6 +1117,7 @@ $(document).ready(function () {
             next_step = validadoresCorrectos(validadoresCuartoPaso)
         }
 
+        // Paso de Constanza
         else if(parent_fieldset.attr('id') === 'p5'){
             next_step = validadoresCorrectos(validadoresQuintoPaso)
         }

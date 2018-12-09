@@ -189,7 +189,7 @@ def dropdowns():
     gradoInstruccion = ["Bachillerato", "Técnico Medio", "TSU", "Universitaria", "Especialización", "Maestría", "Doctorado","Post-Doctorado"]
 
 
-    return (gremio,departamento,estatus,categoria,condiciones,roles,operadores, competencias, gradoInstruccion)
+    return (gremio,departamento,estatus,categoria,condiciones,roles,operadores, competencias)
 
 # Esta funcion toma la fecha desde el front que tiene
 # el formato dd-mm-yyyy y la transforma en el formato
@@ -463,7 +463,7 @@ def listado():
     idDependencia = db(db.dependencias.nombre == usuario.f_dependencia).select(db.dependencias.id)[0]
     ubicaciones= list(db(db.espacios_fisicos.dependencia == idDependencia).select(db.espacios_fisicos.ALL))
     #Obtenemos los elementos de los dropdowns
-    gremios, dependencias, estados, categorias, condiciones, roles, operadores, competencias, gradoInstruccion = dropdowns()
+    gremios, dependencias, estados, categorias, condiciones, roles, operadores, competencias = dropdowns()
 
     empleados = validacion_estilo()['empleados']
     idUser = db(db.t_Personal.f_ci == usuario.f_ci).select().first().id

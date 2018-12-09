@@ -467,19 +467,19 @@
                       <span class="step activePass">6</span>
                     </div>
                     <h5>Los campos con * son obligatorios</h5>
-                        {{ for i in range(1,11): }}
-                        <div class="curso-container" id="curso-container{{=i}}"{{if len(comp_list)<i and 1!=i:}}hidden{{pass}}>
-                        <h3> Curso {{=i}} </h3>
-                            <div class="form-group">
-                                <label for="curso{{=i}}_categoria">Categoría: *</label>
-                              <select {{if len(comp_list)<i and 1!=i:}} disabled {{pass}}
-                                     class="form-control seleccion-curso"
-                                     type="custom-select" name="curso{{=i}}_categoria" id="curso{{=i}}_categoria" required
-                                      data-placeholder="Seleccione la categoría que aplique">
+                   		  {{ for i in range(1,11): }}
+                      <div class="evento-container" id="evento-container{{=i}}"{{if len(evento_list)<i:}}hidden{{pass}}>
+                      <h3>Eventos {{=i}}</h3>
+                          <div class="form-group">
+                              <label for="evento{{=i}}_categoria">Categoría: *</label>
+                            <select {{if len(evento_list)<i:}} disabled {{pass}}
+                                   class="form-control seleccion-evento"
+                                   type="custom-select" name="evento{{=i}}_categoria" id="evento{{=i}}_categoria" required
+                                      data-placeholder="Seleccione las categoría que aplique">
                                 <option value""> Seleccione una opcion</option>
                                 {{ for comp in competencias: }}
-                                <option
-                                    {{ if len(comp_list)>=i and (comp in (curso_list[i-1].f_categorias or ['Arte'])):}}
+                                <option 
+                                    {{ if len(evento_list)>=i and (comp in (evento_list[i-1].f_categorias or ['Arte'])):}}
                                     selected
                                     {{pass}}
                                 value"{{=comp}}">{{=comp}}</option>
@@ -487,66 +487,61 @@
                               </select>
                             </div>
 
-
                             <div class="form-group">
                                 <label for="anio">Año:</label>
-                                <input {{if len(comp_list)<i:}} disabled
-                                         {{else:}} value="{{=curso_list[i-1].f_anio}}"{{pass}}
-                                         type="number" min=1950 max= 2018 class="curso_anio" name="curso{{=i}}_anio" id="curso{{=i}}_anio" placeholder="Introduzca el años"/>
+                                <input {{if len(evento_list)<i:}} disabled
+                                         {{else:}} value="{{=evento_list[i-1].f_anio}}"{{pass}}
+                                         type="number" min=1950 max= 2018 class="evento_anio" name="evento{{=i}}_anio" id="evento{{=i}}_anio" placeholder="Introduzca el años"/>
                             </div>
 
                             <div class="form-group">
-                                <label for="formacion">Curso de Formación:</label>
-                                <input {{if len(comp_list)<i:}} disabled
-                                         {{else:}} value="{{=curso_list[i-1].f_formacion}}"{{pass}}
-                                         type="text" class="curso_formacion" name="curso{{=i}}_formacion" id="curso{{=i}}_formacion" placeholder="Introduzca el texto"/>
+                                <label for="formacion">Evento de Formación:</label>
+                                <input {{if len(evento_list)<i:}} disabled
+                                         {{else:}} value="{{=evento_list[i-1].f_formacion}}"{{pass}}
+                                         type="text" class="evento_formacion" name="evento{{=i}}_formacion" id="evento{{=i}}_formacion" placeholder="Introduzca el texto"/>
                             </div>
 
                             <div class="form-group">
                                 <label for="dictadoPor">Dictado por:</label>
-                                <input {{if len(comp_list)<i:}} disabled
-                                         {{else:}} value="{{=curso_list[i-1].f_dictadoPor}}"{{pass}}
-                                         type="text" class="curso_dictadoPor" name="curso{{=i}}_dictadoPor" id="curso{{=i}}_dictadoPor" placeholder="Introduzca el nombre de la persona que dictó el curso"/>
+                                <input {{if len(evento_list)<i:}} disabled
+                                         {{else:}} value="{{=evento_list[i-1].f_dictadoPor}}"{{pass}}
+                                         type="text" class="evento_dictPor" name="evento{{=i}}_dictadoPor" id="evento{{=i}}_dictadoPor" placeholder="Introduzca el nombre de la persona que dictó el curso"/>
                             </div>
 
                             <div class="form-group">
                                 <label for="horas">Horas:</label>
-                                <input {{if len(comp_list)<i:}} disabled
-                                         {{else:}} value="{{=curso_list[i-1].f_horas}}"{{pass}}
-                                         type="number" min=0 max=5000 class="curso_horas" name="curso{{=i}}_horas" id="curso{{=i}}_horas" placeholder="Introduzca el número de horas"/>
+                                <input {{if len(evento_list)<i:}} disabled
+                                         {{else:}} value="{{=evento_list[i-1].f_horas}}"{{pass}}
+                                         type="number" min=0 max=2000 class="evento_horas" name="evento{{=i}}_horas" id="evento{{=i}}_horas" placeholder="Introduzca el número de horas"/>
                             </div>
-
-                        
-                          </div>
-                          {{ pass }}
-
-                          <a href="#" id="add_field" onclick="add_field()">Agregar Curso</a>
+                        </div>
+                        {{ pass }}
+                        <a href="#" id="add_field" onclick="add_field()">Agregar Curso</a>
 
 
-                          <script charset="utf-8">
-                              var num = 2
-                              function add_field(){
-                                  if(num < 11){
-                                      $('#curso-container'+num).show();
-                                      $('#curso'+num+'_categoria').prop('disabled', false).trigger("chosen:updated");
-                                      $('#curso'+num+'_anio').prop('disabled', false);
-                                      $('#curso'+num+'_formacion').prop('disabled', false);
-                                      $('#curso'+num+'_dictadoPor').prop('disabled', false);
-                                      $('#curso'+num+'_horas').prop('disabled', false);
-                                    num = num+1;
-                                  if (num >10){
-                                      $('#add_field').remove();
-                                      }
-                                  }
-                              }
-                          </script>
-                      </div>
-
-                      <div class="botones-form" style="margin-top: 1rem;margin-bottom: 2em;">
-                        <button type="button" class="btn btn-previous botonForm"><span class="fa fa-arrow-left" title="Anterior"/></button>
-                        <button type="button" class="btn btn-submit botonForm" form="formularioCarga" name="envio" value="agregar" id="submit"><span class="fa fa-floppy-o" title="Enviar"/></button>
+                        <script charset="utf-8">
+                            var num = 2
+                            function add_field(){
+                                if(num < 11){
+                                    $('#evento-container'+num).show();
+                                    $('#evento'+num+'_categoria').prop('disabled', false).trigger("chosen:updated");
+                                    $('#evento'+num+'_anio').prop('disabled', false);
+                                    $('#evento'+num+'_formacion').prop('disabled', false);
+                                    $('#evento'+num+'_dictadoPor').prop('disabled', false);
+                                    $('#evento'+num+'_horas').prop('disabled', false);
+                                num = num+1;
+                                if (num >10){
+                                    $('#add_field').remove();
+                                    }
+                                }
+                            }
+                        </script>
                     </div>
 
+                    <div class="botones-form" style="margin-top: 1rem;margin-bottom: 2em;">
+                      <button type="button" class="btn btn-previous botonForm"><span class="fa fa-arrow-left" title="Anterior"/></button>
+                      <button type="button" class="btn btn-submit botonForm" form="formularioCarga" name="envio" value="agregar" id="submit"><span class="fa fa-floppy-o" title="Enviar"/></button>
+                  </div>
                   </fieldset>
                 </form>
             </div>

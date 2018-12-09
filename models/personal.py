@@ -161,6 +161,27 @@ db.define_table(
 db.t_Curso._plural = 'Cursos'
 db.t_Curso._singular = 'Curso'
 
+
+#t_Personal: Tabla de Cursos2.
+db.define_table(
+    #Nombre de la entidad
+    't_estRealizados', 
+    #Atributos;
+    Field('f_numero', 'integer', default=1,label=T('Numero')),
+    Field('f_anio',          'integer', requires=IS_INT_IN_RANGE(minimum=1900,maximum=2100, error_message='Introduzca un año válido'), notnull=True, label=T('Año')),
+    Field('f_gradoInstruccion', 'list:string', default='', label=T('Grado_Instruccion')),
+    Field('f_categorias', 'list:string', default='', label=T('Categorías')),
+    Field('f_titObtenido',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Titulo_Obtenido')),
+    Field('f_arEspecializacion',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Area_Especializacion')),
+    Field('f_institucion',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Institucion')),
+    Field('f_sede',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Sede')),
+    Field('f_Estudios_Personal', 'reference t_Personal', requires=IS_IN_DB(db, db.t_Personal.id, '%(f_Personal)s', zero=None) ),
+    migrate=True 
+    )
+
+db.t_Curso._plural = 'estRealizados'
+db.t_Curso._singular = 'estRealizado'
+
 #t_Personal: Tabla de Trabajos.
 db.define_table(
     #Nombre de la entidad

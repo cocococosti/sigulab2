@@ -186,8 +186,10 @@ def dropdowns():
             "Química", "Recreación", "Salud Laboral", "Seguridad", "Tecnología", "Urbanismo",
             ]
 
+    gradoInstruccion = ["Bachillerato", "Técnico Medio", "TSU", "Universitaria", "Especialización", "Maestría", "Doctorado","Post-Doctorado"]
 
-    return (gremio,departamento,estatus,categoria,condiciones,roles,operadores, competencias)
+
+    return (gremio,departamento,estatus,categoria,condiciones,roles,operadores, competencias, gradoInstruccion)
 
 # Esta funcion toma la fecha desde el front que tiene
 # el formato dd-mm-yyyy y la transforma en el formato
@@ -461,7 +463,7 @@ def listado():
     idDependencia = db(db.dependencias.nombre == usuario.f_dependencia).select(db.dependencias.id)[0]
     ubicaciones= list(db(db.espacios_fisicos.dependencia == idDependencia).select(db.espacios_fisicos.ALL))
     #Obtenemos los elementos de los dropdowns
-    gremios, dependencias, estados, categorias, condiciones, roles, operadores, competencias= dropdowns()
+    gremios, dependencias, estados, categorias, condiciones, roles, operadores, competencias, gradoInstruccion = dropdowns()
 
     empleados = validacion_estilo()['empleados']
     idUser = db(db.t_Personal.f_ci == usuario.f_ci).select().first().id
@@ -481,8 +483,8 @@ def listado():
         usuario=usuario,
         empleados = empleados,
         competencias=competencias,
+        evento_list=lista_cursos(usuario.f_ci),
         comp_list=lista_competencias(usuario.f_ci),
-        curso_list=lista_cursos(usuario.f_ci),
         historial = getDictHistorial(historial_rows)
 
         )
@@ -608,8 +610,8 @@ def ficha():
         usuario_logged=usuario_logged,
         usuario=usuario,
         competencias=competencias,
+        evento_list=lista_cursos(personal['ci']),
         comp_list=lista_competencias(personal['ci']),
-        curso_list=lista_cursos(personal['ci']),
         historial=getDictHistorial(historial_rows)
 
     )
@@ -740,6 +742,12 @@ def reporte_listado():
         db.bitacora_general.insert(f_accion = accion)
     return redirect(URL('listado_estilo'))
 
+def lista_estRealizadoss(ci):
+    query = db((db.t_Personal.id == db.t_estRealizados.f_Estudios_Personal)
+            & (db.t_Personal.f_ci == ci))
+    rows = query.select(db.t_estRealizados.ALL, orderby=db.t_estRealizados.f_numero)
+    return rows
+
 def lista_competencias(ci):
     query = db((db.t_Personal.id == db.t_Competencias2.f_Competencia_Personal)
             & (db.t_Personal.f_ci == ci))
@@ -868,22 +876,23 @@ def __get_eventos(request, personal):
     #         'f_categorias2':request.post_vars.competencia2_categoria,
     #         'f_observaciones2': request.post_vars.competencia2_observaciones
     #         }
-    fies = []
+    cursos = []
     for i in range(1,11):
-        if 'competencia{0}_categorias'.format(i) in request.post_vars:
+        #cualquier cosa probar con evento
+        if 'curso{0}_categorias'.format(i) in request.post_vars:
             params = {
-                    'f_categorias' : request.post_vars['competencia{}_categorias'.format(i)],
-                    'f_anio' : request.post_vars['competencia{}_anio'.format(i)],
-                    'f_formacion' : request.post_vars['competencia{}_formacion'.format(i)],
-                    'f_horas' : request.post_vars['competencia{}_horas'.format(i)],
-                    'f_dictadoPor' : request.post_vars['competencia{}_dictadoPor'.format(i)],
+                    'f_categorias' : request.post_vars['curso{}_categorias'.format(i)],
+                    'f_anio' : request.post_vars['curso{}_anio'.format(i)],
+                    'f_formacion' : request.post_vars['curso{}_formacion'.format(i)],
+                    'f_horas' : request.post_vars['curso{}_horas'.format(i)],
+                    'f_dictadoPor' : request.post_vars['curso{}_dictadoPor'.format(i)],
                     'f_numero': i,
                     'f_Competencia_Personal': personal.id
                     }
             if not(
                     (None or '') ==  params['f_anio']
                     or (None or '') == params['f_categorias']):
-                db.t_Competencias2.update_or_insert(
+                db.t_Cursos2.update_or_insert(
                         (db.t_Cursos2.f_numero==i)&
                         (db.t_Cursos2.f_Competencia_Personal==personal.id),
                         f_categorias=params['f_categorias'],
@@ -894,9 +903,9 @@ def __get_eventos(request, personal):
                         f_numero= params['f_numero'],
                         f_Competencia_Personal= params['f_Competencia_Personal'],
                         )
-                fies.append(params)
+                cursos.append(params)
 
     # if 'competencia{0}._nombre'.format(i) in request.post_vars.keys():
     #     params['f_nombre{0}'.format(i)] = request.post_vars('competencias')
-    return fies
+    return cursos
 

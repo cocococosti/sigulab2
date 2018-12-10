@@ -17,20 +17,6 @@ db.define_table(
 db.t_Publicacion._plural = 'Publicaciones'
 db.t_Publicacion._singular = 'Publicacion'
 
-db.define_table(
-    't_Titulos',
-    # Atributos
-    Field('f_titulo', 'list:string', requires=IS_NOT_EMPTY(), label=T('Titulo Universitario')),
-    Field('f_area', 'list:string', requires=IS_NOT_EMPTY(), label=T('Area de estudio')),
-    Field('f_numero', 'list:integer', default=1,label=T('Año')),
-    Field('f_Titulo_Personal', 'reference t_Personal', requires=IS_IN_DB(db, db.t_Personal.id, '%(f_Personal)s', zero=None) ),
-    migrate=True
-    )
-
-db.t_Titulos._plural = 'Titulos'
-db.t_Titulos._singular = 'Titulos'
-
-
 #t_Personal: Tabla de eventos.
 db.define_table(
     #Nombre de la entidad
@@ -126,20 +112,47 @@ db.define_table(
 db.t_Materia._plural = 'Materias'
 db.t_Materia._singular = 'Materia'
 
+
+#############################################################################################################################################
 #t_Personal: Tabla de Tesis.
 db.define_table(
     #Nombre de la entidad
     't_Tesis', 
+
     #Atributos;
+
     Field('f_anio',          'integer', requires=IS_INT_IN_RANGE(minimum=1900,maximum=2100, error_message='Introduzca un año válido'), notnull=True, label=T('Año')),
     Field('f_nivel',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Nivel')),
     Field('f_trabajo',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Trabajo')),
+    Field('f_observaciones', 'string', length=150, label=T('Observaciones')),
     #Referencia (Revisar si el label es asistio o organizo)
     Field('f_Tesis_Personal',         'reference t_Personal', requires=IS_IN_DB(db, db.t_Personal.id, '%(f_Personal)s', zero=None), label=T('Publicó')),
     )
 
 db.t_Tesis._plural = 'Tesis'
 db.t_Tesis._singular = 'Tesis'
+
+
+#t_Personal: Tabla de Carrera.
+db.define_table(
+    #Nombre de la entidad
+    't_Carreras', 
+
+    #Atributos;
+    Field('f_titulo',        'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Título')),
+    Field('f_numero', 'integer', default=1,label=T('Numero')),
+    Field('f_universidad',   'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Universidad')),
+    #Referencia (Revisar si el label es asistio o organizo)
+    Field('f_Carreras_Personal',         'reference t_Personal', requires=IS_IN_DB(db, db.t_Personal.id, '%(f_Personal)s', zero=None), label=T('Estudios')),
+    )
+
+db.t_Carreras._plural = 'Carreras'
+db.t_Carreras._singular = 'Carreras'
+
+#############################################################################################################################################################3
+
+
+
 
 #t_Personal: Tabla de Cursos.
 db.define_table(
@@ -151,28 +164,10 @@ db.define_table(
     Field('f_titulo',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Título')),
     Field('f_dictado_por',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Dictado por')),
     #Referencia (Revisar si el label es asistio o organizo)
-    Field('f_Curso_Personal',         'reference t_Personal', requires=IS_IN_DB(db, db.t_Personal.id, '%(f_Personal)s', zero=None), label=T('Asistio')),
+    Field('f_Curso_Personal',         'reference t_Personal', requires=IS_IN_DB(db, db.t_Personal.id, '%(f_Personal)s', zero=None), label=T('Asistió')),
     )
 
 db.t_Curso._plural = 'Curso'
-db.t_Curso._singular = 'Curso'
-
-#t_Personal: Tabla de Cursos2.
-db.define_table(
-    #Nombre de la entidad
-    't_Cursos2', 
-    #Atributos;
-    Field('f_anio',          'integer', requires=IS_INT_IN_RANGE(minimum=1900,maximum=2100, error_message='Introduzca un año válido'), notnull=True, label=T('Año')),
-    Field('f_horas',          'integer', requires=IS_INT_IN_RANGE(minimum=1, error_message='Las horas no pueden ser negativas'), notnull=True, label=T('Horas')),
-    Field('f_categorias', 'list:string', default='', label=T('Categorías')),
-    Field('f_formacion',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Formacion')),
-    Field('f_dictadoPor',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('DictadoPor')),
-    Field('f_numero', 'integer', default=1,label=T('Numero')),
-    Field('f_Competencia_Personal', 'reference t_Personal', requires=IS_IN_DB(db, db.t_Personal.id, '%(f_Personal)s', zero=None) ),
-    migrate=True 
-    )
-
-db.t_Curso._plural = 'Cursos'
 db.t_Curso._singular = 'Curso'
 
 #t_Personal: Tabla de Trabajos.
@@ -219,6 +214,10 @@ db.define_table(
 db.t_Competencias._plural = 'Competencias'
 db.t_Competencias._singular = 'Competencia'
 
+
+
+
+
 #t_Competencias: Tabla de Competencias.
 db.define_table(
     't_Competencias2',
@@ -232,6 +231,11 @@ db.define_table(
     )
 db.t_Competencias._plural = 'Competencias'
 db.t_Competencias._singular = 'Competencia'
+
+
+
+
+
 
 #t_Personal: Tabla de Historial de trabajo.
 db.define_table(

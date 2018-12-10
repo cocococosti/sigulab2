@@ -283,7 +283,7 @@
                                   <label>Ingreso a la ULAB:</label> <input class="datepicker" value="{{=usuario.f_fecha_ingreso_ulab or ''}}" name = "fecha_ingreso_ulab_add" type="text" required data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
                                 </div>
 
-                                
+
                               </div>
                             </div>
                         </div>
@@ -431,36 +431,35 @@
                     </fieldset>
                     <!-- Fin Cuarto Paso -->
 
-                  <!-- Quinto paso Paso -->
-                  <fieldset class="formField" id="p5">
-                    <div class="form-bottom" data-step="5" data-title="Quinto Paso">
-                      <!-- Aqui va la barra lateral -->
-                      <div class="col-sm-1 col1Body">
-                        <span class="step">1</span>
-                        <span class="step">2</span>
-                        <span class="step">3</span>
-                        <span class="step">4</span>
-                        <span class="step activePass">5</span>
-                        <span class="step">6</span>
+                    <!-- Quinto Paso -->
+                    <fieldset class="formField" id="p5">
+                      <div class="form-bottom" data-step="5" data-title="Quinto Paso">
+                        <!-- Aqui va la barra lateral -->
+                        <div class="col-sm-1 col1Body">
+                          <span class="step">1</span>
+                          <span class="step">2</span>
+                          <span class="step">3</span>
+                          <span class="step">4</span>
+                          <span class="step activePass">5</span>
+                          <span class="step">6</span>
+                        </div>
+
+                        <!-- Aqui va la informacion -->
+                        <div class="col-sm-11 col11Body" >
+                          {{ include 'personal/formInvestigacion.html' }}
+                        </div>
+
                       </div>
-
-                      <!-- Aqui va la informacion -->
-                      
-                      <!--  Formulario para agregar historial laboral en el menu modal -->
-
-                      {{include 'personal/formHistorial.html'}}
-
-                        
                       <div class="botones-form" style="margin-top: 1rem;margin-bottom: 2em;">
                         <button type="button" class="btn btn-previous botonForm"><span class="fa fa-arrow-left" title="Anterior"/></button>
                         <button type="button" class="btn btn-next botonForm"><span class="fa fa-arrow-right" title="Siguiente"/></button>
                       </div>
-                    
-
-                  </fieldset>
+                    </fieldset>
                     <!-- Fin Quinto Paso -->
 
-                  <!-- Sexto paso Paso -->
+
+
+                  <!-- Septimo paso Paso -->
                   <fieldset class="formField" id="p6">
                     <div class="form-bottom" data-step="6" data-title="Sexto Paso">
                       <!-- Aqui va la barra lateral -->
@@ -474,20 +473,17 @@
                       </div>
 
                       <!-- Aqui va la informacion -->
-                      
                       <!--  Formulario para agregar historial laboral en el menu modal -->
+                      {{include 'personal/formHistorial.html'}}
 
-                      {{include 'personal/formInvestigacion2.html'}}
-
-                        
                     <div class="botones-form" style="margin-top: 1rem;margin-bottom: 2em;">
                         <button type="button" class="btn btn-previous botonForm"><span class="fa fa-arrow-left" title="Anterior"/></button>
                         <button type="button" class="btn btn-submit botonForm" form="formularioCarga" name="envio" value="agregar" id="submit"><span class="fa fa-floppy-o" title="Enviar"/></button>
                     </div>
-                    
-
                   </fieldset>
-                    <!-- Fin Sexto Paso -->
+                    <!-- Fin Septimo Paso -->
+
+
 
 
                 </form>

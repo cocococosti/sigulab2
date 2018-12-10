@@ -255,22 +255,21 @@ def add_form():
              "dependencia_hist_5" : request.post_vars.dependencia_hist_5_add,
              "organizacion_5" : request.post_vars.organizacion_5_add,
              "cargo_hist_5": request.post_vars.cargo_hist_5_add,
-             "rol_hist_5": request.post_vars.rol_hist_5_add,
-             "categoria_proyecto_1" : request.post_vars.categoria_proyecto_add,
-             "fecha_inicio_proyecto_1" : transformar_fecha_formato_original(request.post_vars.fecha_inicio_proyecto_1_add),
-             "fecha_final_proyecto_1" : transformar_fecha_formato_original(request.post_vars.fecha_final_proyecto_1_add),
-             "titulo_proyecto_1" : request.post_vars.titulo_proyecto_1_add,
-             "responsabilidad_proyecto_1" : request.post_vars.responsabilidad_proyecto_1_add,
-             "resultados_proyecto_1" : request.post_vars.resultados_proyecto_1_add,
-             "institucion_proyecto_1" : request.post_vars.institucion_proyecto_1_add,
-             "categoria_proyecto_2" : request.post_vars.categoria_proyecto_2_add,
-             "fecha_inicio_proyecto_2" : transformar_fecha_formato_original(request.post_vars.fecha_inicio_proyecto_2_add),
-             "fecha_final_proyecto_2" : transformar_fecha_formato_original(request.post_vars.fecha_final_proyecto_2_add),
-             "titulo_proyecto_2" : request.post_vars.titulo_proyecto_2_add,
-             "responsabilidad_proyecto_2" : request.post_vars.responsabilidad_proyecto_2_add,
-             "resultados_proyecto_2" : request.post_vars.resultados_proyecto_2_add,
-             "institucion_proyecto_2" : request.post_vars.institucion_proyecto_2_add             
-
+             "rol_hist_5": request.post_vars.rol_hist_5_add
+            #  "categoria_proyecto_1" : request.post_vars.categoria_proyecto_add,
+            #  "fecha_inicio_proyecto_1" : transformar_fecha_formato_original(request.post_vars.fecha_inicio_proyecto_1_add),
+            #  "fecha_final_proyecto_1" : transformar_fecha_formato_original(request.post_vars.fecha_final_proyecto_1_add),
+            #  "titulo_proyecto_1" : request.post_vars.titulo_proyecto_1_add,
+            #  "responsabilidad_proyecto_1" : request.post_vars.responsabilidad_proyecto_1_add,
+            #  "resultados_proyecto_1" : request.post_vars.resultados_proyecto_1_add,
+            #  "institucion_proyecto_1" : request.post_vars.institucion_proyecto_1_add,
+            #  "categoria_proyecto_2" : request.post_vars.categoria_proyecto_2_add,
+            #  "fecha_inicio_proyecto_2" : transformar_fecha_formato_original(request.post_vars.fecha_inicio_proyecto_2_add),
+            #  "fecha_final_proyecto_2" : transformar_fecha_formato_original(request.post_vars.fecha_final_proyecto_2_add),
+            #  "titulo_proyecto_2" : request.post_vars.titulo_proyecto_2_add,
+            #  "responsabilidad_proyecto_2" : request.post_vars.responsabilidad_proyecto_2_add,
+            #  "resultados_proyecto_2" : request.post_vars.resultados_proyecto_2_add,
+            #  "institucion_proyecto_2" : request.post_vars.institucion_proyecto_2_add             
             }
 
     ubicaciones = request.post_vars.ubicacion_add
@@ -346,24 +345,24 @@ def add_form():
 
        # Añadir Proyecto
 
-        db.t_Proyecto.update_or_insert(
-            db.t_Proyecto.f_proyecto_Personal== personal.select().first().id,
-            f_categoria = dic["categoria_proyecto_1"],
-            f_fecha_inicio = dic["fecha_inicio_proyecto_1"],
-            f_fecha_fin = dic["fecha_final_proyecto_1"],
-            f_titulo = dic["titulo_proyecto_1"],
-            f_responsabilidad = dic["responsabilidad_proyecto_1"],
-            f_resultados = dic["resultados_proyecto_1"],
-            f_institucion = dic["institucion_proyecto_1"],
-            f_categoria_2 = dic["categoria_proyecto_2"],
-            f_fecha_inicio_2 = dic["fecha_inicio_proyecto_2"],
-            f_fecha_fin_2 = dic["fecha_final_proyecto_2"],
-            f_titulo_2 = dic["titulo_proyecto_2"],
-            f_responsabilidad_2 = dic["responsabilidad_proyecto_2"],
-            f_resultados_2 = dic["resultados_proyecto_2"],
-            f_institucion_2 = dic["institucion_proyecto_2"],            
-            f_proyecto_Personal = personal.select().first().id
-            )
+        # db.t_Proyecto.update_or_insert(
+        #     db.t_Proyecto.f_proyecto_Personal== personal.select().first().id,
+        #     f_categoria = dic["categoria_proyecto_1"],
+        #     f_fecha_inicio = dic["fecha_inicio_proyecto_1"],
+        #     f_fecha_fin = dic["fecha_final_proyecto_1"],
+        #     f_titulo = dic["titulo_proyecto_1"],
+        #     f_responsabilidad = dic["responsabilidad_proyecto_1"],
+        #     f_resultados = dic["resultados_proyecto_1"],
+        #     f_institucion = dic["institucion_proyecto_1"],
+        #     f_categoria_2 = dic["categoria_proyecto_2"],
+        #     f_fecha_inicio_2 = dic["fecha_inicio_proyecto_2"],
+        #     f_fecha_fin_2 = dic["fecha_final_proyecto_2"],
+        #     f_titulo_2 = dic["titulo_proyecto_2"],
+        #     f_responsabilidad_2 = dic["responsabilidad_proyecto_2"],
+        #     f_resultados_2 = dic["resultados_proyecto_2"],
+        #     f_institucion_2 = dic["institucion_proyecto_2"],            
+        #     f_proyecto_Personal = personal.select().first().id
+        #     )
 
 
         session.ficha_negada=""
@@ -418,6 +417,7 @@ def add_form():
 
         personal = db(db.t_Personal.f_email == dic['email'] ).select().first()
         __get_competencias(request, personal)
+        __get_proyectos(request, personal)
         redirect(URL('listado_estilo'))
 
 
@@ -482,9 +482,6 @@ class Usuario(object):
         def setHist(self, historial):
             pass
 
-        def setProy(self, proyectos):
-            pass    
-
 #Funcion que envia los datos a la vista
 @auth.requires_login(otherwise=URL('modulos', 'login'))
 def listado():
@@ -505,8 +502,6 @@ def listado():
     empleados = validacion_estilo()['empleados']
     idUser = db(db.t_Personal.f_ci == usuario.f_ci).select().first().id
     historial_rows = db(db.t_Historial_trabajo_nuevo.f_Historial_trabajo_Personal == idUser).select().first()
-    proyectos_rows = db(db.t_Proyecto.f_proyecto_Personal == idUser).select().first()
-
     return dict(
         grid=tabla,
         categorias=categorias,
@@ -522,7 +517,7 @@ def listado():
         competencias=competencias,
         comp_list=lista_competencias(usuario.f_ci),
         historial = getDictHistorial(historial_rows),
-        proyectos = getDictProyecto(proyectos_rows)        
+        proy_list = lista_proyectos(usuario.f_ci)       
         )
 
 def transformar_fecha(fecha):
@@ -633,8 +628,6 @@ def ficha():
 
     historial_rows = db(db.t_Historial_trabajo_nuevo.f_Historial_trabajo_Personal == elm.id).select().first()
 
-    proyectos_rows = db(db.t_Proyecto.f_proyecto_Personal == elm.id).select().first()
-
     return dict(
         personal=personal,
         categorias=categorias,
@@ -650,7 +643,7 @@ def ficha():
         competencias=competencias,
         comp_list=lista_competencias(personal['ci']),
         historial=getDictHistorial(historial_rows),
-        proyectos=getDictProyecto(proyectos_rows)
+        proy_list = lista_proyectos(personal['ci'])  
     )
 
 def cambiar_validacion(validacion, personal):
@@ -785,6 +778,12 @@ def lista_competencias(ci):
     rows = query.select(db.t_Competencias2.ALL, orderby=db.t_Competencias2.f_numero)
     return rows  
 
+def lista_proyectos(ci):
+    query = db((db.t_Personal.id == db.t_Proyecto.f_proyecto_Personal)
+            & (db.t_Personal.f_ci == ci))
+    rows = query.select(db.t_Proyecto.ALL, orderby=db.t_Proyecto.f_numero)
+    return rows
+
 def getDictHistorial(historial):
     dic = {}
     if (historial != None):
@@ -891,39 +890,43 @@ def __get_competencias(request, personal):
     #     params['f_nombre{0}'.format(i)] = request.post_vars('competencias')
     return fies
 
-def getDictProyecto(proyectos):
-    dic = {}
-    if (proyectos != None):
-        dic = {  "categoria_proyecto_1" : proyectos.f_categoria,
-                 "fecha_inicio_proyecto_1" : transformar_fecha(proyectos.f_fecha_inicio),
-                 "fecha_final_proyecto_1" : transformar_fecha(proyectos.f_fecha_fin),
-                 "titulo_proyecto_1" : proyectos.f_titulo,
-                 "responsabilidad_proyecto_1" : proyectos.f_responsabilidad,
-                 "resultados_proyecto_1" : proyectos.f_resultados,
-                 "institucion_proyecto_1" : proyectos.f_institucion,
-                 "categoria_proyecto_2" : proyectos.f_categoria_2,
-                 "fecha_inicio_proyecto_2" : transformar_fecha(proyectos.f_fecha_inicio_2),
-                 "fecha_final_proyecto_2" : transformar_fecha(proyectos.f_fecha_fin_2),
-                 "titulo_proyecto_2" : proyectos.f_titulo_2,
-                 "responsabilidad_proyecto_2" : proyectos.f_responsabilidad_2,
-                 "resultados_proyecto_2" : proyectos.f_resultados_2,
-                 "institucion_proyecto_2" : proyectos.f_institucion_2,                     
-                  
-        }
-    else:
-        dic = {  "categoria_proyecto_1" : '',
-                 "fecha_inicio_proyecto_1" : '',
-                 "fecha_final_proyecto_1" : '',
-                 "titulo_proyecto_1" : '',
-                 "responsabilidad_proyecto_1" : '',
-                 "resultados_proyecto_1" : '',
-                 "institucion_proyecto_1" : '',
-                 "categoria_proyecto_2" : '',
-                 "fecha_inicio_proyecto_2" : '',
-                 "fecha_final_proyecto_2" : '',
-                 "titulo_proyecto_2" : '',
-                 "responsabilidad_proyecto_2" : '',
-                 "resultados_proyecto_2" : '',
-                 "institucion_proyecto_2" : '',
-        }
-    return dic    
+def __get_proyectos(request, personal):
+    params = {}
+    proyecto = []
+    for i in range(1, 6):
+        if 'proyecto{0}_nombre'.format(i) in request.post_vars:
+
+            params = {
+                    'f_categoria': request.post_vars['proyecto{0}_categoria'.format(i)],
+                    'f_fecha_inicio': transformar_fecha_formato_original(
+                        request.post_vars['proyecto{0}_desde'.format(i)]),
+                    'f_fecha_fin': transformar_fecha_formato_original(
+                        request.post_vars['proyecto{0}_hasta'.format(i)]),    
+                    'f_titulo': request.post_vars['proyecto{0}_titulo'.format(i)],
+                    'f_responsabilidad': request.post_vars['proyecto{0}_responsabilidad'.format(i)],
+                    'f_resultados': request.post_vars['proyecto{0}_resultados'.format(i)],
+                    'f_institucion': request.post_vars['proyecto{0}_institucion'.format(i)],
+                    
+                    'f_numero': i,
+                    'f_proyecto_Personal': personal.id
+                    }
+            if not( (None or '') in  params):
+                try:
+                    db.t_Proyecto.update_or_insert(
+                            (db.t_Proyecto.f_numero==i)
+                            & (db.t_Proyecto.f_proyecto_Personal==personal.id),
+                            f_categoria=params['f_categoria'],
+                            f_fecha_inicio=params['f_fecha_inicio'],
+                            f_fecha_fin=params['f_fecha_fin'],
+                            f_titulo=params['f_nombre'],
+                            f_responsabilidad=params['f_responsabilidad'],
+                            f_resultados=params['f_resultados'],     
+                            f_institucion=params['f_institucion'],
+                            
+                            f_numero=params['f_numero'],
+                            f_proyecto_Personal=params['f_proyecto_Personal'],
+                            )
+                except Exception as e:
+                    print(e)
+            extension.append(params)
+    return proyecto

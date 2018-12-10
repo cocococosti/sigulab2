@@ -1,82 +1,145 @@
-<div class="col-sm-11 col11Body">
-<h4 class="titulosForm">Proyectos de Investigación (Máximo 10)</h4>
+<h3>Proyectos de Investigación (Máximo 10)</h3>
 <h5>Los campos con * son obligatorios</h5>
+
 {{ for i in range(1,11): }}
-<div class="proyecto-container" id="proyecto-container{{=i}}"{{if len(proy_list)<i:}}hidden{{pass}}>
-<h5>Proyecto {{=i}}</h5>
-    <div class="form-group">
-        <label for="proyecto{{=i}}_categoria">Categoría: *</label>
-      <select {{if len(proy_list)<i:}} disabled {{pass}}
-             class="form-control seleccion-categoria"
-             type="select" name="proyecto{{=i}}_categoria" id="proyecto{{=i}}_categoria"
-              data-placeholder="Seleccione la categoría que aplique">
-      {{for competencia in competencias:}}
-      <option value="{{=competencia}}">{{=competencia}}</option>
-    {{pass}}
-      </select>
-    </div>
-
-    <div class="form-group">
-        <label for="fecha inicio">Desde: *</label>
-        <input {{if len(proy_list)<i:}} disabled
-               {{else:}} value="{{=proy_list[i-1].f_fecha_inicio}}"{{pass}}
-               type="text" class="datepicker" name="proyecto{{=i}}_fecha_inicio" id="proyecto{{=i}}_fecha_inicio" placeholder="Introduzca la Fecha de Inicio" required/>
-    </div>
-
-    <div class="form-group">
-        <label for="fecha fin">Hasta: *</label>
-        <input {{if len(proy_list)<i:}} disabled
-               {{else:}} value="{{=proy_list[i-1].f_fecha_fin}}"{{pass}}
-               type="text" class="datepicker" name="proyecto{{=i}}_fecha_fin" id="proyecto{{=i}}_fecha_fin" placeholder="Introduzca la Fecha de Finalización" required/>
-    </div> 
-
-    <div class="form-group">
-        <label for="titulo">Titulo: *</label>
-        <input {{if len(proy_list)<i:}} disabled
-               {{else:}} value="{{=proy_list[i-1].f_titulo}}"{{pass}}
-               type="text" class="proyecto_titulo" name="proyecto{{=i}}_titulo" id="proyecto{{=i}}_titulo" placeholder="Introduzca el titulo del Proyecto"/>
-    </div>
-
-    <div class="form-group">
-        <label for="responsabilidad">Responsabilidad: *</label>
-        <input {{if len(proy_list)<i:}} disabled
-               {{else:}} value="{{=proy_list[i-1].f_responsabilidad}}"{{pass}}
-               type="text" class="proyecto_responsabilidad" name="proyecto{{=i}}_responsabilidad" id="proyecto{{=i}}_responsabilidad" placeholder="Introduzca la Responsabilidad"/>
-    </div>    
-
-    <div class="form-group">
-        <label for="resultados">Resultados: </label>
-        <input {{if len(proy_list)<i:}} disabled
-               {{else:}} value="{{=proy_list[i-1].f_resultados}}"{{pass}}
-               type="text" class="proyecto_resultados" name="proyecto{{=i}}_resultados" id="proyecto{{=i}}_resultados" placeholder="Introduzca el resultado del Proyecto"/>
-    </div>    
-
-    <div class="form-group">
-        <label for="institucion">Institución: *</label>
-        <input {{if len(proy_list)<i:}} disabled
-               {{else:}} value="{{=proy_list[i-1].f_institucion}}"{{pass}}
-               type="text" class="proyecto_institucion" name="proyecto{{=i}}_institucion" id="proyecto{{=i}}_institucion" placeholder="Introduzca la Institución"/>
-    </div> 
+<div class="proyecto-container" id="proyecto{{=i}}_cointaner"{{if len(proy_list)<i and 1!=i: }}hidden{{pass}}>
+    <h5>Proyecto {{=i}}</h5>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="proyecto{{=i}}_categoria">Categoría: *</label>
+            <select {{if len(comp_list)<i and 1!=i:}} disabled {{pass}}
+                    class="form-control seleccion-competencia"
+                    type="select" name="proyecto{{=i}}_categoria"
+                    id="proyecto{{=i}}_categoria" multiple required
+                    data-placeholder="Seleccione las categorías que apliquen">
+                    <option value""> Seleccione una opcion</option>
+                    {{ for comp in competencias: }}
+                    <option
+                        {{ if i<=len(proy_list):}}
+                        {{= 'selected' if comp in proy_list[i-1].f_categoria else '' }}
+                        {{pass}}
+                    value"{{=comp}}">{{=comp}}</option>
+                    {{pass}}
+            </select>
+        </div>
 </div>
+
+    <div class="form-row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="proyecto{{=i}}_desde">Desde: *</label>
+                <input {{if len(proy_list)<i and 1!=i:}}
+                       disabled {{pass}}
+                       value="{{='' if len(proy_list)<i else proy_list[i-1].f_fecha_inicio.strftime('%d-%m-%Y')}}"
+                       class="datepicker"
+                       name="proyecto{{=i}}_desde" type="text" 
+                       id="proyecto{{=i}}_desde"
+                       data-placement="bottom" data-trigger="manual"
+                       data-content="Seleccione una fecha"/>
+                <span class="help-block"></span>
+            </div>
+    </div>
+
+
+    <div class="col-sm-6">
+            <div class="form-group">
+                <label>Hasta: *</label>
+                <input {{if len(proy_list)<i and 1!=i:}}
+                       disabled {{pass}}
+                       value="{{='' if len(proy_list)<i else proy_list[i-1].f_fecha_fin.strftime('%d-%m-%Y')}}"
+                       class="datepicker"
+                       name="proyecto{{=i}}_hasta" type="text"
+                       id="proyecto{{=i}}_hasta"
+                       data-placement="bottom" data-trigger="manual"
+                       data-content="Seleccione una fecha">
+                <span class="help-block"></span>
+            </div>
+    </div>
+</div>
+
+ <div class="form-row">
+    <div class="col-sm-6">
+        <div class="form-group">
+        <label>Titulo: *</label>
+         <input {{if len(proy_list)<i and 1!=i:}}
+                       disabled {{pass}}
+                       value="{{='' if len(proy_list)<i else proy_list[i-1].f_titulo}}"
+                       type="text" class="form-control"
+                       name="proyecto{{=i}}_titulo"
+                       id="proyecto{{=i}}_titulo"
+                       data-toggle="popover" data-placement="bottom"
+                       data-trigger="manual" data-content="Este campo es requerido">
+                <span class="help-block"></span>
+            </div>
+        </div>
+
+    <div class="col-sm-6">
+        <div class="form-group">
+        <label>Responsabilidad: *</label>
+         <input {{if len(proy_list)<i and 1!=i:}}
+                       disabled {{pass}}
+                       value="{{='' if len(proy_list)<i else proy_list[i-1].f_responsabilidad}}"
+                       type="text" class="form-control"
+                       name="proyecto{{=i}}_responsabilidad"
+                       id="proyecto{{=i}}_responsabilidad"
+                       data-toggle="popover" data-placement="bottom"
+                       data-trigger="manual" data-content="Este campo es requerido">
+                <span class="help-block"></span>
+            </div>
+        </div>
+ </div>
+
+  <div class="form-row">
+    <div class="col-sm-6">
+        <div class="form-group">
+        <label>Resultados: </label>
+         <input {{if len(proy_list)<i and 1!=i:}}
+                       disabled {{pass}}
+                       value="{{='' if len(proy_list)<i else proy_list[i-1].f_resultados}}"
+                       type="text" class="form-control"
+                       name="proyecto{{=i}}_resultados"
+                       id="proyecto{{=i}}_resultados"
+                       data-toggle="popover" data-placement="bottom"
+                       data-trigger="manual" data-content="Este campo es requerido">
+                <span class="help-block"></span>
+            </div>
+        </div>
+
+    <div class="col-sm-6">
+        <div class="form-group">
+        <label>Institución: *</label>
+         <input {{if len(proy_list)<i and 1!=i:}}
+                       disabled {{pass}}
+                       value="{{='' if len(proy_list)<i else proy_list[i-1].f_institucion}}"
+                       type="text" class="form-control"
+                       name="proyecto{{=i}}_institucion"
+                       id="proyecto{{=i}}_institucion"
+                       data-toggle="popover" data-placement="bottom"
+                       data-trigger="manual" data-content="Este campo es requerido">
+                <span class="help-block"></span>
+            </div>
+        </div>
+    </div>
 </div>
 {{pass}}
+
 <a href="#" id="add_field_p" onclick="add_field_p()">Agregar Proyecto</a>
 
 
 <script charset="utf-8">
-    var num = 2
+    var nump = 2
     function add_field_p(){
-        if(num < 11){
-            $('#proyecto-container'+num).show();
-            $('#proyecto'+num+'_categoria').prop('disabled', false).trigger("chosen:updated");
-            $('#proyecto'+num+'_fecha_inicio').prop('disabled', false);
-            $('#proyecto'+num+'_fecha_fin').prop('disabled', false);
-            $('#proyecto'+num+'_titulo').prop('disabled', false);
-            $('#proyecto'+num+'_responsabilidad').prop('disabled', false);
-            $('#proyecto'+num+'_resultados').prop('disabled', false);
-            $('#proyecto'+num+'_institucion').prop('disabled', false);
-        num = num+1;
-        if (num >10){
+        if(nump < 11){
+            $('#proyecto'+nump+'_cointaner').show();
+            $('#proyecto'+nump+'_categoria').prop('disabled', false);
+            $('#proyecto'+nump+'_desde').prop('disabled', false);
+            $('#proyecto'+nump+'_hasta').prop('disabled', false);
+            $('#proyecto'+nump+'_titulo').prop('disabled', false);
+            $('#proyecto'+nump+'_responsabilidad').prop('disabled', false);
+            $('#proyecto'+nump+'_resultados').prop('disabled', false);
+            $('#proyecto'+nump+'_institucion').prop('disabled', false);
+        nump = nump+1;
+        if (nump >10){
             $('#add_field_p').remove();
             }
         }

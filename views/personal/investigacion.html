@@ -27,56 +27,18 @@
                     <th> Resultados </th>
                     <th> Institución </th>
                 </tr>
-
+                 {{for proy in proy_list:}}
                 <tr>
-                    {{if bool(proyectos['categoria_proyecto_1']) :}}
-                    <td id="field_categoria">{{=proyectos['categoria_proyecto_1']}}</td>
-                    {{pass}}
-                    {{if bool(proyectos['fecha_inicio_proyecto_1']) :}}
-                    <td id="field_desde">{{=proyectos['fecha_inicio_proyecto_1']}}</td>
-                    {{pass}}
-                    {{if bool(proyectos['fecha_final_proyecto_1']) :}}
-                    <td id="field_hasta">{{=proyectos['fecha_final_proyecto_1']}}</td>
-                    {{pass}}
-                    {{if bool(proyectos['titulo_proyecto_1']) :}}
-                    <td id="field_titulo">{{=proyectos['titulo_proyecto_1']}}</td>
-                    {{pass}}
-                    {{if bool(proyectos['responsabilidad_proyecto_1']) :}}
-                    <td id="field_responsabilidad">{{=proyectos['responsabilidad_proyecto_1']}}</td>
-                    {{pass}}
-                    {{if bool(proyectos['resultados_proyecto_1']) :}}
-                    <td id="field_resultados">{{=proyectos['resultados_proyecto_1']}}</td>
-                    {{pass}}
-                    {{if bool(proyectos['institucion_proyecto_1']) :}}
-                    <td id="field_institucion">{{=proyectos['institucion_proyecto_1']}}</td>
-                    {{pass}}
-                      
-                </tr>          
-
-                <tr>
-                    {{if bool(proyectos['categoria_proyecto_2']) :}}
-                    <td id="field_categoria">{{=proyectos['categoria_proyecto_2']}}</td>
-                    {{pass}}
-                    {{if bool(proyectos['fecha_inicio_proyecto_2']) :}}
-                    <td id="field_desde">{{=proyectos['fecha_inicio_proyecto_2']}}</td>
-                    {{pass}}
-                    {{if bool(proyectos['fecha_final_proyecto_2']) :}}
-                    <td id="field_hasta">{{=proyectos['fecha_final_proyecto_2']}}</td>
-                    {{pass}}
-                    {{if bool(proyectos['titulo_proyecto_2']) :}}
-                    <td id="field_titulo">{{=proyectos['titulo_proyecto_2']}}</td>
-                    {{pass}}
-                    {{if bool(proyectos['responsabilidad_proyecto_2']) :}}
-                    <td id="field_responsabilidad">{{=proyectos['responsabilidad_proyecto_2']}}</td>
-                    {{pass}}
-                    {{if bool(proyectos['resultados_proyecto_2']) :}}
-                    <td id="field_resultados">{{=proyectos['resultados_proyecto_2']}}</td>
-                    {{pass}}
-                    {{if bool(proyectos['institucion_proyecto_2']) :}}
-                    <td id="field_institucion">{{=proyectos['institucion_proyecto_2']}}</td>
-                    {{pass}}
-                      
-                </tr>                              
+                    <td>{{=proy.f_categoria}}</td>
+                    <td>{{=proy.f_fecha_inicio}}</td>
+                    <td>{{=proy.f_fecha_fin}}</td>
+                    <td>{{=proy.f_titulo}}</td>
+                    <td>{{=proy.f_responsabilidad}}</td>
+                    <td>{{=proy.f_resultados}}</td>
+                    <td>{{=proy.f_institucion}}</td>
+                </tr>
+                {{pass}}
+                                                    
             </tbody>
           </table>
         </div>

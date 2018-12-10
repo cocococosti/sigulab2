@@ -43,14 +43,6 @@ const inputs = [
     'competencia8_nombre',
     'competencia9_nombre',
     'competencia10_nombre',
-    //Proyectos
-    'categoria_proyecto_add',
-    'fecha_inicio_proyecto_1_add',
-    'fecha_final_proyecto_1_add',
-    'titulo_proyecto_1_add',
-    'responsabilidad_proyecto_1_add',
-    'resultados_proyecto_1_add',
-    'institucion_proyecto_1_add',
 ]
 
 const inputSelectorsAll = inputs.map(i => `[name="${i}"]`).join(',')
@@ -907,84 +899,11 @@ const validadoresCuartoPaso = [
 
 // ESCRIBE AQUI TUS FUNCIONES
 
-// Funciones para validar los campos de proyectos
-
-function validaProyecto1() {
-    // Campos del formulario de un trabajo
-    const $fechIn= $('[name="fecha_inicio_proyecto_1_add"]');
-    const $fechFin = $('[name="fecha_final_proyecto_1_add');
-    const $titulo = $('[name="titulo_proyecto_1_add"]');
-    const $responsabilidad = $('[name="responsabilidad_proyecto_1_add"]');
-    const $inst = $('[name="institucion_proyecto_1_add"]');
-    var arreglo = [$fechIn, $fechFin, $titulo, $responsabilidad, $inst]
-    var validacion = true;
-    //Si uno de los campos de un trabajo esta lleno entonces los
-    // demás también son requeridos
-    for (var i=0; i<arreglo.length; i++) {
-        if (arreglo[i].val() !== "") {
-            for (var j=0; j<arreglo.length; j++) {
-                if (arreglo[j].val() === ""){
-                    arreglo[j].attr("data-content", requiredFieldMessage);
-                    arreglo[j].addClass('input-error');
-                    arreglo[j].attr("data-valido", "false");
-                    arreglo[j].popover('show');
-                    validacion = false;
-                } else {
-                    arreglo[j].removeClass('input-error');
-                    arreglo[j].popover('hide');
-                }
-            }
-            break;
-        }
-    }
-    return validacion;
-}
-
-function validaFechaInicio_Proy1(){
-    const $this = $('[name="fecha_inicio_proyecto_1_add"]');
-    if ($this.val() !== ""){
-        if (!moment(voltearFecha($this.val())).isSameOrBefore(moment().format("YYYY-MM-DD"))){
-            $this.attr("data-content", 'La fecha tiene que ser antes de la fecha de hoy u hoy');
-            $this.addClass('input-error');
-            $this.attr("data-valido", 'false');
-            $this.popover('show');
-            return false;
-        }
-        else{
-            $this.removeClass('input-error');
-            $this.popover('hide');
-            return true;
-        }
-    } else {
-        return true;
-    }
-}
-
-function validaFechaFin_Proy1(){
-    const $this = $('[name="fecha_final_proyecto_1_add"]');
-    const fecha_inicio = voltearFecha($('[name="fecha_inicio_proyecto_1_add"]').val());
-    const fecha_final = voltearFecha($this.val());
 
 
-    if (fecha_inicio !== "" && fecha_final !== "" && (!moment(fecha_inicio).isSameOrBefore(fecha_final) || !moment(fecha_final).isSameOrBefore(moment().format("YYYY-MM-DD")) ) ){
-        $this.attr("data-content", "La fecha de egreso tiene que ser despues que la fecha de ingreso o igual a esta");
-        $this.addClass('input-error');
-        $this.attr("data-valido", 'false');
-        $this.popover('show');
-        return false
-    }
-    else{
-        $this.removeClass('input-error');
-        $this.popover('hide');
-        return true;
-    }
-}
 
-const validadoresSextoPaso = [
-    validaProyecto1,
-    validaFechaInicio_Proy1,
-    validaFechaFin_Proy1,
-]
+
+
 
 
 
@@ -1112,10 +1031,7 @@ $(document).ready(function () {
             next_step = validadoresCorrectos(validadoresCuartoPaso)
         }
 
-        else if(parent_fieldset.attr('id') === 'p5'){
-            next_step = validadoresCorrectos(validadoresQuintoPaso)
-        }
-            
+
 
 
 
@@ -1182,7 +1098,7 @@ $(document).ready(function () {
         
         var parent_fieldset = $(this).parents('fieldset');
         
-        var enviar = validadoresCorrectos(validadoresSextoPaso);
+        var enviar = validadoresCorrectos(validadoresQuintoPaso);
 
 
 

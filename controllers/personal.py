@@ -893,8 +893,8 @@ def __get_competencias(request, personal):
 def __get_proyectos(request, personal):
     params = {}
     proyecto = []
-    for i in range(1, 6):
-        if 'proyecto{0}_nombre'.format(i) in request.post_vars:
+    for i in range(1, 11):
+        if 'proyecto{0}_titulo'.format(i) in request.post_vars:
 
             params = {
                     'f_categoria': request.post_vars['proyecto{0}_categoria'.format(i)],
@@ -911,22 +911,19 @@ def __get_proyectos(request, personal):
                     'f_proyecto_Personal': personal.id
                     }
             if not( (None or '') in  params):
-                try:
-                    db.t_Proyecto.update_or_insert(
-                            (db.t_Proyecto.f_numero==i)
-                            & (db.t_Proyecto.f_proyecto_Personal==personal.id),
-                            f_categoria=params['f_categoria'],
-                            f_fecha_inicio=params['f_fecha_inicio'],
-                            f_fecha_fin=params['f_fecha_fin'],
-                            f_titulo=params['f_nombre'],
-                            f_responsabilidad=params['f_responsabilidad'],
-                            f_resultados=params['f_resultados'],     
-                            f_institucion=params['f_institucion'],
-                            
-                            f_numero=params['f_numero'],
-                            f_proyecto_Personal=params['f_proyecto_Personal'],
-                            )
-                except Exception as e:
-                    print(e)
-            extension.append(params)
+                db.t_Proyecto.update_or_insert(
+                        (db.t_Proyecto.f_numero==i)
+                        & (db.t_Proyecto.f_proyecto_Personal==personal.id),
+                        f_categoria=params['f_categoria'],
+                        f_fecha_inicio=params['f_fecha_inicio'],
+                        f_fecha_fin=params['f_fecha_fin'],
+                        f_titulo=params['f_titulo'],
+                        f_responsabilidad=params['f_responsabilidad'],
+                        f_resultados=params['f_resultados'],     
+                        f_institucion=params['f_institucion'],
+                        
+                        f_numero=params['f_numero'],
+                        f_proyecto_Personal=params['f_proyecto_Personal'],
+                        )
+            proyecto.append(params)
     return proyecto

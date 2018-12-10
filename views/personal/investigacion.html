@@ -29,13 +29,13 @@
                 </tr>
                  {{for proy in proy_list:}}
                 <tr>
-                    <td>{{=proy.f_categoria}}</td>
+                    <td>{{=BEAUTIFY(", ".join(proy.f_categoria))}}</td>
                     <td>{{=proy.f_fecha_inicio}}</td>
                     <td>{{=proy.f_fecha_fin}}</td>
-                    <td>{{=proy.f_titulo}}</td>
-                    <td>{{=proy.f_responsabilidad}}</td>
-                    <td>{{=proy.f_resultados}}</td>
-                    <td>{{=proy.f_institucion}}</td>
+                    <td>{{=BEAUTIFY(proy.f_titulo)}}</td>
+                    <td>{{=BEAUTIFY(proy.f_responsabilidad)}}</td>
+                    <td>{{=BEAUTIFY(proy.f_resultados)}}</td>
+                    <td>{{=BEAUTIFY(proy.f_institucion)}}</td>
                 </tr>
                 {{pass}}
                                                     

@@ -881,7 +881,7 @@ def __get_eventos(request, personal):
         #cualquier cosa probar con evento
         if 'evento{0}_formacion'.format(i) in request.post_vars:
             params = {
-                    'f_categorias' : request.post_vars['evento{0}_categorias'.format(i)],
+                    'f_categorias' : request.post_vars['evento{0}_categoria'.format(i)],
                     'f_anio' : request.post_vars['evento{0}_anio'.format(i)],
                     'f_formacion' : request.post_vars['evento{0}_formacion'.format(i)],
                     'f_horas' : request.post_vars['evento{0}_horas'.format(i)],
@@ -904,7 +904,6 @@ def __get_eventos(request, personal):
             #        or (None or '') == params['f_dictadoPor']
             #        or (None or '') == params['f_horas']):
             if not( (None or '') in params):
-                try:
                     db.t_Cursos2.update_or_insert(
                         (db.t_Cursos2.f_numero==i)
                         & (db.t_Cursos2.f_Competencia_Personal==personal.id),
@@ -914,11 +913,7 @@ def __get_eventos(request, personal):
                         f_horas= params['f_horas'],
                         f_dictadoPor= params['f_dictadoPor'],
                         f_numero= params['f_numero'],
-                        f_Competencia_Personal= params['f_Competencia_Personal'],
-                        )
-                except Exception as e:
-                    print(e)
-                    pass
+                        f_Competencia_Personal= params['f_Competencia_Personal'],)
             cursos.append(params)
 
     # if 'competencia{0}._nombre'.format(i) in request.post_vars.keys():

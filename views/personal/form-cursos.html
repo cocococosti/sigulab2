@@ -9,15 +9,15 @@
               <label for="evento{{=i}}_categoria">Categoría: *</label>
                 <select {{if len(evento_list)<i and 1!=i:}} disabled {{pass}}
                     class="form-control seleccion-competencia" type="select" name="evento{{=i}}_categoria" id="evento{{=i}}_categoria" multiple required
-                    data-placeholder="Seleccione las categoría que aplique">
+                    data-placeholder="Seleccione las categorías que apliquen">
                     <option value""> Seleccione al menos una opcion</option>
                     {{ for comp in competencias: }}
                       <option 
-                          {{ if len(evento_list)>=i and (comp in (evento_list[i-1].f_categorias or ['Arte'])):}} selected
-                          {{pass}}
+                      {{ if i<=len(evento_list):}}
+                      {{= 'selected' if comp in evento_list[i-1].f_categorias else '' }}
+                      {{pass}}
                     value"{{=comp}}">{{=comp}}</option>
                     {{pass}}
-
                 </select>
       </div>
 

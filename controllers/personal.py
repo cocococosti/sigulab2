@@ -12,7 +12,7 @@ def busqueda():
     return dict(
         gremios=gremios,
         competencias=competencias,
-        titulos=titulos,
+        titulos=titulos
     )
 
 def resultados_busqueda():
@@ -67,6 +67,9 @@ def resultados_busqueda():
             'cargo' : encontrado
             })
     return dict(lista=lista, filtros=request.post_vars, ani=aniversario_ulab)
+
+
+
 #Enviar info a la tabla del listado
 def tabla_categoria(tipo):
     tb=[]
@@ -178,6 +181,8 @@ def dropdowns():
     #Dropdown de operadores
     operadores = ['+58414', '+58424', '+58412', '+58416', '+58426']
 
+    titulos = ['Tsu', 'Postgrado', 'Magister', 'Doctorado', 'Ingeniero', 'Tecnico Medio', 'Licenciatura', 'Arquitectura', 'Contaduria', 'Educacion', 'Diplomado', 'Tecnico Superior' ]
+
     # Competencias
     competencias = [
             "Administración", "Alimentación", "Ambiente", "Arquitectura", "Arte", "Biología", "Calidad", "Ciencias del Agro",
@@ -186,9 +191,8 @@ def dropdowns():
             "Informática", "Ingeniería", "Letras", "Liderazgo", "Matemática", "Medicina", "Música", "Negocio", "Nutrición",
             "Química", "Recreación", "Salud Laboral", "Seguridad", "Tecnología", "Urbanismo",
             ]
-    titulos = ["TSU","INGENIERIA","MEDICINA","LICENCIATURA","MAESTRIA","ESPECIALIZACION","DOCTORADO","POSTGRADO"]
 
-    #universidades = ["USB","UCV","UNEFA","UCAB","UNA","UCLA","UNEXPO","JOSE ANTONIO PAEZ","METROPOLITAN"]
+
     return (gremio,departamento,estatus,categoria,condiciones,roles,operadores, competencias, titulos)
 
 # Esta funcion toma la fecha desde el front que tiene
@@ -449,6 +453,13 @@ class Usuario(object):
 
 #Funcion que envia los datos a la vista
 @auth.requires_login(otherwise=URL('modulos', 'login'))
+
+
+#CONTROLADOR DE LISTAS DE ATRIBUTOS DEL PERSONAL
+####################################################################################################
+
+
+
 def listado():
     session.ficha_negada = db(db.t_Personal.f_email == auth.user.email).select(db.t_Personal.f_comentario).first().f_comentario
 
@@ -483,11 +494,36 @@ def listado():
         empleados = empleados,
         competencias=competencias,
         titulos=titulos,
-        carreras_list = lista_titulos(usuario.f_ci),
+        carrera_list=lista_carreras(usuario.f_ci),
         comp_list=lista_competencias(usuario.f_ci),
         historial = getDictHistorial(historial_rows)
 
         )
+
+
+def listado_estilo():
+    return listado()
+
+@auth.requires_login(otherwise=URL('modulos', 'login'))
+
+
+
+def lista_competencias(ci):
+    query = db((db.t_Personal.id == db.t_Competencias2.f_Competencia_Personal)
+            & (db.t_Personal.f_ci == ci))
+    rows = query.select(db.t_Competencias2.ALL, orderby=db.t_Competencias2.f_numero)
+    return rows
+
+
+
+def lista_carreras(ci):
+    query = db((db.t_Personal.id == db.t_Carreras.f_Carreras_Personal)
+            & (db.t_Personal.f_ci == ci))
+    rows = query.select(db.t_Carreras.ALL, orderby=db.t_Carreras.f_numero)
+    return rows
+
+
+#####################################################################################################
 
 def transformar_fecha(fecha):
     dias_meses = {
@@ -514,6 +550,8 @@ def transformar_fecha(fecha):
 
 
 @auth.requires_login(otherwise=URL('modulos', 'login'))
+
+
 def ficha():
     # Obtenemos la cédula
     ci = request.args[0]
@@ -609,9 +647,9 @@ def ficha():
         ubicaciones=ubicaciones,
         usuario_logged=usuario_logged,
         usuario=usuario,
-        competencias=competencias,
         titulos=titulos,
-        carrera_list = lista_titulos(personal['ci']),
+        carrera_list=lista_carreras(personal['ci']),
+        competencias=competencias,
         comp_list=lista_competencias(personal['ci']),
         historial=getDictHistorial(historial_rows)
 
@@ -660,10 +698,10 @@ def cambiar_validacion(validacion, personal):
 
 
 @auth.requires_login(otherwise=URL('modulos', 'login'))
-def listado_estilo():
-    return listado()
 
-@auth.requires_login(otherwise=URL('modulos', 'login'))
+
+
+
 def validacion():
     usuario =db(db.t_Personal.f_email == auth.user.email).select(db.t_Personal.ALL).first()
     if(usuario.f_es_supervisor == False):
@@ -673,6 +711,9 @@ def validacion():
     return dic
 
 @auth.requires_login(otherwise=URL('modulos', 'login'))
+
+
+
 def validacion_estilo():
     val = contar_notificaciones(auth.user.email)
     infoUsuario=(db(db.auth_user.id==auth.user.id).select(db.auth_user.ALL)).first()
@@ -682,6 +723,7 @@ def validacion_estilo():
     #dic = { 'empleados' : buscarEmpleados()}
     dic = { 'empleados' : tabla_categoria("validacion")}
     return dic
+
 
 def contar_notificaciones(correo):
     #usuario =db(db.t_Personal.f_email == auth.user.email).select(db.t_Personal.ALL)
@@ -743,17 +785,8 @@ def reporte_listado():
         db.bitacora_general.insert(f_accion = accion)
     return redirect(URL('listado_estilo'))
 
-def lista_competencias(ci):
-    query = db((db.t_Personal.id == db.t_Competencias2.f_Competencia_Personal)
-            & (db.t_Personal.f_ci == ci))
-    rows = query.select(db.t_Competencias2.ALL, orderby=db.t_Competencias2.f_numero)
-    return rows
 
-def lista_titulos(ci):
-    query = db((db.t_Personal.id == db.t_Titulos.f_Titulo_Personal)
-            & (db.t_Personal.f_ci == ci))
-    rows = query.select(db.t_Titulos.ALL, orderby=db.t_Titulos.f_numero)
-    return rows
+
 
 def getDictHistorial(historial):
     dic = {}
@@ -860,3 +893,52 @@ def __get_competencias(request, personal):
     # if 'competencia{0}._nombre'.format(i) in request.post_vars.keys():
     #     params['f_nombre{0}'.format(i)] = request.post_vars('competencias')
     return fies
+
+def __get_carreras(request, personal):
+    params = {}
+    # params = {
+    #         'f_nombre1': request.post_vars.carreras1_nombre,
+    #         'f_categorias1':request.post_vars.carreras1_categoria,
+    #         'f_observaciones1': request.post_vars.carreras1_observaciones,
+    #         'f_nombre2': request.post_vars.carreras2_nombre,
+    #         'f_categorias2':request.post_vars.carreras2_categoria,
+    #         'f_observaciones2': request.post_vars.carreras2_observaciones
+    #         }
+    fies = []
+    for i in range(1,11):
+        if 'carreras{0}_universidad'.format(i) in request.post_vars:
+            params = {
+                    'f_universidad' : request.post_vars['carreras{}_universidad'.format(i)],
+                    'f_titulo' : request.post_vars['carreras{}_titulo'.format(i)],
+                    'f_numero': i,
+                    'f_carreras_Personal': personal.id
+                    }
+            if not(
+                    (None or '') ==  params['f_universidad']
+                    or (None or '') == params['f_titulo']):
+                db.t_carreras.update_or_insert(
+                        (db.t_carreras.f_numero==i)&
+                        (db.t_carreras.f_carreras_Personal==personal.id),
+                        f_universidad=params['f_universidad'],
+                        f_titulo=params['f_titulo'],
+                        f_numero= params['f_numero'],
+                        f_carreras_Personal= params['f_carreras_Personal'],
+                        )
+                fies.append(params)
+
+    # if 'carreras{0}._nombre'.format(i) in request.post_vars.keys():
+    #     params['f_nombre{0}'.format(i)] = request.post_vars('carreras')
+    return fies
+
+
+
+
+
+
+
+
+def new_tesis(personal):
+    form = SQLFORM(db.post)
+    form.process()
+    return {"form": form}
+

@@ -1,0 +1,48 @@
+<h4 class="titulosForm">carreras (Máximo 6)</h4>
+<h5>Los campos con * son obligatorios</h5>
+{{ for i in range(1,6): }}
+<div class="carrera-container" id="carrera-container{{=i}}"{{if len(carrera_list)<i and 1!=i:}}hidden{{pass}}>
+<h5>carrera {{=i}}</h5>
+    <div class="form-group">
+        <label for="carrera{{=i}}_titulo">Titulo: *</label>
+      <select {{if len(carrera_list)<i and 1!=i:}} disabled {{pass}}
+             class="form-control seleccion-competencia"
+             type="select" name="carrera{{=i}}_titulo" id="carrera{{=i}}_titulo" multiple required
+              data-placeholder="Seleccione el Grado Academico">
+        {{ for career in titulos: }}
+        <option
+            {{ if len(carrera_list)>=i and (career in (carrera_list[i-1].f_titulos)):}}
+            selected
+            {{pass}}
+        value"{{=career}}">{{=career}}</option>
+        {{pass}}
+      </select>
+    </div>
+
+    <div class="form-group">
+        <label for="universidad">Universidad: *</label>
+        <input {{if len(carrera_list)<i and 1!=i:}} disabled {{pass}}
+               value="{{='' if len(carrera_list)<i else carrera_list[i-1].f_universidad}}"
+               type="text" class="carrera_universidad" name="carrera{{=i}}_universidad" id="carrera{{=i}}_universidad" placeholder="Introduzca el universidad" required/>
+    </div>
+
+</div>
+{{ pass }}
+<a href="#" id="add_field" onclick="add_field()">Agregar carrera</a>
+
+
+<script charset="utf-8">
+    var num = 2
+    function add_field(){
+        if(num < 11){
+            $('#carrera-container'+num).show();
+            $('#carrera'+num+'_titulo').prop('disabled', false).trigger("chosen:updated");
+            $('#carrera'+num+'_universidad').prop('disabled', false);
+            $('#carrera'+num+'_observaciones').prop('disabled', false);
+        num = num+1;
+        if (num >10){
+            $('#add_field').remove();
+            }
+        }
+    }
+</script>

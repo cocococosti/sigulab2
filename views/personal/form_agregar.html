@@ -27,6 +27,9 @@
                 <form id="formularioCarga" class="registration-form" method="post"
                   action="{{=URL('personal', 'add_form')}}" novalidate>
 
+
+
+
                     <!-- Primer Paso -->
                     <fieldset id="p1" class="formField">
                       <div class="form-bottom" data-step="1" data-title="Primer Paso">
@@ -37,6 +40,7 @@
                           <span class="step">3</span>
                           <span class="step">4</span>
                           <span class="step">5</span>
+			  <span class="step">6</span>
                         </div>
                         <!-- Aqui va la informacion -->
                         <div class="col-sm-11 col11Body">
@@ -303,6 +307,7 @@
                         <span class="step activePass">3</span>
                         <span class="step">4</span>
                         <span class="step">5</span>
+			<span class="step">6</span> 
                       </div>
 
                       <!-- Aqui va la informacion -->
@@ -410,6 +415,7 @@
                           <span class="step">3</span>
                           <span class="step activePass">4</span>
                           <span class="step">5</span>
+			  <span class="step">6</span> 
                         </div>
 
                         <!-- Aqui va la informacion -->
@@ -437,6 +443,7 @@
                         <span class="step">3</span>
                         <span class="step">4</span>
                         <span class="step activePass">5</span>
+			<span class="step">6</span> 
                       </div>
 
                       <!-- Aqui va la informacion -->
@@ -446,108 +453,46 @@
                       {{include 'personal/formHistorial.html'}}
 
                         
-                    <div class="botones-form" style="margin-top: 1rem;margin-bottom: 2em;">
+                      <div class="botones-form" style="margin-top: 1rem;margin-bottom: 2em;">
                         <button type="button" class="btn btn-previous botonForm"><span class="fa fa-arrow-left" title="Anterior"/></button>
                         <button type="button" class="btn btn-next botonForm"><span class="fa fa-arrow-right" title="Siguiente"/></button>
-                    </div>
+                      </div>
                     
 
                   </fieldset>
                     <!-- Fin Quinto Paso -->
-                    <!-- Inicio Sexto Paso -->
-                  <fieldset>
-                    <div class="form-bottom" data-step="6" data-title="Sexto Paso">
-                    <!-- Aqui va la barra lateral -->
-                    <div class="col-sm-11 col11Body">
-                      <span class="step">1</span>
-                      <span class="step">2</span>
-                      <span class="step">3</span>
-                      <span class="step">4</span>
-                      <span class="step">5</span>
-                      <span class="step activePass">6</span>
-                    </div>
-                    <h5>Los campos con * son obligatorios</h5>
-                        {{ for i in range(1,11): }}
-                        <div class="curso-container" id="curso-container{{=i}}"{{if len(comp_list)<i and 1!=i:}}hidden{{pass}}>
-                        <h3> Curso {{=i}} </h3>
-                            <div class="form-group">
-                                <label for="curso{{=i}}_categoria">Categoría: *</label>
-                              <select {{if len(comp_list)<i and 1!=i:}} disabled {{pass}}
-                                     class="form-control seleccion-curso"
-                                     type="custom-select" name="curso{{=i}}_categoria" id="curso{{=i}}_categoria" required
-                                      data-placeholder="Seleccione la categoría que aplique">
-                                <option value""> Seleccione una opcion</option>
-                                {{ for comp in competencias: }}
-                                <option
-                                    {{ if len(comp_list)>=i and (comp in (curso_list[i-1].f_categorias or ['Arte'])):}}
-                                    selected
-                                    {{pass}}
-                                value"{{=comp}}">{{=comp}}</option>
-                                {{pass}}
-                              </select>
-                            </div>
 
+                    <!-- Sexto Paso -->
 
-                            <div class="form-group">
-                                <label for="anio">Año:</label>
-                                <input {{if len(comp_list)<i:}} disabled
-                                         {{else:}} value="{{=curso_list[i-1].f_anio}}"{{pass}}
-                                         type="number" min=1950 max= 2018 class="curso_anio" name="curso{{=i}}_anio" id="curso{{=i}}_anio" placeholder="Introduzca el años"/>
-                            </div>
+                    <fieldset class="formField" id="p6">
+                      <div class="form-bottom" data-step="6" data-title="Sexto Paso">
+                        <!-- Aqui va la barra lateral -->
+                        <div class="col-sm-1 col1Body">
+                          <span class="step">1</span>
+                          <span class="step">2</span>
+                          <span class="step">3</span>
+                          <span class="step">4</span>
+                          <span class="step">5</span>
+                          <span class="step activePass">6</span>
 
-                            <div class="form-group">
-                                <label for="formacion">Curso de Formación:</label>
-                                <input {{if len(comp_list)<i:}} disabled
-                                         {{else:}} value="{{=curso_list[i-1].f_formacion}}"{{pass}}
-                                         type="text" class="curso_formacion" name="curso{{=i}}_formacion" id="curso{{=i}}_formacion" placeholder="Introduzca el texto"/>
-                            </div>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="dictadoPor">Dictado por:</label>
-                                <input {{if len(comp_list)<i:}} disabled
-                                         {{else:}} value="{{=curso_list[i-1].f_dictadoPor}}"{{pass}}
-                                         type="text" class="curso_dictadoPor" name="curso{{=i}}_dictadoPor" id="curso{{=i}}_dictadoPor" placeholder="Introduzca el nombre de la persona que dictó el curso"/>
-                            </div>
+                        <!-- Aqui va la informacion -->
+                        <div class="col-sm-11 col11Body" >
 
-                            <div class="form-group">
-                                <label for="horas">Horas:</label>
-                                <input {{if len(comp_list)<i:}} disabled
-                                         {{else:}} value="{{=curso_list[i-1].f_horas}}"{{pass}}
-                                         type="number" min=0 max=5000 class="curso_horas" name="curso{{=i}}_horas" id="curso{{=i}}_horas" placeholder="Introduzca el número de horas"/>
-                            </div>
+                          {{ include 'personal/form_carreras.html' }}
 
-                        
-                          </div>
-                          {{ pass }}
+                        </div>
 
-                          <a href="#" id="add_field" onclick="add_field()">Agregar Curso</a>
-
-
-                          <script charset="utf-8">
-                              var num = 2
-                              function add_field(){
-                                  if(num < 11){
-                                      $('#curso-container'+num).show();
-                                      $('#curso'+num+'_categoria').prop('disabled', false).trigger("chosen:updated");
-                                      $('#curso'+num+'_anio').prop('disabled', false);
-                                      $('#curso'+num+'_formacion').prop('disabled', false);
-                                      $('#curso'+num+'_dictadoPor').prop('disabled', false);
-                                      $('#curso'+num+'_horas').prop('disabled', false);
-                                    num = num+1;
-                                  if (num >10){
-                                      $('#add_field').remove();
-                                      }
-                                  }
-                              }
-                          </script>
                       </div>
 
-                      <div class="botones-form" style="margin-top: 1rem;margin-bottom: 2em;">
+
+                    <div class="botones-form" style="margin-top: 1rem;margin-bottom: 2em;">
                         <button type="button" class="btn btn-previous botonForm"><span class="fa fa-arrow-left" title="Anterior"/></button>
                         <button type="button" class="btn btn-submit botonForm" form="formularioCarga" name="envio" value="agregar" id="submit"><span class="fa fa-floppy-o" title="Enviar"/></button>
                     </div>
+                    </fieldset>
 
-                  </fieldset>
                 </form>
             </div>
           </div>

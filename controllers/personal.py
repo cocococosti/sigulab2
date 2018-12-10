@@ -483,9 +483,9 @@ def listado():
         usuario=usuario,
         empleados = empleados,
         competencias=competencias,
-        evento_list=lista_cursos(usuario.f_ci),
         comp_list=lista_competencias(usuario.f_ci),
-        historial = getDictHistorial(historial_rows)
+        historial = getDictHistorial(historial_rows),
+        evento_list=lista_cursos(usuario.f_ci)
 
         )
 
@@ -610,9 +610,9 @@ def ficha():
         usuario_logged=usuario_logged,
         usuario=usuario,
         competencias=competencias,
-        evento_list=lista_cursos(personal['ci']),
         comp_list=lista_competencias(personal['ci']),
-        historial=getDictHistorial(historial_rows)
+        historial=getDictHistorial(historial_rows),
+        evento_list=lista_cursos(personal['ci'])
 
     )
 
@@ -879,22 +879,35 @@ def __get_eventos(request, personal):
     cursos = []
     for i in range(1,11):
         #cualquier cosa probar con evento
-        if 'curso{0}_categorias'.format(i) in request.post_vars:
+        if 'evento{0}_formacion'.format(i) in request.post_vars:
             params = {
-                    'f_categorias' : request.post_vars['curso{}_categorias'.format(i)],
-                    'f_anio' : request.post_vars['curso{}_anio'.format(i)],
-                    'f_formacion' : request.post_vars['curso{}_formacion'.format(i)],
-                    'f_horas' : request.post_vars['curso{}_horas'.format(i)],
-                    'f_dictadoPor' : request.post_vars['curso{}_dictadoPor'.format(i)],
+                    'f_categorias' : request.post_vars['evento{0}_categorias'.format(i)],
+                    'f_anio' : request.post_vars['evento{0}_anio'.format(i)],
+                    'f_formacion' : request.post_vars['evento{0}_formacion'.format(i)],
+                    'f_horas' : request.post_vars['evento{0}_horas'.format(i)],
+                    'f_dictadoPor' : request.post_vars['evento{0}_dictadoPor'.format(i)],
                     'f_numero': i,
                     'f_Competencia_Personal': personal.id
                     }
-            if not(
-                    (None or '') ==  params['f_anio']
-                    or (None or '') == params['f_categorias']):
-                db.t_Cursos2.update_or_insert(
-                        (db.t_Cursos2.f_numero==i)&
-                        (db.t_Cursos2.f_Competencia_Personal==personal.id),
+            print(params)
+            #if not(
+            #        (None or '') ==  params['f_anio']
+            #        or (None or '') == params['f_categorias']):
+            #    db.t_Cursos2.update_or_insert(
+            #            (db.t_Cursos2.f_numero==i)&
+            #            (db.t_Cursos2.f_Competencia_Personal==personal.id),
+            #if not( (None or '') in  params):
+            #if not(
+            #        (None or '') ==  params['f_formacion']
+            #        or (None or '') == params['f_categorias']
+            #        or (None or '') == params['f_anio'] 
+            #        or (None or '') == params['f_dictadoPor']
+            #        or (None or '') == params['f_horas']):
+            if not( (None or '') in params):
+                try:
+                    db.t_Cursos2.update_or_insert(
+                        (db.t_Cursos2.f_numero==i)
+                        & (db.t_Cursos2.f_Competencia_Personal==personal.id),
                         f_categorias=params['f_categorias'],
                         f_anio=params['f_anio'],
                         f_formacion= params['f_formacion'],
@@ -903,9 +916,12 @@ def __get_eventos(request, personal):
                         f_numero= params['f_numero'],
                         f_Competencia_Personal= params['f_Competencia_Personal'],
                         )
-                cursos.append(params)
+                except Exception as e:
+                    print(e)
+                    pass
+            cursos.append(params)
 
     # if 'competencia{0}._nombre'.format(i) in request.post_vars.keys():
     #     params['f_nombre{0}'.format(i)] = request.post_vars('competencias')
-    return cursos
+    return BEAUTIFY(cursos)
 

@@ -106,13 +106,14 @@ db.define_table(
     Field('f_nombre_materia',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Materia')),
     Field('f_fecha_inicio_materia', 'date', label=T('Desde')),
     Field('f_fecha_final_materia', 'date', label=T('Hasta')),
+    Field('f_numero', 'integer', default=1,label=T('Numero')),
     #Referencia (Revisar si el label es asistio o organizo)
     Field('f_Materia_Personal',         'reference t_Personal', requires=IS_IN_DB(db, db.t_Personal.id, '%(f_Personal)s', zero=None), label=T('Dirigió')),
     migrate=True
     )
 
-db.t_Actividad._plural = 'Materias'
-db.t_Actividad._singular = 'Materia'
+db.t_Materia._plural = 'Materias'
+db.t_Materia._singular = 'Materia'
 
 '''
 #t_Personal: Tabla de Materias.

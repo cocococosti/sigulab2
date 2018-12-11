@@ -186,8 +186,16 @@ def dropdowns():
             "Química", "Recreación", "Salud Laboral", "Seguridad", "Tecnología", "Urbanismo",
             ]
 
+    materias = [
+            "Administración", "Alimentación", "Ambiente", "Arquitectura", "Arte", "Biología", "Calidad", "Ciencias del Agro",
+            "Ciencias del mar", "Comunicación", "Contaduría", "Crecimiento Personal", "Derecho", "Dietética", "Docencia", "Economía",
+            "Electrónica", "Estadística", "Filosofía", "Física", "Gerencia", "Gestión", "Humanidades", "Idiomas", "Información",
+            "Informática", "Ingeniería", "Letras", "Liderazgo", "Matemática", "Medicina", "Música", "Negocio", "Nutrición",
+            "Química", "Recreación", "Salud Laboral", "Seguridad", "Tecnología", "Urbanismo",
+            ]
 
-    return (gremio,departamento,estatus,categoria,condiciones,roles,operadores, competencias)
+
+    return (gremio,departamento,estatus,categoria,condiciones,roles,operadores, competencias, materias)
 
 # Esta funcion toma la fecha desde el front que tiene
 # el formato dd-mm-yyyy y la transforma en el formato
@@ -256,31 +264,31 @@ def add_form():
              "organizacion_5" : request.post_vars.organizacion_5_add,
              "cargo_hist_5": request.post_vars.cargo_hist_5_add,
              "rol_hist_5": request.post_vars.rol_hist_5_add,
-             "fecha_inicio_materia_1": transformar_fecha_formato_original(request.post_vars.fecha_inicio_materia_1_add),
-             "fecha_final_materia_1": transformar_fecha_formato_original(request.post_vars.fecha_final_materia_1_add),
-             "area_1": request.post_vars.area_1_add,
-             "codigo_1": request.post_vars.codigo_1_add,
-             "nombre_materia_1": request.post_vars.nombre_materia_1_add,
-             "fecha_inicio_materia_2": transformar_fecha_formato_original(request.post_vars.fecha_inicio_materia_2_add),
-             "fecha_final_materia_2": transformar_fecha_formato_original(request.post_vars.fecha_final_materia_2_add),
-             "area_2": request.post_vars.area_2_add,
-             "codigo_2": request.post_vars.codigo_2_add,
-             "nombre_materia_2": request.post_vars.nombre_materia_2_add,
-             "fecha_inicio_materia_3": transformar_fecha_formato_original(request.post_vars.fecha_inicio_materia_3_add),
-             "fecha_final_materia_3": transformar_fecha_formato_original(request.post_vars.fecha_final_materia_3_add),
-             "area_3": request.post_vars.area_3_add,
-             "codigo_3": request.post_vars.codigo_3_add,
-             "nombre_materia_3": request.post_vars.nombre_materia_3_add,
-             "fecha_inicio_materia_4": transformar_fecha_formato_original(request.post_vars.fecha_inicio_materia_4_add),
-             "fecha_final_materia_4": transformar_fecha_formato_original(request.post_vars.fecha_final_materia_4_add),
-             "area_4": request.post_vars.area_4_add,
-             "codigo_4": request.post_vars.codigo_4_add,
-             "nombre_materia_4": request.post_vars.nombre_materia_4_add,
-             "fecha_inicio_materia_5": transformar_fecha_formato_original(request.post_vars.fecha_inicio_materia_5_add),
-             "fecha_final_materia_5": transformar_fecha_formato_original(request.post_vars.fecha_final_materia_5_add),
-             "area_5": request.post_vars.area_5_add,
-             "codigo_5": request.post_vars.codigo_5_add,
-             "nombre_materia_5": request.post_vars.nombre_materia_5_add,
+#             "fecha_inicio_materia_1": transformar_fecha_formato_original(request.post_vars.fecha_inicio_materia_1_add),
+#             "fecha_final_materia_1": transformar_fecha_formato_original(request.post_vars.fecha_final_materia_1_add),
+#             "area_1": request.post_vars.area_1_add,
+#             "codigo_1": request.post_vars.codigo_1_add,
+#             "nombre_materia_1": request.post_vars.nombre_materia_1_add,
+#             "fecha_inicio_materia_2": transformar_fecha_formato_original(request.post_vars.fecha_inicio_materia_2_add),
+#             "fecha_final_materia_2": transformar_fecha_formato_original(request.post_vars.fecha_final_materia_2_add),
+#             "area_2": request.post_vars.area_2_add,
+#             "codigo_2": request.post_vars.codigo_2_add,
+#             "nombre_materia_2": request.post_vars.nombre_materia_2_add,
+#             "fecha_inicio_materia_3": transformar_fecha_formato_original(request.post_vars.fecha_inicio_materia_3_add),
+#             "fecha_final_materia_3": transformar_fecha_formato_original(request.post_vars.fecha_final_materia_3_add),
+#             "area_3": request.post_vars.area_3_add,
+#             "codigo_3": request.post_vars.codigo_3_add,
+#             "nombre_materia_3": request.post_vars.nombre_materia_3_add,
+#             "fecha_inicio_materia_4": transformar_fecha_formato_original(request.post_vars.fecha_inicio_materia_4_add),
+#             "fecha_final_materia_4": transformar_fecha_formato_original(request.post_vars.fecha_final_materia_4_add),
+#             "area_4": request.post_vars.area_4_add,
+#             "codigo_4": request.post_vars.codigo_4_add,
+#             "nombre_materia_4": request.post_vars.nombre_materia_4_add,
+#             "fecha_inicio_materia_5": transformar_fecha_formato_original(request.post_vars.fecha_inicio_materia_5_add),
+#             "fecha_final_materia_5": transformar_fecha_formato_original(request.post_vars.fecha_final_materia_5_add),
+#             "area_5": request.post_vars.area_5_add,
+#             "codigo_5": request.post_vars.codigo_5_add,
+#             "nombre_materia_5": request.post_vars.nombre_materia_5_add,
             }
 
     ubicaciones = request.post_vars.ubicacion_add
@@ -439,7 +447,7 @@ def add_form():
 
         personal = db(db.t_Personal.f_email == dic['email'] ).select().first()
         __get_competencias(request, personal)
-        __get__materias(request,personal)
+        __get__materias(request, personal)
         redirect(URL('listado_estilo'))
 
 
@@ -519,7 +527,7 @@ def listado():
     idDependencia = db(db.dependencias.nombre == usuario.f_dependencia).select(db.dependencias.id)[0]
     ubicaciones= list(db(db.espacios_fisicos.dependencia == idDependencia).select(db.espacios_fisicos.ALL))
     #Obtenemos los elementos de los dropdowns
-    gremios, dependencias, estados, categorias, condiciones, roles, operadores, competencias= dropdowns()
+    gremios, dependencias, estados, categorias, condiciones, roles, operadores, competencias, materias= dropdowns()
 
     empleados = validacion_estilo()['empleados']
     idUser = db(db.t_Personal.f_ci == usuario.f_ci).select().first().id
@@ -541,6 +549,7 @@ def listado():
         comp_list=lista_competencias(usuario.f_ci),
         historial = getDictHistorial(historial_rows),
         materia_list = lista_materias(usuario.f_ci),
+        materias = materias,
 
         )
 
@@ -648,7 +657,7 @@ def ficha():
     idDependencia = db(db.dependencias.nombre == usuario.f_dependencia).select(db.dependencias.id)[0]
     ubicaciones= list(db(db.espacios_fisicos.dependencia == idDependencia).select(db.espacios_fisicos.ALL))
     #Obtenemos los elementos de los dropdowns
-    gremios, dependencias, estados, categorias, condiciones, roles, operadores, competencias = dropdowns()
+    gremios, dependencias, estados, categorias, condiciones, roles, operadores, competencias, materias = dropdowns()
 
     historial_rows = db(db.t_Historial_trabajo_nuevo.f_Historial_trabajo_Personal == elm.id).select().first()
 
@@ -668,6 +677,7 @@ def ficha():
         comp_list=lista_competencias(personal['ci']),
         historial=getDictHistorial(historial_rows),
         materia_list=lista_materias(usuario.f_ci),
+        materias = materias,
 
     )
 
@@ -884,16 +894,17 @@ def __get__materias(request, personal):
     for i in range(1,6):
         if 'materia{0}_nombre_materia'.format(i) in request.post_vars:
             params = {
-                'f_area' : request.post_vars['materia{0}_area'.format(i)],
-                'f_codigo' : request.post_vars['materia{0}_codigo'.format(i)],
-                'f_nombre_materia' : request.post_vars['materia{0}_nombre_materia'.format(i)],
-                'f_fecha_inicio_materia' : transformar_fecha_formato_original(request.post_vars['materia{0}_desde'.format(i)]),
-                'f_fecha_final_materia' : transformar_fecha_formato_original(request.post_vars['materia{0}_hasta'.format(i)]),
+                'f_area' : request.post_vars['materia{}_area'.format(i)],
+                'f_codigo' : request.post_vars['materia{}_codigo'.format(i)],
+                'f_nombre_materia' : request.post_vars['materia{}_nombre_materia'.format(i)],
+                'f_fecha_inicio_materia' : transformar_fecha_formato_original(request.post_vars['materia{}_fecha_inicio_materia'.format(i)]),
+                'f_fecha_final_materia' : transformar_fecha_formato_original(request.post_vars['materia{}_fecha_final_materia'.format(i)]),
                 'f_numero' : i,
                 'f_Materia_Personal' : personal_id
             }
 
-            if not ((None or '') in params):
+            if not (
+                (None or '') in params):
                 db.t_Materia.update_or_insert(
                     (db.t_Materia.f_numero == i) & (db.t_Materia.f_Materia_Personal == personal.id),
                     f_area = params['f_area'],

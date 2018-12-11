@@ -34,16 +34,11 @@ const inputs = [
     'fecha_inicio_5_add', 'fecha_final_5_add', 'cargo_hist_5_add', 'dependencia_hist_5_add', 'organizacion_5_add',
     
     //Docencia - Materias
-    'area_1', 'area_2', 'area_3', 'area_4', 'area_5', 'codigo_1', 'codigo_2', 'codigo_3', 'codigo_4', 'codigo_5',
-    'nombre_materia_1', 'nombre_materia_2', 'nombre_materia_3', 'nombre_materia_4', 'nombre_materia_5',  
-    'fecha_inicio_materia_1', 'fecha_inicio_materia_2', 'fecha_inicio_materia_3', 'fecha_inicio_materia_4', 'fecha_inicio_materia_5', 
-    'fecha_final_materia_1', 'fecha_final_materia_2', 'fecha_final_materia_3', 'fecha_final_materia_4', 'fecha_final_materia_5', 
-    
-    //Docencia - Trabajos
-    'anio_1', 'anio_2', 'anio_3', 'anio_4', 'anio_5', 'nivel_1', 'nivel_2', 'nivel_3', 'nivel_4', 'nivel_5', 
-    'estudiante_1_1', 'estudiante_1_2', 'estudiante_1_3', 'estudiante_2_1', 'estudiante_2_2', 'estudiante_2_3', 
-    'estudiante_3_1', 'estudiante_3_2', 'estudiante_3_3', 'estudiante_4_1', 'estudiante_4_2', 'estudiante_4_3', 
-    'estudiante_5_1', 'estudiante_5_2', 'estudiante_5_3', 'titulo_1', 'titulo_2', 'titulo_3', 'titulo_4', 'titulo_5', 
+    'materia1_area', 'materia1_codigo', 'materia1_nombre_materia', 'materia1_fecha_inicio_materia', 'materia1_fecha_final_materia', 
+    'materia2_area', 'materia2_codigo', 'materia2_nombre_materia', 'materia2_fecha_inicio_materia', 'materia2_fecha_final_materia', 
+    'materia3_area', 'materia3_codigo', 'materia3_nombre_materia', 'materia3_fecha_inicio_materia', 'materia3_fecha_final_materia', 
+    'materia4_area', 'materia4_codigo', 'materia4_nombre_materia', 'materia4_fecha_inicio_materia', 'materia4_fecha_final_materia', 
+    'materia5_area', 'materia5_codigo', 'materia5_nombre_materia', 'materia5_fecha_inicio_materia', 'materia5_fecha_final_materia', 
 
     // Competencias
     'competencia1_nombre',
@@ -910,6 +905,9 @@ function validaCompetencia(){
 const validadoresCuartoPaso = [
     validaCompetencia
 ]
+
+
+
 
 // ESCRIBE AQUI TUS FUNCIONES
 

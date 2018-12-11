@@ -44,11 +44,11 @@ const inputs = [
     'competencia9_nombre',
     'competencia10_nombre',
     // Trabajos
-    'trabajo1_titulo_trabajo', 'trabajo1_anio', 'trabajo1_institucion',
-    'trabajo2_titulo_trabajo', 'trabajo2_anio', 'trabajo2_institucion',
-    'trabajo3_titulo_trabajo', 'trabajo3_anio', 'trabajo3_institucion',
-    'trabajo4_titulo_trabajo', 'trabajo4_anio', 'trabajo4_institucion',
-    'trabajo5_titulo_trabajo', 'trabajo5_anio', 'trabajo5_institucion',
+    'trabajo1_titulo_trabajo', 'trabajo1_anio', 'trabajo1_institucion', 'trabajo1_nivel',
+    'trabajo2_titulo_trabajo', 'trabajo2_anio', 'trabajo2_institucion', 'trabajo2_nivel',
+    'trabajo3_titulo_trabajo', 'trabajo3_anio', 'trabajo3_institucion', 'trabajo3_nivel',
+    'trabajo4_titulo_trabajo', 'trabajo4_anio', 'trabajo4_institucion', 'trabajo4_nivel',
+    'trabajo5_titulo_trabajo', 'trabajo5_anio', 'trabajo5_institucion', 'trabajo5_nivel',
 ]
 
 const inputSelectorsAll = inputs.map(i => `[name="${i}"]`).join(',')

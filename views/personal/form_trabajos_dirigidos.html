@@ -31,7 +31,7 @@
         <label for="categorias">Categoría:</label>
       <select {{if len(curso_list)<i and 1!=i:}} disabled {{pass}}
              class="form-control seleccion-competencia"
-             type="select" name=curso{{=i}}_categorias" id="curso{{=i}}_categorias" multiple required
+             type="select" name=curso{{=i}}_categorias" id="curso{{=i}}_categorias"
               data-placeholder="Seleccione las categorías que apliquen">
         <option value""> Seleccione una opcion</option>
         {{ for curs in competencias: }}

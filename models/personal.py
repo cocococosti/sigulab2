@@ -101,10 +101,48 @@ db.define_table(
     #Nombre de la entidad
     't_Materia', 
     #Atributos;
-    Field('f_area',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Area')),
+    Field('f_area',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Área')),
     Field('f_codigo',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Código')),
-    Field('f_nombre',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Nombre')),
-    Field('f_periodo',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Periodo')),
+    Field('f_nombre_materia',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Materia')),
+    Field('f_fecha_inicio_materia', 'date', label=T('Desde')),
+    Field('f_fecha_final_materia', 'date', label=T('Hasta')),
+    #Referencia (Revisar si el label es asistio o organizo)
+    Field('f_Materia_Personal',         'reference t_Personal', requires=IS_IN_DB(db, db.t_Personal.id, '%(f_Personal)s', zero=None), label=T('Dirigió')),
+    )
+
+db.t_Actividad._plural = 'Materias'
+db.t_Actividad._singular = 'Materia'
+
+#t_Personal: Tabla de Materias.
+db.define_table(
+    #Nombre de la entidad
+    't_Materia_nueva', 
+    #Atributos;
+    Field('f_area_1',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Área')),
+    Field('f_codigo_1',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Código')),
+    Field('f_nombre_materia_1',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Nombre')),
+    Field('f_fecha_inicio_materia_1', 'date', label=T('Desde')),
+    Field('f_fecha_final_materia_1', 'date', label=T('Hasta')),
+    Field('f_area_2',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Área')),
+    Field('f_codigo_2',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Código')),
+    Field('f_nombre_materia_2',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Nombre')),
+    Field('f_fecha_inicio_materia_2', 'date', label=T('Desde')),
+    Field('f_fecha_final_materia_2', 'date', label=T('Hasta')),
+    Field('f_area_3',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Área')),
+    Field('f_codigo_3',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Código')),
+    Field('f_nombre_materia_3',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Nombre')),
+    Field('f_fecha_inicio_materia_3', 'date', label=T('Desde')),
+    Field('f_fecha_final_materia_3', 'date', label=T('Hasta')),
+    Field('f_area_4',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Área')),
+    Field('f_codigo_4',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Código')),
+    Field('f_nombre_materia_4',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Nombre')),
+    Field('f_fecha_inicio_materia_4', 'date', label=T('Desde')),
+    Field('f_fecha_final_materia_4', 'date', label=T('Hasta')),
+    Field('f_area_5',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Área')),
+    Field('f_codigo_5',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Código')),
+    Field('f_nombre_materia_5',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Nombre')),
+    Field('f_fecha_inicio_materia_5', 'date', label=T('Desde')),
+    Field('f_fecha_final_materia_5', 'date', label=T('Hasta')),
     #Referencia (Revisar si el label es asistio o organizo)
     Field('f_Materia_Personal',         'reference t_Personal', requires=IS_IN_DB(db, db.t_Personal.id, '%(f_Personal)s', zero=None), label=T('Dirigió')),
     )
@@ -150,9 +188,58 @@ db.define_table(
     #Atributos;
     Field('f_anio',          'integer', requires=IS_INT_IN_RANGE(minimum=1900,maximum=2100, error_message='Introduzca un año válido'), notnull=True, label=T('Año')),
     Field('f_nivel',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Nivel')),
-    Field('f_estudiantes',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Estudiantes')),
-    Field('f_intistitucion',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Intistitución')),
+    Field('f_estudiante_1',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Estudiante')),
+    Field('f_estudiante_2',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Estudiante')),
+    Field('f_estudiante_3',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Estudiante')),
+    Field('f_institucion',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Institución')),
     Field('f_nombre',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Nombre')),
+    #Referencia (Revisar si el label es asistio o organizo)
+    Field('f_Trabajo_Personal',         'reference t_Personal', requires=IS_IN_DB(db, db.t_Personal.id, '%(f_Personal)s', zero=None), label=T('Fue Parte')),
+    )
+
+db.t_Trabajo._plural = 'Trabajos'
+db.t_Trabajo._singular = 'Trabajo'
+
+#t_Personal: Tabla de Trabajos.
+db.define_table(
+    #Nombre de la entidad
+    't_Trabajo_nuevo', 
+    #Atributos;
+    Field('f_anio_1',          'integer', requires=IS_INT_IN_RANGE(minimum=1900,maximum=2100, error_message='Introduzca un año válido'), notnull=True, label=T('Año')),
+    Field('f_nivel_1',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Nivel')),
+    Field('f_estudiante_1_1',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Estudiante')),
+    Field('f_estudiante_1_2',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Estudiante')),
+    Field('f_estudiante_1_3',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Estudiante')),
+    Field('f_institucion_1',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Institución')),
+    Field('f_titulo_1',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Título')),
+    Field('f_anio_2',          'integer', requires=IS_INT_IN_RANGE(minimum=1900,maximum=2100, error_message='Introduzca un año válido'), notnull=True, label=T('Año')),
+    Field('f_nivel_2',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Nivel')),
+    Field('f_estudiante_2_1',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Estudiante')),
+    Field('f_estudiante_2_2',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Estudiante')),
+    Field('f_estudiante_2_3',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Estudiante')),
+    Field('f_institucion_2',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Institución')),
+    Field('f_titulo_2',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Título')),
+    Field('f_anio_3',          'integer', requires=IS_INT_IN_RANGE(minimum=1900,maximum=2100, error_message='Introduzca un año válido'), notnull=True, label=T('Año')),
+    Field('f_nivel_3',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Nivel')),
+    Field('f_estudiante_3_1',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Estudiante')),
+    Field('f_estudiante_3_2',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Estudiante')),
+    Field('f_estudiante_3_3',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Estudiante')),
+    Field('f_institucion_3',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Institución')),
+    Field('f_titulo_3',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Título')),
+    Field('f_anio_4',          'integer', requires=IS_INT_IN_RANGE(minimum=1900,maximum=2100, error_message='Introduzca un año válido'), notnull=True, label=T('Año')),
+    Field('f_nivel_4',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Nivel')),
+    Field('f_estudiante_4_1',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Estudiante')),
+    Field('f_estudiante_4_2',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Estudiante')),
+    Field('f_estudiante_4_3',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Estudiante')),
+    Field('f_institucion_4',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Institución')),
+    Field('f_titulo_4',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Título')),
+    Field('f_anio_5',          'integer', requires=IS_INT_IN_RANGE(minimum=1900,maximum=2100, error_message='Introduzca un año válido'), notnull=True, label=T('Año')),
+    Field('f_nivel_5',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Nivel')),
+    Field('f_estudiante_5_1',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Estudiante')),
+    Field('f_estudiante_5_2',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Estudiante')),
+    Field('f_estudiante_5_3',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Estudiante')),
+    Field('f_institucion_5',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Institución')),
+    Field('f_titulo_5',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Título')),
     #Referencia (Revisar si el label es asistio o organizo)
     Field('f_Trabajo_Personal',         'reference t_Personal', requires=IS_IN_DB(db, db.t_Personal.id, '%(f_Personal)s', zero=None), label=T('Fue Parte')),
     )
@@ -167,7 +254,7 @@ db.define_table(
     #Atributos;
     Field('f_naturaleza_actividad',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Naturaleza de la actividad')),
     Field('f_periodo',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Periodo')),
-    Field('f_intistitucion',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Intistitución')),
+    Field('f_institucion',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Institución')),
     Field('f_nombre',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Nombre')),
     #Referencia (Revisar si el label es asistio o organizo)
     Field('f_Extension_Personal',         'reference t_Personal', requires=IS_IN_DB(db, db.t_Personal.id, '%(f_Personal)s', zero=None), label=T('Realizó')),

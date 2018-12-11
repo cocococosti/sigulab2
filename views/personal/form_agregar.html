@@ -37,6 +37,8 @@
                           <span class="step">3</span>
                           <span class="step">4</span>
                           <span class="step">5</span>
+                          <span class="step">6</span>
+                          <span class="step">7</span>
                         </div>
                         <!-- Aqui va la informacion -->
                         <div class="col-sm-11 col11Body">
@@ -182,6 +184,8 @@
                           <span class="step">3</span>
                           <span class="step">4</span>
                           <span class="step">5</span>
+                          <span class="step">6</span>
+                          <span class="step">7</span>
                         </div>
 
                         <!-- Aqui va la informacion -->
@@ -303,6 +307,8 @@
                         <span class="step activePass">3</span>
                         <span class="step">4</span>
                         <span class="step">5</span>
+                        <span class="step">6</span>
+                        <span class="step">7</span>
                       </div>
 
                       <!-- Aqui va la informacion -->
@@ -410,6 +416,8 @@
                           <span class="step">3</span>
                           <span class="step activePass">4</span>
                           <span class="step">5</span>
+                          <span class="step">6</span>
+                          <span class="step">7</span>
                         </div>
 
                         <!-- Aqui va la informacion -->
@@ -437,18 +445,313 @@
                         <span class="step">3</span>
                         <span class="step">4</span>
                         <span class="step activePass">5</span>
+                        <span class="step">6</span>
+                        <span class="step">7</span>
                       </div>
 
                       <!-- Aqui va la informacion -->
                       
+                      <div class="col-sm-11 col11Body">
+                        <h4 class="titulosForm">Historial laboral</h4>
+
+                        <div class="form-group">
+                          <div class="col-sm-12">
+                            <label>Período</label>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="col-sm-6">
+                            <label>Desde:</label>
+                            <input class="datepicker" value="{{''}}"
+                            name = "fecha_inicio_1_add" type="text" id="input-ingreso" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
+                          </div>
+                          <div class="col-sm-6">
+                            <label>Hasta:</label> 
+                            <input class="datepicker" value="{{''}}" name = "fecha_final_1_add" type="text" id="input-egreso" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="col-sm-6">
+                                <br>
+                                <label>Dependencia</label>
+                              <input value="{{''}}" type="text" class="form-control" name="dependencia_hist_1_add" placeholder="Laboratorio" required
+                                  data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                              <font color="red"><div id="err_celular" hidden></div></font>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="col-sm-6">
+                            <br>
+                            <label>Organizacion</label>
+                              <input value="{{''}}" type="text" class="form-control" name="organizacion_1_add" placeholder="Universidad Simón Bolívar" required
+                                  data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                              <font color="red"><div id="err_celular" hidden></div></font>
+                            
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="col-sm-12">
+                              <br>
+                              <label>Cargo</label>
+                            <input value="{{''}}" type="text" class="form-control" name="cargo_hist_1_add" placeholder="Analista de sistemas" required
+                                data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                            <font color="red"><div id="err_celular" hidden></div></font>
+                          </div>
+                        </div>
+
+
+                        <div class="form-group">
+                          <div class="col-sm-12">
+                            <p onclick="toggleTrabajo('trabajo2', 'texto2', 'texto3')" style="display: block;color: #3679B5;font-size: 15px; cursor:pointer;margin-top: 1rem;" id="texto2">Agregar otro trabajo</p>
+                          </div>
+                        </div>
+
+
+
+
+                        <div style="display: none;" id = "trabajo2">
+                          
+                          <div class="form-group">
+                            <div class="col-sm-12" style="margin-top: 2rem;">
+                              <label>Período</label>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="col-sm-6">
+                              <label>Desde:</label>
+                              <input class="datepicker" value="{{''}}"
+                              name = "fecha_inicio_2_add" type="text" id="input-ingreso" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
+                            </div>
+                            <div class="col-sm-6">
+                              <label>Hasta:</label> 
+                              <input class="datepicker" value="{{''}}" name = "fecha_final_2_add" type="text" id="input-egreso" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="col-sm-6">
+                                  <br>
+                                  <label>Dependencia</label>
+                                <input value="{{''}}" type="text" class="form-control" name="dependencia_hist_2_add" placeholder="Laboratorio" required
+                                    data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                                <font color="red"><div id="err_celular" hidden></div></font>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="col-sm-6">
+                              <br>
+                              <label>Organizacion</label>
+                                <input value="{{''}}" type="text" class="form-control" name="organizacion_2_add" placeholder="Universidad Simón Bolívar" required
+                                    data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                                <font color="red"><div id="err_celular" hidden></div></font>
+                              
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="col-sm-12">
+                                <br>
+                                <label>Cargo</label>
+                              <input value="{{''}}" type="text" class="form-control" name="cargo_hist_2_add" placeholder="Analista de sistemas" required
+                                  data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                              <font color="red"><div id="err_celular" hidden></div></font>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="form-group">
+                          <div class="col-sm-12">
+                            <p onclick="toggleTrabajo('trabajo3', 'texto3', 'texto4')" style="display: none;color: #3679B5;font-size: 15px; cursor:pointer;margin-top: 1rem;" id="texto3">Agregar otro trabajo</p>
+                          </div>
+                        </div>
+
+
+
+
+                        <div style="display: none;" id = "trabajo3">
+                          
+                          <div class="form-group">
+                            <div class="col-sm-12" style="margin-top: 2rem;">
+                              <label>Período</label>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="col-sm-6">
+                              <label>Desde:</label>
+                              <input class="datepicker" value="{{''}}"
+                              name = "fecha_inicio_3_add" type="text" id="input-ingreso" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
+                            </div>
+                            <div class="col-sm-6">
+                              <label>Hasta:</label> 
+                              <input class="datepicker" value="{{''}}" name = "fecha_final_3_add" type="text" id="input-egreso" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="col-sm-6">
+                                  <br>
+                                  <label>Dependencia</label>
+                                <input value="{{''}}" type="text" class="form-control" name="dependencia_hist_3_add" placeholder="Laboratorio" required
+                                    data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                                <font color="red"><div id="err_celular" hidden></div></font>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="col-sm-6">
+                              <br>
+                              <label>Organizacion</label>
+                                <input value="{{''}}" type="text" class="form-control" name="organizacion_3_add" placeholder="Universidad Simón Bolívar" required
+                                    data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                                <font color="red"><div id="err_celular" hidden></div></font>
+                              
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="col-sm-12">
+                                <br>
+                                <label>Cargo</label>
+                              <input value="{{''}}" type="text" class="form-control" name="cargo_hist_3_add" placeholder="Analista de sistemas" required
+                                  data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                              <font color="red"><div id="err_celular" hidden></div></font>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="form-group">
+                          <div class="col-sm-12">
+                            <p onclick="toggleTrabajo('trabajo4', 'texto4', 'texto5')" style="display: none;color: #3679B5;font-size: 15px; cursor:pointer;margin-top: 1rem;" id="texto4">Agregar otro trabajo</p>
+                          </div>
+                        </div>
+
+                        <div style="display: none;" id = "trabajo4">
+                          
+                          <div class="form-group">
+                            <div class="col-sm-12" style="margin-top: 2rem;">
+                              <label>Período</label>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="col-sm-6">
+                              <label>Desde:</label>
+                              <input class="datepicker" value="{{''}}"
+                              name = "fecha_inicio_4_add" type="text" id="input-ingreso" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
+                            </div>
+                            <div class="col-sm-6">
+                              <label>Hasta:</label> 
+                              <input class="datepicker" value="{{''}}" name = "fecha_final_4_add" type="text" id="input-egreso" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="col-sm-6">
+                                  <br>
+                                  <label>Dependencia</label>
+                                <input value="{{''}}" type="text" class="form-control" name="dependencia_hist_4_add" placeholder="Laboratorio" required
+                                    data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                                <font color="red"><div id="err_celular" hidden></div></font>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="col-sm-6">
+                              <br>
+                              <label>Organizacion</label>
+                                <input value="{{''}}" type="text" class="form-control" name="organizacion_4_add" placeholder="Universidad Simón Bolívar" required
+                                    data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                                <font color="red"><div id="err_celular" hidden></div></font>
+                              
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="col-sm-12">
+                                <br>
+                                <label>Cargo</label>
+                              <input value="{{''}}" type="text" class="form-control" name="cargo_hist_4_add" placeholder="Analista de sistemas" required
+                                  data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                              <font color="red"><div id="err_celular" hidden></div></font>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="form-group">
+                          <div class="col-sm-12">
+                            <p onclick="toggleTrabajo('trabajo5', 'texto5', null)" style="display: none;color: #3679B5;font-size: 15px; cursor:pointer;margin-top: 1rem;" id="texto5">Agregar otro trabajo</p>
+                          </div>
+                        </div>
+
+                        <div style="display: none;" id = "trabajo5">
+                          
+                          <div class="form-group">
+                            <div class="col-sm-12" style="margin-top: 2rem;">
+                              <label>Período</label>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="col-sm-6">
+                              <label>Desde:</label>
+                              <input class="datepicker" value="{{''}}"
+                              name = "fecha_inicio_5_add" type="text" id="input-ingreso" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
+                            </div>
+                            <div class="col-sm-6">
+                              <label>Hasta:</label> 
+                              <input class="datepicker" value="{{''}}" name = "fecha_final_5_add" type="text" id="input-egreso" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="col-sm-6">
+                                  <br>
+                                  <label>Dependencia</label>
+                                <input value="{{''}}" type="text" class="form-control" name="dependencia_hist_5_add" placeholder="Laboratorio" required
+                                    data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                                <font color="red"><div id="err_celular" hidden></div></font>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="col-sm-6">
+                              <br>
+                              <label>Organizacion</label>
+                                <input value="{{''}}" type="text" class="form-control" name="organizacion_5_add" placeholder="Universidad Simón Bolívar" required
+                                    data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                                <font color="red"><div id="err_celular" hidden></div></font>
+                              
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <div class="col-sm-12">
+                                <br>
+                                <label>Cargo</label>
+                              <input value="{{''}}" type="text" class="form-control" name="cargo_hist_5_add" placeholder="Analista de sistemas" required
+                                  data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
+                              <font color="red"><div id="err_celular" hidden></div></font>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+
                       <!--  Formulario para agregar historial laboral en el menu modal -->
 
-                      {{include 'personal/formHistorial.html'}}
-
-                        
                     <div class="botones-form" style="margin-top: 1rem;margin-bottom: 2em;">
-                        <button type="button" class="btn btn-previous botonForm"><span class="fa fa-arrow-left" title="Anterior"/></button>
-                        <button type="button" class="btn btn-submit botonForm" form="formularioCarga" name="envio" value="agregar" id="submit"><span class="fa fa-floppy-o" title="Enviar"/></button>
+                      <button type="button" class="btn btn-previous botonForm"><span class="fa fa-arrow-left" title="Anterior"/></button>
+                      <button type="button" class="btn btn-next botonForm"><span class="fa fa-arrow-right" title="Siguiente"/></button>
                     </div>
                     
 
@@ -456,8 +759,70 @@
                     <!-- Fin Quinto Paso -->
 
 
+                    <!-- Sexto paso -->
+
+                    <fieldset class="formField" id="p6">
+                      <div class="form-bottom" data-step="6" data-title="Sexto Paso">
+                        <!-- Aqui va la barra lateral -->
+                        <div class="col-sm-1 col1Body">
+                          <span class="step">1</span>
+                          <span class="step">2</span>
+                          <span class="step">3</span>
+                          <span class="step">4</span>
+                          <span class="step">5</span>
+                          <span class="step activePass">6</span>
+                          <span class="step">7</span>
+                        </div>
+
+                        <!-- Aqui va la informacion -->
+
+                        <div class="col-sm-11 col11Body">
+
+                          {{ include 'personal/formDocenciaMaterias.html' }}
+
+                        </div>
+                        
+                      </div>
+
+                      <div class="botones-form" style="margin-top: 1rem;margin-bottom: 2em;">
+                        <button type="button" class="btn btn-previous botonForm"><span class="fa fa-arrow-left" title="Anterior"/></button>
+                        <button type="button" class="btn btn-next botonForm"><span class="fa fa-arrow-right" title="Siguiente"/></button>
+                      </div>
+                    </fieldset>
+
+                    <!-- Fin Sexto Paso -->
 
 
+                    <!-- Séptimo paso -->
+
+                    <fieldset class="formField" id="p6">
+                      <div class="form-bottom" data-step="6" data-title="Sexto Paso">
+                        <!-- Aqui va la barra lateral -->
+                        <div class="col-sm-1 col1Body">
+                          <span class="step">1</span>
+                          <span class="step">2</span>
+                          <span class="step">3</span>
+                          <span class="step">4</span>
+                          <span class="step">5</span>
+                          <span class="step">6</span>
+                          <span class="step activePass">7</span>
+                        </div>
+
+                        <!-- Aqui va la informacion -->
+                        <div class="col-sm-11 col11Body">
+
+                          {{ include 'personal/formDocenciaTrabajos.html' }}
+
+                        </div>
+   
+                      <div class="botones-form" style="margin-top: 1rem;margin-bottom: 2em;">
+                        <button type="button" class="btn btn-previous botonForm"><span class="fa fa-arrow-left" title="Anterior"/></button>
+                        <button type="button" class="btn btn-submit botonForm" form="formularioCarga" name="envio" value="agregar" id="submit"><span class="fa fa-floppy-o" title="Enviar"/></button>
+                      </div>
+
+                    </fieldset>
+
+                    <!-- Fin Séptimo Paso -->
                 </form>
             </div>
           </div>

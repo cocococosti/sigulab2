@@ -27,19 +27,20 @@
     </div>
 
 
+
     <div class="form-group">
-        <label for="categorias">Categoría:</label>
-      <select {{if len(curso_list)<i and 1!=i:}} disabled {{pass}}
+        <label for="nivel">Nivel:</label>
+      <select {{if len(trabajo_list)<i and 1!=i:}} disabled {{pass}}
              class="form-control seleccion-competencia"
-             type="select" name=curso{{=i}}_categorias" id="curso{{=i}}_categorias"
-              data-placeholder="Seleccione las categorías que apliquen">
+             type="select" name=trabajo{{=i}}_nivel" id="trabajo{{=i}}_nivel"
+              data-placeholder="Seleccione nivel de educación">
         <option value""> Seleccione una opcion</option>
-        {{ for curs in competencias: }}
+        {{ for niv in nivel: }}
         <option
-            {{ if len(curso_list)>=i and (curs in (curso_list[i-1].f_categorias or ['Arte'])):}}
+            {{ if len(trabajo_list)>=i and (niv in (trabajo_list[i-1].f_nivel)):}}
             selected
             {{pass}}
-        value"{{=curs}}">{{=curs}}</option>
+        value"{{=niv}}">{{=niv}}</option>
         {{pass}}
       </select>
     </div>

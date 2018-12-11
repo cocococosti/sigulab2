@@ -492,7 +492,7 @@ def listado():
         comp_list=lista_competencias(usuario.f_ci),
         historial = getDictHistorial(historial_rows),
         curso_list=lista_cursos2(usuario.f_ci),
-        trabajo_list=lista_trabajo(usuario.f_ci)
+        trabajo_list=lista_trabajo(usuario.f_ci),
         )
 
 def transformar_fecha(fecha):
@@ -620,7 +620,7 @@ def ficha():
         comp_list=lista_competencias(personal['ci']),
         historial=getDictHistorial(historial_rows),
         curso_list=lista_cursos2(personal['ci']),
-        trabajo_list=lista_trabajo(personal['ci'])
+        trabajo_list=lista_trabajo(personal['ci']),
 
     )
 

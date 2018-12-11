@@ -1,808 +1,115 @@
 <div class="col-sm-11 col11Body">
   <h4 class="titulosForm">Materias impartidas (Máximo 5)</h4>
 
-  <div class="form-group">
-
-    <div class="col-sm-12">
-      <label>Período</label>
+    {{ for i in range(1,6): }}
+    <div class="materia-container" id="materia{{=i}}_container"{{if len(materia_list)<i and 1!=i: }}hidden{{pass}}>
+        <h5>Materia {{=i}}</h5>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="materia{{=i}}_area">Área:</label>
+                <select {{if len(materia_list)<i and 1!=i:}} disabled {{pass}}
+                        class="form-control seleccion-competencia"
+                        type="select" name="materia{{=i}}_area"
+                        id="materia{{=i}}_area" multiple required
+                        data-placeholder="Seleccione las categorías que apliquen">
+                        <option value""> Seleccione una opción</option>
+                        {{ for comp in competencias: }}
+                        <option
+                            {{ if i<=len(materia_list):}}
+                            {{= 'selected' if comp in materia_list[i-1].f_area else '' }}
+                            {{pass}}
+                        value"{{=comp}}">{{=comp}}</option>
+                        {{pass}}
+                </select>
+            </div>
     </div>
 
-    <div class="col-sm-6">
-      <label>Desde:</label>
-      {{if bool(materia['f_fecha_inicio_materia_1']) :}}
-      <input class="datepicker" value="{{=materia['f_fecha_inicio_materia_1']}}"
-      name = "fecha_inicio_materia_1_add" type="text" id="input-inicio" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
-      {{else:}}
-      <input class="datepicker" value="{{''}}"
-      name = "fecha_inicio_materia_1_add" type="text" id="input-inicio" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
-      {{pass}}
+        <div class="form-row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="materia{{=i}}_desde">Desde:</label>
+                    <input {{if len(materia_list)<i and 1!=i:}}
+                           disabled {{pass}}
+                           value="{{='' if len(materia_list)<i else materia_list[i-1].f_fecha_inicio_materia.strftime('%d-%m-%Y')}}"
+                           class="datepicker"
+                           name="materia{{=i}}_desde" type="text" 
+                           id="materia{{=i}}_desde"
+                           data-placement="bottom" data-trigger="manual"
+                           data-content="Seleccione una fecha"/>
+                    <span class="help-block"></span>
+                </div>
+        </div>
+
+
+        <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Hasta:</label>
+                    <input {{if len(materia_list)<i and 1!=i:}}
+                           disabled {{pass}}
+                           value="{{='' if len(materia_list)<i else materia_list[i-1].f_fecha_final_materia.strftime('%d-%m-%Y')}}"
+                           class="datepicker"
+                           name="materia{{=i}}_hasta" type="text"
+                           id="materia{{=i}}_hasta"
+                           data-placement="bottom" data-trigger="manual"
+                           data-content="Seleccione una fecha">
+                    <span class="help-block"></span>
+                </div>
+        </div>
     </div>
 
-    <div class="col-sm-6">
-      <label>Hasta:</label>
-      {{if bool(materia['f_fecha_final_materia_1']) :}} 
-      <input class="datepicker" value="{{=materia['f_fecha_final_materia_1']}}" name = "fecha_final_materia_1_add" type="text" id="input-final" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
-      {{else:}}
-      <input class="datepicker" value="{{''}}" name = "fecha_final_materia_1_add" type="text" id="input-final" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
-      {{pass}}
-    </div>
+     <div class="form-row">
+        <div class="col-sm-6">
+            <div class="form-group">
+            <label for="materia{{=i}}_codigo">Código:</label>
+             <input {{if len(materia_list)<i and 1!=i:}}
+                           disabled {{pass}}
+                           value="{{='' if len(materia_list)<i else materia_list[i-1].f_codigo}}"
+                           type="text" class="form-control"
+                           name="materia{{=i}}_codigo"
+                           id="materia{{=i}}_codigo"
+                           data-toggle="popover" data-placement="bottom"
+                           data-trigger="manual" data-content="Este campo es requerido">
+                    <span class="help-block"></span>
+                </div>
+            </div>
 
-    <div class="form-group">
-      <div class="col-sm-12">
-        <br>
-        <label for="FormControlArea1">Área</label>
-        {{if bool(materia['f_area_1']) :}}
-        <select class="form-control" value="{{=materia['f_area_1']}}" name="area_1_add" id="input-area-1">
-          <option selected>Seleccione</option>
-          <option>Administración</option>
-          <option>Alimentación</option>
-          <option>Ambiente</option>
-          <option>Arquitectura</option>
-          <option>Arte</option>
-          <option>Biología</option>
-          <option>Calidad</option>
-          <option>Ciencias del agro</option>
-          <option>Ciencias del mar</option>
-          <option>Comunicación</option>
-          <option>Contaduría</option>
-          <option>Crecimiento personal</option>
-          <option>Derecho</option>
-          <option>Dietética</option>
-          <option>Docencia</option>
-          <option>Economía</option>
-          <option>Electrónica</option>
-          <option>Estadística</option>
-          <option>Filosofía</option>
-          <option>Física</option>
-          <option>Gerencia</option>
-          <option>Gestión</option>
-          <option>Humanidades</option>
-          <option>Idiomas</option>
-          <option>Información</option>
-          <option>Informática</option>
-          <option>Ingeniería</option>
-          <option>Letras</option>
-          <option>Liderazgo</option>
-          <option>Matemáticas</option>
-          <option>Medicina</option>
-          <option>Música</option>
-          <option>Negocio</option>
-          <option>Nutrición</option>
-          <option>Química</option>
-          <option>Recreación</option>
-          <option>Salud laboral</option>
-          <option>Seguridad</option>
-          <option>Tecnología</option>
-          <option>Urbanismo</option>
-        </select>
-        {{else:}}
-        <select class="form-control" value="{{''}}" name="area_1_add" id="input-area-1">
-          <option selected>Seleccione</option>
-          <option>Administración</option>
-          <option>Alimentación</option>
-          <option>Ambiente</option>
-          <option>Arquitectura</option>
-          <option>Arte</option>
-          <option>Biología</option>
-          <option>Calidad</option>
-          <option>Ciencias del agro</option>
-          <option>Ciencias del mar</option>
-          <option>Comunicación</option>
-          <option>Contaduría</option>
-          <option>Crecimiento personal</option>
-          <option>Derecho</option>
-          <option>Dietética</option>
-          <option>Docencia</option>
-          <option>Economía</option>
-          <option>Electrónica</option>
-          <option>Estadística</option>
-          <option>Filosofía</option>
-          <option>Física</option>
-          <option>Gerencia</option>
-          <option>Gestión</option>
-          <option>Humanidades</option>
-          <option>Idiomas</option>
-          <option>Información</option>
-          <option>Informática</option>
-          <option>Ingeniería</option>
-          <option>Letras</option>
-          <option>Liderazgo</option>
-          <option>Matemáticas</option>
-          <option>Medicina</option>
-          <option>Música</option>
-          <option>Negocio</option>
-          <option>Nutrición</option>
-          <option>Química</option>
-          <option>Recreación</option>
-          <option>Salud laboral</option>
-          <option>Seguridad</option>
-          <option>Tecnología</option>
-          <option>Urbanismo</option>
-        </select>
-        {{pass}}
-      </div>  
-    </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+            <label for="materia{{=i}}_nombre_materia">Materia:</label>
+             <input {{if len(materia_list)<i and 1!=i:}}
+                           disabled {{pass}}
+                           value="{{='' if len(materia_list)<i else materia_list[i-1].f_nombre_materia}}"
+                           type="text" class="form-control"
+                           name="materia{{=i}}_nombre_materia"
+                           id="materia{{=i}}_nombre_materia"
+                           data-toggle="popover" data-placement="bottom"
+                           data-trigger="manual" data-content="Este campo es requerido">
+                    <span class="help-block"></span>
+                </div>
+            </div>
+     </div>
 
-    <div class="col-sm-6">
-      <br>
-      <label>Código de materia</label>
-      {{if bool(materia['f_codigo_1']) :}}
-      <input value="{{=materia['f_codigo_1']}}" type="text" class="form-control" name="codigo_1_add" required
-         data-content="Este campo es requerido" data-valido="true">
-      <font color="red"><div id="err_celular" hidden></div></font>
-      {{else:}}
-      <input value="{{=''}}" type="text" class="form-control" name="codigo_1_add" required
-         data-content="Este campo es requerido" data-valido="true">
-      <font color="red"><div id="err_celular" hidden></div></font>
-      {{pass}}
-    </div>
+    {{pass}}
 
-    <div class="col-sm-6">
-      <br>
-      <label>Materia</label>
-      {{if bool(materia['f_nombre_materia_1']) :}}
-      <input value="{{=materia['f_nombre_materia_1']}}" type="text" class="form-control" name="nombre_materia_1_add" required
-         data-content="Este campo es requerido" data-valido="true">
-      <font color="red"><div id="err_celular" hidden></div></font>
-      {{else:}}
-      <input value="{{=''}}" type="text" class="form-control" name="nombre_materia_1_add" required
-         data-content="Este campo es requerido" data-valido="true">
-      <font color="red"><div id="err_celular" hidden></div></font>
-      {{pass}}
-    </div>
-
-    <div class="form-group">
-      <div class="col-sm-12">
-        <p onclick="toggleMateria('materia2', 'texto6', 'texto7')" style="display: block;color: #3679B5;font-size: 15px; cursor:pointer;margin-top: 1rem;" id="texto6">Agregar otra materia</p>
-      </div>
-    </div>
-
-    <div style="display: none;" id = "materia2">
-  
-    <div class="form-group">
-      <div class="col-sm-12" style="margin-top: 2rem;">
-        <label>Período</label>
-      </div>
-    </div>
-
-    <div class="col-sm-6">
-      <br>
-      <label>Desde:</label>
-      {{if bool(materia['f_fecha_inicio_materia_2']) :}}
-      <input class="datepicker" value="{{=materia['f_fecha_inicio_materia_2']}}"
-      name = "fecha_inicio_materia_2_add" type="text" id="input-inicio" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
-      {{else:}}
-      <input class="datepicker" value="{{''}}"
-      name = "fecha_inicio_materia_2_add" type="text" id="input-inicio" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
-      {{pass}}
-    </div>
-
-    <div class="col-sm-6">
-      <br>
-      <label>Hasta:</label>
-      {{if bool(materia['f_fecha_final_materia_2']) :}} 
-      <input class="datepicker" value="{{=materia['f_fecha_final_materia_2']}}" name = "fecha_final_materia_2_add" type="text" id="input-final" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
-      {{else:}}
-      <input class="datepicker" value="{{''}}" name = "fecha_final_materia_2_add" type="text" id="input-final" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
-      {{pass}}
-    </div>
-
-    <div class="form-group">
-      <div class="col-sm-12">
-        <br>
-        <label for="FormControlArea2">Área</label>
-        {{if bool(materia['f_area_2']) :}}
-        <select class="form-control" value="{{=materia['f_area_2']}}" name="area_2_add" id="input-area-2">
-          <option selected>Seleccione</option>
-          <option>Administración</option>
-          <option>Alimentación</option>
-          <option>Ambiente</option>
-          <option>Arquitectura</option>
-          <option>Arte</option>
-          <option>Biología</option>
-          <option>Calidad</option>
-          <option>Ciencias del agro</option>
-          <option>Ciencias del mar</option>
-          <option>Comunicación</option>
-          <option>Contaduría</option>
-          <option>Crecimiento personal</option>
-          <option>Derecho</option>
-          <option>Dietética</option>
-          <option>Docencia</option>
-          <option>Economía</option>
-          <option>Electrónica</option>
-          <option>Estadística</option>
-          <option>Filosofía</option>
-          <option>Física</option>
-          <option>Gerencia</option>
-          <option>Gestión</option>
-          <option>Humanidades</option>
-          <option>Idiomas</option>
-          <option>Información</option>
-          <option>Informática</option>
-          <option>Ingeniería</option>
-          <option>Letras</option>
-          <option>Liderazgo</option>
-          <option>Matemáticas</option>
-          <option>Medicina</option>
-          <option>Música</option>
-          <option>Negocio</option>
-          <option>Nutrición</option>
-          <option>Química</option>
-          <option>Recreación</option>
-          <option>Salud laboral</option>
-          <option>Seguridad</option>
-          <option>Tecnología</option>
-          <option>Urbanismo</option>
-        </select>
-        {{else:}}
-        <select class="form-control" value="{{''}}" name="area_2_add" id="input-area-2">
-          <option selected>Seleccione</option>
-          <option>Administración</option>
-          <option>Alimentación</option>
-          <option>Ambiente</option>
-          <option>Arquitectura</option>
-          <option>Arte</option>
-          <option>Biología</option>
-          <option>Calidad</option>
-          <option>Ciencias del agro</option>
-          <option>Ciencias del mar</option>
-          <option>Comunicación</option>
-          <option>Contaduría</option>
-          <option>Crecimiento personal</option>
-          <option>Derecho</option>
-          <option>Dietética</option>
-          <option>Docencia</option>
-          <option>Economía</option>
-          <option>Electrónica</option>
-          <option>Estadística</option>
-          <option>Filosofía</option>
-          <option>Física</option>
-          <option>Gerencia</option>
-          <option>Gestión</option>
-          <option>Humanidades</option>
-          <option>Idiomas</option>
-          <option>Información</option>
-          <option>Informática</option>
-          <option>Ingeniería</option>
-          <option>Letras</option>
-          <option>Liderazgo</option>
-          <option>Matemáticas</option>
-          <option>Medicina</option>
-          <option>Música</option>
-          <option>Negocio</option>
-          <option>Nutrición</option>
-          <option>Química</option>
-          <option>Recreación</option>
-          <option>Salud laboral</option>
-          <option>Seguridad</option>
-          <option>Tecnología</option>
-          <option>Urbanismo</option>
-        </select>
-        {{pass}}
-      </div>  
-    </div>
-
-    <div class="col-sm-6">
-        <br>
-        <label>Código de materia</label>
-        {{if bool(materia['f_codigo_2']) :}}
-        <input value="{{=materia['f_codigo_2']}}" type="text" class="form-control" name="codigo_2_add" required
-          data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
-        <font color="red"><div id="err_celular" hidden></div></font>
-        {{else:}}
-        <input value="{{=''}}" type="text" class="form-control" name="codigo_2_add" required
-          data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
-        <font color="red"><div id="err_celular" hidden></div></font>
-        {{pass}}
-    </div>
-
-    <div class="col-sm-6">
-      <br>
-      <label>Materia</label>
-      {{if bool(materia['f_nombre_materia_2']) :}}
-      <input value="{{=materia['f_nombre_materia_2']}}" type="text" class="form-control" name="nombre_materia_2_add" required
-        data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
-      <font color="red"><div id="err_celular" hidden></div></font>
-      {{else:}}
-      <input value="{{=''}}" type="text" class="form-control" name="nombre_materia_2_add" required
-        data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
-      <font color="red"><div id="err_celular" hidden></div></font>
-      {{pass}}
-    </div>
-
-    <div class="form-group">
-      <div class="col-sm-12">
-        <p onclick="toggleMateria('materia3', 'texto7', 'texto8')" style="display: none;color: #3679B5;font-size: 15px; cursor:pointer;margin-top: 1rem;" id="texto7">Agregar otra materia</p>
-      </div>
-    </div>
-
-    <div style="display: none;" id = "materia3">
-  
-    <div class="form-group">
-      <div class="col-sm-12" style="margin-top: 2rem;">
-        <label>Período</label>
-      </div>
-    </div>
-
-    <div class="col-sm-6">
-      <br>
-      <label>Desde:</label>
-      {{if bool(materia['f_fecha_inicio_materia_3']) :}}
-      <input class="datepicker" value="{{=materia['f_fecha_inicio_materia_3']}}"
-      name = "fecha_inicio_materia_3_add" type="text" id="input-inicio" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
-      {{else:}}
-      <input class="datepicker" value="{{''}}"
-      name = "fecha_inicio_materia_3_add" type="text" id="input-inicio" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
-      {{pass}}
-    </div>
-
-    <div class="col-sm-6">
-      <br>
-      <label>Hasta:</label>
-      {{if bool(materia['f_fecha_final_materia_3']) :}} 
-      <input class="datepicker" value="{{=materia['f_fecha_final_materia_3']}}" name = "fecha_final_materia_1_add" type="text" id="input-final" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
-      {{else:}}
-      <input class="datepicker" value="{{''}}" name = "fecha_final_materia_3_add" type="text" id="input-final" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
-      {{pass}}
-    </div>
-
-    <div class="form-group">
-      <div class="col-sm-12">
-        <br>
-        <label for="FormControlArea3">Área</label>
-        {{if bool(materia['f_area_3']) :}}
-        <select class="form-control" value="{{=materia['f_area_3']}}" name="area_3_add" id="input-area-3">
-          <option selected>Seleccione</option>
-          <option>Administración</option>
-          <option>Alimentación</option>
-          <option>Ambiente</option>
-          <option>Arquitectura</option>
-          <option>Arte</option>
-          <option>Biología</option>
-          <option>Calidad</option>
-          <option>Ciencias del agro</option>
-          <option>Ciencias del mar</option>
-          <option>Comunicación</option>
-          <option>Contaduría</option>
-          <option>Crecimiento personal</option>
-          <option>Derecho</option>
-          <option>Dietética</option>
-          <option>Docencia</option>
-          <option>Economía</option>
-          <option>Electrónica</option>
-          <option>Estadística</option>
-          <option>Filosofía</option>
-          <option>Física</option>
-          <option>Gerencia</option>
-          <option>Gestión</option>
-          <option>Humanidades</option>
-          <option>Idiomas</option>
-          <option>Información</option>
-          <option>Informática</option>
-          <option>Ingeniería</option>
-          <option>Letras</option>
-          <option>Liderazgo</option>
-          <option>Matemáticas</option>
-          <option>Medicina</option>
-          <option>Música</option>
-          <option>Negocio</option>
-          <option>Nutrición</option>
-          <option>Química</option>
-          <option>Recreación</option>
-          <option>Salud laboral</option>
-          <option>Seguridad</option>
-          <option>Tecnología</option>
-          <option>Urbanismo</option>
-        </select>
-        {{else:}}
-        <select class="form-control" value="{{''}}" name="area_3_add" id="input-area-3">
-          <option selected>Seleccione</option>
-          <option>Administración</option>
-          <option>Alimentación</option>
-          <option>Ambiente</option>
-          <option>Arquitectura</option>
-          <option>Arte</option>
-          <option>Biología</option>
-          <option>Calidad</option>
-          <option>Ciencias del agro</option>
-          <option>Ciencias del mar</option>
-          <option>Comunicación</option>
-          <option>Contaduría</option>
-          <option>Crecimiento personal</option>
-          <option>Derecho</option>
-          <option>Dietética</option>
-          <option>Docencia</option>
-          <option>Economía</option>
-          <option>Electrónica</option>
-          <option>Estadística</option>
-          <option>Filosofía</option>
-          <option>Física</option>
-          <option>Gerencia</option>
-          <option>Gestión</option>
-          <option>Humanidades</option>
-          <option>Idiomas</option>
-          <option>Información</option>
-          <option>Informática</option>
-          <option>Ingeniería</option>
-          <option>Letras</option>
-          <option>Liderazgo</option>
-          <option>Matemáticas</option>
-          <option>Medicina</option>
-          <option>Música</option>
-          <option>Negocio</option>
-          <option>Nutrición</option>
-          <option>Química</option>
-          <option>Recreación</option>
-          <option>Salud laboral</option>
-          <option>Seguridad</option>
-          <option>Tecnología</option>
-          <option>Urbanismo</option>
-        </select>
-        {{pass}}
-      </div>  
-    </div>
-
-    <div class="col-sm-6">
-      <br>
-      <label>Código de materia</label>
-      {{if bool(materia['f_codigo_3']) :}}
-      <input value="{{=materia['f_codigo_3']}}" type="text" class="form-control" name="codigo_3_add" required
-        data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
-      <font color="red"><div id="err_celular" hidden></div></font>
-      {{else:}}
-      <input value="{{=''}}" type="text" class="form-control" name="codigo_3_add" required
-        data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
-      <font color="red"><div id="err_celular" hidden></div></font>
-      {{pass}}
-    </div>
-
-    <div class="col-sm-6">
-      <br>
-      <label>Materia</label>
-      {{if bool(materia['f_nombre_materia_3']) :}}
-      <input value="{{=materia['f_nombre_materia_3']}}" type="text" class="form-control" name="nombre_materia_3_add" required
-        data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
-      <font color="red"><div id="err_celular" hidden></div></font>
-      {{else:}}
-      <input value="{{=''}}" type="text" class="form-control" name="nombre_materia_3_add" required
-        data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
-      <font color="red"><div id="err_celular" hidden></div></font>
-      {{pass}}
-    </div>
-
-    <div class="form-group">
-      <div class="col-sm-12">
-        <p onclick="toggleMateria('materia4', 'texto8', 'texto9')" style="display: none;color: #3679B5;font-size: 15px; cursor:pointer;margin-top: 1rem;" id="texto8">Agregar otra materia</p>
-      </div>
-    </div>
-
-    <div style="display: none;" id = "materia4">
-  
-    <div class="form-group">
-      <div class="col-sm-12" style="margin-top: 2rem;">
-        <label>Período</label>
-      </div>
-    </div>
-
-    <div class="col-sm-6">
-      <br>
-      <label>Desde:</label>
-      {{if bool(materia['f_fecha_inicio_materia_4']) :}}
-      <input class="datepicker" value="{{=materia['f_fecha_inicio_materia_4']}}"
-      name = "fecha_inicio_materia_4_add" type="text" id="input-inicio" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
-      {{else:}}
-      <input class="datepicker" value="{{''}}"
-      name = "fecha_inicio_materia_4_add" type="text" id="input-inicio" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
-      {{pass}}
-    </div>
-
-    <div class="col-sm-6">
-      <br>
-      <label>Hasta:</label>
-      {{if bool(materia['f_fecha_final_materia_4']) :}} 
-      <input class="datepicker" value="{{=materia['f_fecha_final_materia_4']}}" name = "fecha_final_materia_4_add" type="text" id="input-final" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
-      {{else:}}
-      <input class="datepicker" value="{{''}}" name = "fecha_final_materia_4_add" type="text" id="input-final" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
-      {{pass}}
-    </div>
-
-    <div class="form-group">
-      <div class="col-sm-12">
-        <br>
-        <label for="FormControlArea4">Área</label>
-        {{if bool(materia['f_area_4']) :}}
-        <select class="form-control" value="{{=materia['f_area_4']}}" name="area_4_add" id="input-area-4">
-          <option selected>Seleccione</option>
-          <option>Administración</option>
-          <option>Alimentación</option>
-          <option>Ambiente</option>
-          <option>Arquitectura</option>
-          <option>Arte</option>
-          <option>Biología</option>
-          <option>Calidad</option>
-          <option>Ciencias del agro</option>
-          <option>Ciencias del mar</option>
-          <option>Comunicación</option>
-          <option>Contaduría</option>
-          <option>Crecimiento personal</option>
-          <option>Derecho</option>
-          <option>Dietética</option>
-          <option>Docencia</option>
-          <option>Economía</option>
-          <option>Electrónica</option>
-          <option>Estadística</option>
-          <option>Filosofía</option>
-          <option>Física</option>
-          <option>Gerencia</option>
-          <option>Gestión</option>
-          <option>Humanidades</option>
-          <option>Idiomas</option>
-          <option>Información</option>
-          <option>Informática</option>
-          <option>Ingeniería</option>
-          <option>Letras</option>
-          <option>Liderazgo</option>
-          <option>Matemáticas</option>
-          <option>Medicina</option>
-          <option>Música</option>
-          <option>Negocio</option>
-          <option>Nutrición</option>
-          <option>Química</option>
-          <option>Recreación</option>
-          <option>Salud laboral</option>
-          <option>Seguridad</option>
-          <option>Tecnología</option>
-          <option>Urbanismo</option>
-        </select>
-        {{else:}}
-        <select class="form-control" value="{{''}}" name="area_4_add" id="input-area-4">
-          <option selected>Seleccione</option>
-          <option>Administración</option>
-          <option>Alimentación</option>
-          <option>Ambiente</option>
-          <option>Arquitectura</option>
-          <option>Arte</option>
-          <option>Biología</option>
-          <option>Calidad</option>
-          <option>Ciencias del agro</option>
-          <option>Ciencias del mar</option>
-          <option>Comunicación</option>
-          <option>Contaduría</option>
-          <option>Crecimiento personal</option>
-          <option>Derecho</option>
-          <option>Dietética</option>
-          <option>Docencia</option>
-          <option>Economía</option>
-          <option>Electrónica</option>
-          <option>Estadística</option>
-          <option>Filosofía</option>
-          <option>Física</option>
-          <option>Gerencia</option>
-          <option>Gestión</option>
-          <option>Humanidades</option>
-          <option>Idiomas</option>
-          <option>Información</option>
-          <option>Informática</option>
-          <option>Ingeniería</option>
-          <option>Letras</option>
-          <option>Liderazgo</option>
-          <option>Matemáticas</option>
-          <option>Medicina</option>
-          <option>Música</option>
-          <option>Negocio</option>
-          <option>Nutrición</option>
-          <option>Química</option>
-          <option>Recreación</option>
-          <option>Salud laboral</option>
-          <option>Seguridad</option>
-          <option>Tecnología</option>
-          <option>Urbanismo</option>
-        </select>
-        {{pass}}
-      </div>  
-    </div>
-
-    <div class="col-sm-6">
-      <br>
-      <label>Código de materia</label>
-      {{if bool(materia['f_codigo_4']) :}}
-      <input value="{{=materia['f_codigo_4']}}" type="text" class="form-control" name="codigo41_add" required
-        data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
-      <font color="red"><div id="err_celular" hidden></div></font>
-      {{else:}}
-      <input value="{{=''}}" type="text" class="form-control" name="codigo_4_add" required
-        data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
-      <font color="red"><div id="err_celular" hidden></div></font>
-      {{pass}}
-    </div>
-
-    <div class="col-sm-6">
-      <br>
-      <label>Materia</label>
-      {{if bool(materia['f_nombre_materia_4']) :}}
-      <input value="{{=materia['f_nombre_materia_4']}}" type="text" class="form-control" name="nombre_materia_4_add" required
-        data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
-      <font color="red"><div id="err_celular" hidden></div></font>
-      {{else:}}
-      <input value="{{=''}}" type="text" class="form-control" name="nombre_materia_4_add" required
-        data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
-      <font color="red"><div id="err_celular" hidden></div></font>
-      {{pass}}
-    </div>
-
-    <div class="form-group">
-      <div class="col-sm-12">
-        <p onclick="toggleMateria('materia5', 'texto9', null)" style="display: none;color: #3679B5;font-size: 15px; cursor:pointer;margin-top: 1rem;" id="texto9">Agregar otra materia</p>
-      </div>
-    </div>
-    
-    <div style="display: none;" id = "materia5">
-  
-    <div class="form-group">
-      <div class="col-sm-12" style="margin-top: 2rem;">
-        <label>Período</label>
-      </div>
-    </div>
-
-    <div class="col-sm-6">
-      <br>
-      <label>Desde:</label>
-      {{if bool(materia['f_fecha_inicio_materia_5']) :}}
-      <input class="datepicker" value="{{=materia['f_fecha_inicio_materia_5']}}"
-      name = "fecha_inicio_materia_5_add" type="text" id="input-inicio" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
-      {{else:}}
-      <input class="datepicker" value="{{''}}"
-      name = "fecha_inicio_materia_5_add" type="text" id="input-inicio" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
-      {{pass}}
-    </div>
-
-    <div class="col-sm-6">
-      <br>
-      <label>Hasta:</label>
-      {{if bool(materia['f_fecha_final_materia_5']) :}} 
-      <input class="datepicker" value="{{=materia['f_fecha_final_materia_5']}}" name = "fecha_final_materia_5_add" type="text" id="input-final" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
-      {{else:}}
-      <input class="datepicker" value="{{''}}" name = "fecha_final_materia_5_add" type="text" id="input-final" data-placement="bottom" data-trigger="manual" data-content="Seleccione una fecha">
-      {{pass}}
-    </div>
-
-    <div class="form-group">
-      <div class="col-sm-12">
-        <br>
-        <label for="FormControlArea5">Área</label>
-        {{if bool(materia['f_area_5']) :}}
-        <select class="form-control" value="{{=materia['f_area_5']}}" name="area_5_add" id="input-area-5">
-          <option selected>Seleccione</option>
-          <option>Administración</option>
-          <option>Alimentación</option>
-          <option>Ambiente</option>
-          <option>Arquitectura</option>
-          <option>Arte</option>
-          <option>Biología</option>
-          <option>Calidad</option>
-          <option>Ciencias del agro</option>
-          <option>Ciencias del mar</option>
-          <option>Comunicación</option>
-          <option>Contaduría</option>
-          <option>Crecimiento personal</option>
-          <option>Derecho</option>
-          <option>Dietética</option>
-          <option>Docencia</option>
-          <option>Economía</option>
-          <option>Electrónica</option>
-          <option>Estadística</option>
-          <option>Filosofía</option>
-          <option>Física</option>
-          <option>Gerencia</option>
-          <option>Gestión</option>
-          <option>Humanidades</option>
-          <option>Idiomas</option>
-          <option>Información</option>
-          <option>Informática</option>
-          <option>Ingeniería</option>
-          <option>Letras</option>
-          <option>Liderazgo</option>
-          <option>Matemáticas</option>
-          <option>Medicina</option>
-          <option>Música</option>
-          <option>Negocio</option>
-          <option>Nutrición</option>
-          <option>Química</option>
-          <option>Recreación</option>
-          <option>Salud laboral</option>
-          <option>Seguridad</option>
-          <option>Tecnología</option>
-          <option>Urbanismo</option>
-        </select>
-        {{else:}}
-        <select class="form-control" value="{{''}}" name="area_5_add" id="input-area-5">
-          <option selected>Seleccione</option>
-          <option>Administración</option>
-          <option>Alimentación</option>
-          <option>Ambiente</option>
-          <option>Arquitectura</option>
-          <option>Arte</option>
-          <option>Biología</option>
-          <option>Calidad</option>
-          <option>Ciencias del agro</option>
-          <option>Ciencias del mar</option>
-          <option>Comunicación</option>
-          <option>Contaduría</option>
-          <option>Crecimiento personal</option>
-          <option>Derecho</option>
-          <option>Dietética</option>
-          <option>Docencia</option>
-          <option>Economía</option>
-          <option>Electrónica</option>
-          <option>Estadística</option>
-          <option>Filosofía</option>
-          <option>Física</option>
-          <option>Gerencia</option>
-          <option>Gestión</option>
-          <option>Humanidades</option>
-          <option>Idiomas</option>
-          <option>Información</option>
-          <option>Informática</option>
-          <option>Ingeniería</option>
-          <option>Letras</option>
-          <option>Liderazgo</option>
-          <option>Matemáticas</option>
-          <option>Medicina</option>
-          <option>Música</option>
-          <option>Negocio</option>
-          <option>Nutrición</option>
-          <option>Química</option>
-          <option>Recreación</option>
-          <option>Salud laboral</option>
-          <option>Seguridad</option>
-          <option>Tecnología</option>
-          <option>Urbanismo</option>
-        </select>
-        {{pass}}
-      </div>  
-    </div>
-
-    <div class="col-sm-6">
-      <br>
-      <label>Código de materia</label>
-      {{if bool(materia['f_codigo_5']) :}}
-      <input value="{{=materia['f_codigo_5']}}" type="text" class="form-control" name="codigo_5_add" required
-        data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
-      <font color="red"><div id="err_celular" hidden></div></font>
-      {{else:}}
-      <input value="{{=''}}" type="text" class="form-control" name="codigo_5_add" required
-        data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
-      <font color="red"><div id="err_celular" hidden></div></font>
-      {{pass}}
-    </div>
-
-    <div class="col-sm-6">
-      <br>
-      <label>Materia</label>
-      {{if bool(materia['f_nombre_materia_5']) :}}
-      <input value="{{=materia['f_nombre_materia_5']}}" type="text" class="form-control" name="nombre_materia_5_add" required
-        data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
-      <font color="red"><div id="err_celular" hidden></div></font>
-      {{else:}}
-      <input value="{{=''}}" type="text" class="form-control" name="nombre_materia_5_add" required
-        data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Este campo es requerido" data-valido="true">
-      <font color="red"><div id="err_celular" hidden></div></font>
-      {{pass}}
-    </div>
-
-  </div>
 </div>
 
-<script type="text/javascript">
-  function toggleMateria(id, idText, idText2) {
-  var trabajo = document.getElementById(id);
-  var texto = document.getElementById(idText);
-  if (idText2) {
-    var texto2 = document.getElementById(idText2);
-  }
-  trabajo.style.display = 'block';
-  texto.style.display = 'none';
-  texto2.style.display = 'block';
-  }
+<a href="#" id="add_field_p" onclick="add_field_p()">Agregar materia</a>
+
+
+<script charset="utf-8">
+    var nump = 2
+    function add_field_p(){
+        if(nump < 6){
+            $('#materia'+nump+'_container').show();
+            $('#materia'+nump+'_area').prop('disabled', false);
+            $('#materia'+nump+'_desde').prop('disabled', false);
+            $('#materia'+nump+'_hasta').prop('disabled', false);
+            $('#materia'+nump+'_codigo').prop('disabled', false);
+            $('#materia'+nump+'_nombre_materia').prop('disabled', false);
+        nump = nump+1;
+        if (nump >5){
+            $('#add_field_p').remove();
+            }
+        }
+    }
 </script>

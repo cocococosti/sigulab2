@@ -108,11 +108,13 @@ db.define_table(
     Field('f_fecha_final_materia', 'date', label=T('Hasta')),
     #Referencia (Revisar si el label es asistio o organizo)
     Field('f_Materia_Personal',         'reference t_Personal', requires=IS_IN_DB(db, db.t_Personal.id, '%(f_Personal)s', zero=None), label=T('Dirigió')),
+    migrate=True
     )
 
 db.t_Actividad._plural = 'Materias'
 db.t_Actividad._singular = 'Materia'
 
+'''
 #t_Personal: Tabla de Materias.
 db.define_table(
     #Nombre de la entidad
@@ -149,6 +151,7 @@ db.define_table(
 
 db.t_Materia._plural = 'Materias'
 db.t_Materia._singular = 'Materia'
+'''
 
 #t_Personal: Tabla de Tesis.
 db.define_table(

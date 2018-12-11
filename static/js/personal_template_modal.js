@@ -43,17 +43,12 @@ const inputs = [
     'competencia8_nombre',
     'competencia9_nombre',
     'competencia10_nombre',
-    // Cursos
-    'curso1_nombre',
-    'curso2_nombre',
-    'curso3_nombre',
-    'curso4_nombre',
-    'curso5_nombre',
-    'curso6_nombre',
-    'curso7_nombre',
-    'curso8_nombre',
-    'curso9_nombre',
-    'curso10_nombre',
+    // Trabajos
+    'trabajo1_titulo_trabajo', 'trabajo1_anio', 'trabajo1_institucion',
+    'trabajo2_titulo_trabajo', 'trabajo2_anio', 'trabajo2_institucion',
+    'trabajo3_titulo_trabajo', 'trabajo3_anio', 'trabajo3_institucion',
+    'trabajo4_titulo_trabajo', 'trabajo4_anio', 'trabajo4_institucion',
+    'trabajo5_titulo_trabajo', 'trabajo5_anio', 'trabajo5_institucion',
 ]
 
 const inputSelectorsAll = inputs.map(i => `[name="${i}"]`).join(',')
@@ -911,18 +906,19 @@ const validadoresCuartoPaso = [
 // ESCRIBE AQUI TUS FUNCIONES
 
 
-function validaCursos(){
+
+function validaTrabajosDirigidos(){
     var valid=true;
-    for(var i=1; i<11;i++){
-        if($('#curso-container'+i).is(':hidden'))
+    for(var i=1; i<6;i++){
+        if($('#trabajo-container'+i).is(':hidden'))
             continue;
 
-        var nombre = $('#curso'+i+'_nombre');
-        var anio = $('#curso'+i+'_anio');
-        var dictado_por = $('#curso'+i+'_dictado_por');
-        var horas = $('#curso'+i+'_horas');
-        var chosenval = $('#curso'+i+'_categorias').trigger("chosen-updated").val().length;
-        chosen_container = $('#curso'+i+'_categorias_chosen');
+        var titulo_trabajo = $('#trabajo'+i+'_titulo_trabajo');
+        var anio = $('#trabajo'+i+'_anio');
+        var estudiantes = $('#trabajo'+i+'_estudiantes');
+        var institucion = $('#trabajo'+i+'_institucion');
+        var chosenval = $('#trabajo'+i+'_nivel').trigger("chosen-updated").val().length;
+        chosen_container = $('#trabajo'+i+'_nivel_chosen');
 
         if (chosenval == 0){
             chosen_container.attr("data-content", requiredFieldMessage);
@@ -936,15 +932,15 @@ function validaCursos(){
             chosen_container.popover('hide');
             valid = valid && true;
         }
-        if (nombre.val()==='') {
-            nombre.attr("data-content", requiredFieldMessage);
-            nombre.popover('show');
-            nombre.addClass('input-error');
+        if (titulo_trabajo.val()==='') {
+            titulo_trabajo.attr("data-content", requiredFieldMessage);
+            titulo_trabajo.popover('show');
+            titulo_trabajo.addClass('input-error');
             valid = valid && false;
         }
         else {
-            nombre.removeClass('input-error');
-            nombre.popover('hide');
+            titulo_trabajo.removeClass('input-error');
+            titulo_trabajo.popover('hide');
             valid = valid && true;
         }
         if (anio.val()==='') {
@@ -958,34 +954,33 @@ function validaCursos(){
             anio.popover('hide');
             valid = valid && true;
         }
-        if (dictado_por.val()==='') {
-            dictado_por.attr("data-content", requiredFieldMessage);
-            dictado_por.popover('show');
-            dictado_por.addClass('input-error');
+        if (estudiantes.val()==='') {
+            estudiantes.attr("data-content", requiredFieldMessage);
+            estudiantes.popover('show');
+            estudiantes.addClass('input-error');
             valid = valid && false;
         }
         else {
-            dictado_por.removeClass('input-error');
-            dictado_por.popover('hide');
+            estudiantes.removeClass('input-error');
+            estudiantes.popover('hide');
             valid = valid && true;
         }
-        if (horas.val()==='') {
-            horas.attr("data-content", requiredFieldMessage);
-            horas.popover('show');
-            horas.addClass('input-error');
+        if (institucion.val()==='') {
+            institucion.attr("data-content", requiredFieldMessage);
+            institucion.popover('show');
+            institucion.addClass('input-error');
             valid = valid && false;
         }
         else {
-            horas.removeClass('input-error');
-            horas.popover('hide');
+            institucion.removeClass('input-error');
+            institucion.popover('hide');
             valid = valid && true;
         }
     }
     return valid
-
 }
 const validadoresSextoPaso = [
-    validaCursos
+    validaTrabajosDirigidos
 ]
 
 

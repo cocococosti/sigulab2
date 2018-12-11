@@ -186,8 +186,9 @@ def dropdowns():
             "Química", "Recreación", "Salud Laboral", "Seguridad", "Tecnología", "Urbanismo",
             ]
 
+    nivel = ["Bachillerato", "Técnico Medio", "TSU", "Licenciatura", "Especialización", "Maestría", "Doctorado", "Post-Doctorado"]
 
-    return (gremio,departamento,estatus,categoria,condiciones,roles,operadores, competencias)
+    return (gremio,departamento,estatus,categoria,condiciones,roles,operadores, competencias, nivel)
 
 # Esta funcion toma la fecha desde el front que tiene
 # el formato dd-mm-yyyy y la transforma en el formato
@@ -385,6 +386,9 @@ def add_form():
         personal = db(db.t_Personal.f_email == dic['email'] ).select().first()
         __get_cursos(request, personal)
 
+        personal = db(db.t_Personal.f_email == dic['email'] ).select().first()
+        __get_trabajos(request, personal)
+
         redirect(URL('listado_estilo'))
 
 
@@ -464,7 +468,7 @@ def listado():
     idDependencia = db(db.dependencias.nombre == usuario.f_dependencia).select(db.dependencias.id)[0]
     ubicaciones= list(db(db.espacios_fisicos.dependencia == idDependencia).select(db.espacios_fisicos.ALL))
     #Obtenemos los elementos de los dropdowns
-    gremios, dependencias, estados, categorias, condiciones, roles, operadores, competencias= dropdowns()
+    gremios, dependencias, estados, categorias, condiciones, roles, operadores, competencias, nivel = dropdowns()
 
     empleados = validacion_estilo()['empleados']
     idUser = db(db.t_Personal.f_ci == usuario.f_ci).select().first().id
@@ -484,9 +488,11 @@ def listado():
         usuario=usuario,
         empleados = empleados,
         competencias=competencias,
+        nivel=nivel,
         comp_list=lista_competencias(usuario.f_ci),
         historial = getDictHistorial(historial_rows),
-        curso_list=lista_cursos2(usuario.f_ci)
+        curso_list=lista_cursos2(usuario.f_ci),
+        trabajo_list=lista_trabajo(usuario.f_ci)
         )
 
 def transformar_fecha(fecha):
@@ -593,7 +599,7 @@ def ficha():
     idDependencia = db(db.dependencias.nombre == usuario.f_dependencia).select(db.dependencias.id)[0]
     ubicaciones= list(db(db.espacios_fisicos.dependencia == idDependencia).select(db.espacios_fisicos.ALL))
     #Obtenemos los elementos de los dropdowns
-    gremios, dependencias, estados, categorias, condiciones, roles, operadores, competencias = dropdowns()
+    gremios, dependencias, estados, categorias, condiciones, roles, operadores, competencias, nivel = dropdowns()
 
     historial_rows = db(db.t_Historial_trabajo_nuevo.f_Historial_trabajo_Personal == elm.id).select().first()
 
@@ -610,9 +616,11 @@ def ficha():
         usuario_logged=usuario_logged,
         usuario=usuario,
         competencias=competencias,
+        nivel=nivel,
         comp_list=lista_competencias(personal['ci']),
         historial=getDictHistorial(historial_rows),
-        curso_list=lista_cursos2(personal['ci'])
+        curso_list=lista_cursos2(personal['ci']),
+        trabajo_list=lista_trabajo(personal['ci'])
 
     )
 
@@ -752,6 +760,12 @@ def lista_cursos2(ci):
     query = db((db.t_Personal.id == db.t_Curso_2.f_Curso_Personal)
             & (db.t_Personal.f_ci == ci))
     rows = query.select(db.t_Curso_2.ALL, orderby=db.t_Curso_2.f_numero)
+    return rows
+
+def lista_trabajo(ci):
+    query = db((db.t_Personal.id == db.t_Trabajos_dirigidos.f_Trabajo_Personal)
+            & (db.t_Personal.f_ci == ci))
+    rows = query.select(db.t_Trabajos_dirigidos.ALL, orderby=db.t_Trabajos_dirigidos.f_numero)
     return rows
 
 def getDictHistorial(historial):
@@ -905,3 +919,48 @@ def __get_cursos(request, personal):
     #     params['f_nombre{0}'.format(i)] = request.post_vars('competencias')
     return fies
 
+
+def __get_trabajos(request, personal):
+    params = {}
+    # params = {
+    #         'f_nombre1': request.post_vars.competencia1_nombre,
+    #         'f_categorias1':request.post_vars.competencia1_categoria,
+    #         'f_observaciones1': request.post_vars.competencia1_observaciones,
+    #         'f_nombre2': request.post_vars.competencia2_nombre,
+    #         'f_categorias2':request.post_vars.competencia2_categoria,
+    #         'f_observaciones2': request.post_vars.competencia2_observaciones
+    #         }
+    fies = []
+    for i in range(1,6):
+        if 'trabajo{0}_titulo_trabajo'.format(i) in request.post_vars:
+            params = {
+                    'f_titulo_trabajo' : request.post_vars['trabajo{}_titulo_trabajo'.format(i)],
+                    'f_nivel' : request.post_vars['trabajo{}_nivel'.format(i)],
+                    'f_anio' : request.post_vars['trabajo{}_anio'.format(i)],
+                    'f_estudiantes' : request.post_vars['trabajo{}_estudiantes'.format(i)],
+                    'f_institucion' : request.post_vars['trabajo{}_institucion'.format(i)],
+                    'f_numero': i,
+                    'f_Trabajo_Personal': personal.id
+                    }
+            if not(
+                    (None or '') ==  params['f_titulo_trabajo']
+                    or (None or '') == params['f_nivel']
+                    or (None or '') == params['f_anio'] 
+                    or (None or '') == params['f_estudiantes']
+                    or (None or '') == params['f_institucion']):
+                db.t_Trabajos_dirigidos.update_or_insert(
+                        (db.t_Trabajos_dirigidos.f_numero==i)&
+                        (db.t_Trabajos_dirigidos.f_Trabajo_Personal==personal.id),
+                        f_titulo_trabajo=params['f_titulo_trabajo'],
+                        f_nivel=params['f_nivel'],
+                        f_anio= params['f_anio'],
+                        f_estudiantes= params['f_estudiantes'],
+                        f_institucion= params['f_institucion'],
+                        f_numero= params['f_numero'],
+                        f_Trabajo_Personal= params['f_Trabajo_Personal'],
+                        )
+                fies.append(params)
+
+    # if 'competencia{0}._nombre'.format(i) in request.post_vars.keys():
+    #     params['f_nombre{0}'.format(i)] = request.post_vars('competencias')
+    return fies

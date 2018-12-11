@@ -202,27 +202,6 @@ db.define_table(
 db.t_Competencias._plural = 'Competencias'
 db.t_Competencias._singular = 'Competencia'
 
-
-#t_Personal: Tabla de Cursos.
-db.define_table(
-    #Nombre de la entidad
-    't_Curso_2', 
-    #Atributos;
-    Field('f_categorias', 'list:string', default='', label=T('Categorías')),
-    Field('f_anio',          'integer', requires=IS_INT_IN_RANGE(minimum=1900,maximum=2100, error_message='Introduzca un año válido'), notnull=True, label=T('Año')),
-    Field('f_nombre',          'string', label=T('Curso')),
-    Field('f_dictado_por',          'string', label=T('Dictado por')),
-    Field('f_horas',          'integer', label=T('Horas')),
-    Field('f_numero', 'integer', default=1,label=T('Numero')),
-    Field('f_Curso_Personal', 'reference t_Personal', requires=IS_IN_DB(db, db.t_Personal.id, '%(f_Personal)s', zero=None) ),
-    migrate=True
-    )
-
-db.t_Curso_2._plural = 'Cursos'
-db.t_Curso_2._singular = 'Curso'
-
-
-
 #t_Personal: Tabla de Historial de trabajo.
 db.define_table(
     #Nombre de la entidad
@@ -264,3 +243,41 @@ db.define_table(
 
 db.t_Historial_trabajo_nuevo._plural = 'Historial de trabajo'
 db.t_Historial_trabajo_nuevo._singular = 'Historial de trabajo'
+
+#t_Personal: Tabla de Trabajos dirigidos
+db.define_table(
+    #Nombre de la entidad
+    't_Trabajos_dirigidos', 
+    #Atributos;
+    Field('f_anio',          'integer', requires=IS_INT_IN_RANGE(minimum=1900,maximum=2100, error_message='Introduzca un año válido'), notnull=True, label=T('Año')),
+    Field('f_estudiantes', 'list:string', default='', label=T('Estudiantes')),
+    Field('f_titulo_trabajo',          'string', label=T('Titulo')),
+    Field('f_nivel',  'list:string', default='', label=T('Nivel')),
+    Field('f_institucion',          'string', label=T('Institución')),
+    Field('f_numero', 'integer', default=1,label=T('Numero')),
+    Field('f_Trabajo_Personal', 'reference t_Personal', requires=IS_IN_DB(db, db.t_Personal.id, '%(f_Personal)s', zero=None) ),
+    migrate=True
+    )
+
+db.t_Trabajos_dirigidos._plural = 'Trabajos'
+db.t_Trabajos_dirigidos._singular = 'Trabajo'
+
+
+#t_Personal: Tabla de Cursos.
+db.define_table(
+    #Nombre de la entidad
+    't_Curso_2', 
+    #Atributos;
+    Field('f_categorias', 'list:string', default='', label=T('Categorías')),
+    Field('f_anio',          'integer', requires=IS_INT_IN_RANGE(minimum=1900,maximum=2100, error_message='Introduzca un año válido'), notnull=True, label=T('Año')),
+    Field('f_nombre',          'string', label=T('Curso')),
+    Field('f_dictado_por',          'string', label=T('Dictado por')),
+    Field('f_horas',          'integer', label=T('Horas')),
+    Field('f_numero', 'integer', default=1,label=T('Numero')),
+    Field('f_Curso_Personal', 'reference t_Personal', requires=IS_IN_DB(db, db.t_Personal.id, '%(f_Personal)s', zero=None) ),
+    migrate=True
+    )
+
+db.t_Curso_2._plural = 'Cursos'
+db.t_Curso_2._singular = 'Curso'
+

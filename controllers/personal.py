@@ -387,6 +387,9 @@ def add_form():
 
         personal = db(db.t_Personal.f_email == dic['email'] ).select().first()
         __get_competencias(request, personal)
+
+        __get_carreras(request, personal)
+
         redirect(URL('listado_estilo'))
 
 
@@ -513,7 +516,6 @@ def lista_competencias(ci):
             & (db.t_Personal.f_ci == ci))
     rows = query.select(db.t_Competencias2.ALL, orderby=db.t_Competencias2.f_numero)
     return rows
-
 
 
 def lista_carreras(ci):
@@ -905,24 +907,24 @@ def __get_carreras(request, personal):
     #         'f_observaciones2': request.post_vars.carreras2_observaciones
     #         }
     fies = []
-    for i in range(1,11):
-        if 'carreras{0}_universidad'.format(i) in request.post_vars:
+    for i in range(1,6):
+        if 'carrera{0}_universidad'.format(i) in request.post_vars:
             params = {
-                    'f_universidad' : request.post_vars['carreras{}_universidad'.format(i)],
-                    'f_titulo' : request.post_vars['carreras{}_titulo'.format(i)],
+                    'f_universidad' : request.post_vars['carrera{}_universidad'.format(i)],
+                    'f_titulo' : request.post_vars['carrera{}_titulo'.format(i)],
                     'f_numero': i,
-                    'f_carreras_Personal': personal.id
+                    'f_Carreras_Personal': personal.id
                     }
             if not(
                     (None or '') ==  params['f_universidad']
                     or (None or '') == params['f_titulo']):
-                db.t_carreras.update_or_insert(
-                        (db.t_carreras.f_numero==i)&
-                        (db.t_carreras.f_carreras_Personal==personal.id),
+                db.t_Carreras.update_or_insert(
+                        (db.t_Carreras.f_numero==i)&
+                        (db.t_Carreras.f_Carreras_Personal==personal.id),
                         f_universidad=params['f_universidad'],
                         f_titulo=params['f_titulo'],
                         f_numero= params['f_numero'],
-                        f_carreras_Personal= params['f_carreras_Personal'],
+                        f_Carreras_Personal= params['f_Carreras_Personal'],
                         )
                 fies.append(params)
 
@@ -930,15 +932,4 @@ def __get_carreras(request, personal):
     #     params['f_nombre{0}'.format(i)] = request.post_vars('carreras')
     return fies
 
-
-
-
-
-
-
-
-def new_tesis(personal):
-    form = SQLFORM(db.post)
-    form.process()
-    return {"form": form}
 

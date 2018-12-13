@@ -122,11 +122,15 @@ db.define_table(
     't_Carreras', 
 
     #Atributos;
-    Field('f_titulo',  'list:string', default='', requires=IS_NOT_EMPTY(), notnull=True, label=T('Título')),
+    Field('f_titulo',  'string', default='', requires=IS_NOT_EMPTY(), notnull=True, label=T('Título')),
     Field('f_numero', 'integer', default=1,label=T('Numero')),
+    Field('f_area', 'string', default='', requires=IS_NOT_EMPTY(), label=T('Area')),
+    Field('f_tesis', 'string', default='', requires=IS_NOT_EMPTY(), label=T('Tesis')),
+    Field('f_anio', 'integer', requires=IS_INT_IN_RANGE(minimum=1900,maximum=2100, error_message='Introduzca un año válido'), label=T('Año')),
     Field('f_universidad',   'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Universidad')),
     #Referencia (Revisar si el label es asistio o organizo)
     Field('f_Carreras_Personal',         'reference t_Personal', requires=IS_IN_DB(db, db.t_Personal.id, '%(f_Personal)s', zero=None), label=T('Estudios')),
+    migrate=True
     )
 
 db.t_Carreras._plural = 'Carreras'

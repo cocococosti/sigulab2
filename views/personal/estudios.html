@@ -6,12 +6,18 @@
             <tbody>
               <tr style="color: White;">
                 <th><b>Título</b></th>
-                <th><b>Universidad</b></th>
+                <th><b>Area</b></th>
+                <th><b>Universidad</b></th>                
+                <th><b>anio</b></th>
+                <th><b>Tesis</b></th>
               </tr>
               {{for c in carrera_list:}}
               <tr>
                 <td>{{=BEAUTIFY(c.f_titulo)}}</td>
+                <td>{{=BEAUTIFY(c.f_area)}}</td>
+                <td>{{=BEAUTIFY(c.f_anio)}}</td>
                 <td>{{=BEAUTIFY(c.f_universidad)}}</td>
+                <td>{{=BEAUTIFY(c.f_tesis)}}</td>
               </tr>
               {{pass}}
             </tbody>

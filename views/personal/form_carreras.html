@@ -1,17 +1,43 @@
-<h4 class="titulosForm">carreras (Máximo 6)</h4>
-<h5>Los campos con * son obligatorios</h5>
+<h3 class="titulosForm">carreras (Máximo 6)</h3>
+<h4>Los campos con * son obligatorios</h4>
 {{ for i in range(1,6): }}
+
 <div class="competencia-container" id="carrera-container{{=i}}"{{if len(carrera_list)<i and 1!=i:}}hidden{{pass}}>
-<h5>carrera {{=i}}</h5>
+<b><h3>carrera {{=i}}</h3></b>
+
     <div class="form-group">
         <label for="carrera{{=i}}_titulo">Titulo: *</label>
       <select {{if len(carrera_list)<i and 1!=i:}} disabled {{pass}}
-             class="form-control seleccion-competencia"
-             type="select" name="carrera{{=i}}_titulo" id="carrera{{=i}}_titulo" multiple required
+             class="form-control"
+             type="select" name="carrera{{=i}}_titulo" id="carrera{{=i}}_titulo" 
               data-placeholder="Seleccione el Grado Academico">
         {{ for career in titulos: }}
         <option
-            {{ if len(carrera_list)>=i and (career in (carrera_list[i-1].f_titulos)):}}
+            {{ if len(carrera_list)>=i:}}
+            selected
+            {{pass}}
+        value"{{=career}}">{{=career}}</option>
+        {{pass}}
+      </select>
+    </div>
+
+    <div class="form-group">
+        <label for="area">Area de Estudio: *</label>
+        <input {{if len(carrera_list)<i and 1!=i:}} disabled {{pass}}
+               value="{{='' if len(carrera_list)<i else carrera_list[i-1].f_area}}"
+               type="text" class="carrera_area" name="carrera{{=i}}_area" id="carrera{{=i}}_area" placeholder="Ej. informática, matematica,etc" required/>
+    </div>
+
+
+    <div class="form-group">
+        <label for="carrera{{=i}}_titulo">Año: *</label>
+      <select {{if len(carrera_list)<i and 1!=i:}} disabled {{pass}}
+             class="form-control"
+             type="select" name="carrera{{=i}}_anio" id="carrera{{=i}}_anio" 
+              data-placeholder="Seleccione el Grado Academico">
+        {{ for career in range(1950, anio.year+1): }}
+        <option
+            {{ if len(carrera_list)>=i:}}
             selected
             {{pass}}
         value"{{=career}}">{{=career}}</option>
@@ -24,6 +50,13 @@
         <input {{if len(carrera_list)<i and 1!=i:}} disabled {{pass}}
                value="{{='' if len(carrera_list)<i else carrera_list[i-1].f_universidad}}"
                type="text" class="carrera_universidad" name="carrera{{=i}}_universidad" id="carrera{{=i}}_universidad" placeholder="Introduzca el universidad" required/>
+    </div>
+
+    <div class="form-group">
+        <label for="tesis">Tesis: *</label>
+        <input {{if len(carrera_list)<i and 1!=i:}} disabled {{pass}}
+               value="{{='' if len(carrera_list)<i else carrera_list[i-1].f_tesis}}"
+               type="text" class="carrera_tesis" name="carrera{{=i}}_tesis" id="carrera{{=i}}_tesis" placeholder="Titulo de tesis/Trabajo de Grado" required/>
     </div>
 
 </div>

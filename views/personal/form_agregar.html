@@ -40,7 +40,7 @@
                           <span class="step">3</span>
                           <span class="step">4</span>
                           <span class="step">5</span>
-			  <span class="step">6</span>
+        <span class="step">6</span>
                         </div>
                         <!-- Aqui va la informacion -->
                         <div class="col-sm-11 col11Body">
@@ -258,6 +258,8 @@
                               hidden
                               {{pass}}
                               >
+
+                              <!-- USA name="" para acceder al javascript -->
                                 <div class="col-sm-6">
                                   <label>Fecha de Ingreso:</label>
                                   <input class="datepicker" value="{{=usuario.f_fecha_ingreso or ''}}"
@@ -307,7 +309,7 @@
                         <span class="step activePass">3</span>
                         <span class="step">4</span>
                         <span class="step">5</span>
-			<span class="step">6</span> 
+      <span class="step">6</span> 
                       </div>
 
                       <!-- Aqui va la informacion -->
@@ -415,7 +417,7 @@
                           <span class="step">3</span>
                           <span class="step activePass">4</span>
                           <span class="step">5</span>
-			  <span class="step">6</span> 
+        <span class="step">6</span> 
                         </div>
 
                         <!-- Aqui va la informacion -->
@@ -443,21 +445,22 @@
                         <span class="step">3</span>
                         <span class="step">4</span>
                         <span class="step activePass">5</span>
-			<span class="step">6</span> 
+                        <span class="step">6</span> 
                       </div>
 
-                      <!-- Aqui va la informacion -->
-                      
-                      <!--  Formulario para agregar historial laboral en el menu modal -->
+                        <!-- Aqui va la informacion -->
+                        <div class="col-sm-11 col11Body" >
 
-                      {{include 'personal/formHistorial.html'}}
+                          {{ include 'personal/form_carreras.html' }}
 
-                        
+                        </div>
+
+                      </div>
+
                       <div class="botones-form" style="margin-top: 1rem;margin-bottom: 2em;">
                         <button type="button" class="btn btn-previous botonForm"><span class="fa fa-arrow-left" title="Anterior"/></button>
                         <button type="button" class="btn btn-next botonForm"><span class="fa fa-arrow-right" title="Siguiente"/></button>
                       </div>
-                    
 
                   </fieldset>
                     <!-- Fin Quinto Paso -->
@@ -477,15 +480,12 @@
 
                         </div>
 
-                        <!-- Aqui va la informacion -->
-                        <div class="col-sm-11 col11Body" >
 
-                          {{ include 'personal/form_carreras.html' }}
+                      <!-- Aqui va la informacion -->
+                      
+                      <!--  Formulario para agregar historial laboral en el menu modal -->
 
-                        </div>
-
-                      </div>
-
+                      {{include 'personal/formHistorial.html'}}
 
                     <div class="botones-form" style="margin-top: 1rem;margin-bottom: 2em;">
                         <button type="button" class="btn btn-previous botonForm"><span class="fa fa-arrow-left" title="Anterior"/></button>

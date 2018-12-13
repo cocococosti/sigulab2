@@ -1,10 +1,14 @@
-<h4 class="titulosForm">Cursos/Eventos de Formación (Máximo 10)</h4>
-<h5>Los campos con * son obligatorios</h5>
+  <h4 class="titulosForm">Cursos/Eventos de Formación (Máximo 10)</h4>
+  <h5>Los campos con * son obligatorios</h5>
 
 {{ for i in range(1,11): }}
 <div class="evento-container" id="evento-container{{=i}}"
      {{if len(evento_list)<i and 1!=i:}}hidden{{pass}}>
-<h4>Curso {{=i}}</h4>
+    <div class="form-row">
+          <div class="col-sm-11">
+            <h3>Curso {{=i}}</h3>
+          </div>
+    </div>
     <div class="form-row">
         <div class="col-sm-11">
             <div class="form-group">
@@ -28,7 +32,7 @@
 </div>
 
     <div class="form-row">
-        <div class="col-sm-6">
+        <div class="col-sm-5">
             <div class="form-group">
                 <label for="anio">Año: *</label>
                 <input
@@ -38,7 +42,7 @@
             </div>
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-5 offset-sm-1">
             <div class="form-group">
                 <label for="horas">Horas: *</label>
                 <input
@@ -51,7 +55,7 @@
     </div>
 
     <div class="form-row">
-        <div class="col-sm-6">
+        <div class="col-sm-5">
             <div class="form-group">
                 <label for="dictadoPor">Dictado por: *</label>
                 <input
@@ -62,7 +66,7 @@
             </div>
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-5 offset-sm-1">
             <div class="form-group">
                 <label for="formacion">Evento de Formación: *</label>
                 <input
@@ -76,8 +80,18 @@
 </div>
 {{ pass }}
 
-<a href="#"  id="add_curso" onclick="add_curso()">Agregar Curso</a>
-<a href="#"  id="add_curso" onclick="remove_curso()">Quitar Curso</a>
+
+<div class="form-row">
+      <div class="col-sm-5">
+        <a href="#"  id="add_curso" onclick="add_curso()">Agregar Curso</a>
+      </div>
+
+      <div class="col-sm-5 offset-sm-1">
+        <a href="#"  id="add_curso" onclick="remove_curso()">Quitar Curso</a>
+      </div>
+  </div>
+
+
 
 <script charset="utf-8">
     var num_curso = {{=len(evento_list) or 1}}
@@ -96,6 +110,4 @@
             $('#evento'+num_curso+'_horas').val('');
             $('#evento-container'+num_curso).hide();
     }
-
 </script>
-

@@ -114,24 +114,7 @@ db.t_Materia._singular = 'Materia'
 
 
 #############################################################################################################################################
-#t_Personal: Tabla de Tesis.
-db.define_table(
-    #Nombre de la entidad
-    't_Tesis', 
-
-    #Atributos;
-
-    Field('f_anio',          'integer', requires=IS_INT_IN_RANGE(minimum=1900,maximum=2100, error_message='Introduzca un año válido'), notnull=True, label=T('Año')),
-    Field('f_nivel',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Nivel')),
-    Field('f_trabajo',          'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Trabajo')),
-    Field('f_observaciones', 'string', length=150, label=T('Observaciones')),
-    #Referencia (Revisar si el label es asistio o organizo)
-    Field('f_Tesis_Personal',         'reference t_Personal', requires=IS_IN_DB(db, db.t_Personal.id, '%(f_Personal)s', zero=None), label=T('Publicó')),
-    )
-
-db.t_Tesis._plural = 'Tesis'
-db.t_Tesis._singular = 'Tesis'
-
+#
 
 #t_Personal: Tabla de Carrera.
 db.define_table(
@@ -139,7 +122,7 @@ db.define_table(
     't_Carreras', 
 
     #Atributos;
-    Field('f_titulo',        'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Título')),
+    Field('f_titulo',  'list:string', default='', requires=IS_NOT_EMPTY(), notnull=True, label=T('Título')),
     Field('f_numero', 'integer', default=1,label=T('Numero')),
     Field('f_universidad',   'string', requires=IS_NOT_EMPTY(), notnull=True, label=T('Universidad')),
     #Referencia (Revisar si el label es asistio o organizo)

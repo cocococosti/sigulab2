@@ -1,3 +1,4 @@
+import datetime;
 #-----------------------------------#
 #                                   #
 #  Controlador del Modulo Personal  #
@@ -497,6 +498,7 @@ def listado():
         empleados = empleados,
         competencias=competencias,
         titulos=titulos,
+        anio = datetime.date.today(),
         carrera_list=lista_carreras(usuario.f_ci),
         comp_list=lista_competencias(usuario.f_ci),
         historial = getDictHistorial(historial_rows)
@@ -651,6 +653,7 @@ def ficha():
         usuario=usuario,
         titulos=titulos,
         carrera_list=lista_carreras(personal['ci']),
+        anio = datetime.date.today(),
         competencias=competencias,
         comp_list=lista_competencias(personal['ci']),
         historial=getDictHistorial(historial_rows)
@@ -912,7 +915,10 @@ def __get_carreras(request, personal):
             params = {
                     'f_universidad' : request.post_vars['carrera{}_universidad'.format(i)],
                     'f_titulo' : request.post_vars['carrera{}_titulo'.format(i)],
+                    'f_area' : request.post_vars['carrera{}_area'.format(i)],
+                    'f_tesis' : request.post_vars['carrera{}_tesis'.format(i)],
                     'f_numero': i,
+                    'f_anio': request.post_vars['carrera{}_anio'.format(i)],
                     'f_Carreras_Personal': personal.id
                     }
             if not(
@@ -923,7 +929,10 @@ def __get_carreras(request, personal):
                         (db.t_Carreras.f_Carreras_Personal==personal.id),
                         f_universidad=params['f_universidad'],
                         f_titulo=params['f_titulo'],
+                        f_area=params['f_area'],
+                        f_tesis=params['f_tesis'],
                         f_numero= params['f_numero'],
+                        f_anio= params['f_anio'],
                         f_Carreras_Personal= params['f_Carreras_Personal'],
                         )
                 fies.append(params)

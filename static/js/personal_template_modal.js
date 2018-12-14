@@ -999,6 +999,43 @@ function validaExtension(){
 const validadoresSeptimoPaso = [
     validaExtension
 ]
+
+function validaCursos(){
+    var valid=true;
+    for(var i=1; i<11; i++){
+        if($('#evento-container'+i).is(':hidden'))
+            continue;
+        var anio = $('#evento'+i+'_anio');
+        var formacion = $('#evento'+i+'_formacion');
+        var dictadoPor = $('#evento'+i+'_dictadoPor');
+        var horas = $('#evento'+i+'_horas');
+        valid = validaEmpty(anio) && valid;
+        valid = validaEmpty(formacion) && valid;
+        valid = validaEmpty(dictadoPor) && valid;
+        valid = validaEmpty(horas) && valid;
+        var chosen_container = $('#evento'+i+'_categoria_chosen');
+        var chosenval = $('#evento'+i+'_categoria').trigger('chosen-updated').val().length;
+        console.log(chosenval);
+        if (chosenval == 0){
+            chosen_container.attr("data-content", requiredFieldMessage);
+            chosen_container.addClass('input-error');
+            chosen_container.attr("data-valido", 'false');
+            chosen_container.popover('show');
+            valid = false;
+        }
+        else {
+            chosen_container.removeClass('input-error');
+            chosen_container.popover('hide');
+        }
+    }
+    return valid;
+
+}
+
+const validadoresNovenoPaso = [
+    validaCursos
+]
+
 // ESCRIBE AQUI TUS FUNCIONES
 
 
@@ -1141,6 +1178,9 @@ $(document).ready(function () {
             next_step = validadoresCorrectos(validadoresSeptimoPaso)
         }
 
+        else if (parent_fieldset.attr('id') === 'p9'){
+            next_step = validadoresCorrectos(validadoresNovenoPaso)
+        }
 
 
 

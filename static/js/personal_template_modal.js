@@ -943,16 +943,61 @@ function validaAdministrativas(){
         }
 
     }
-    console.log(valid);
     return valid;
 
 }
 
-
-
-
 const validadoresSextoPaso = [
     validaAdministrativas
+]
+
+function validaExtension(){
+    var valid=true;
+    for(var i=1; i<6; i++){
+        if($('#extension'+i+'-container').is(':hidden'))
+            continue;
+        var desde = $('#extension'+i+'_desde');
+        var hasta = $('#extension'+i+'_hasta');
+        var cargo = $('#extension'+i+'_cargo');
+        var nombre = $('#extension'+i+'_nombre');
+        var institucion = $('#extension'+i+'_institucion');
+        var descripcion = $('#extension'+i+'_descripcion');
+        valid = validaEmpty(desde) && valid;
+        valid = validaEmpty(hasta) && valid;
+        valid = validaEmpty(cargo) && valid;
+        valid = validaEmpty(nombre) && valid;
+        valid = validaEmpty(institucion) && valid;
+        valid = validaEmpty(descripcion) && valid;
+        if (!comparaFechas(desde.val(), hasta.val())) {
+            hasta.attr("data-content", "La fecha de fin no puede ser antes de la fecha de inicio.")
+            hasta.addClass('input-error');
+            hasta.popover('toggle');
+            valid = false;
+        } else if(valid) {
+            hasta.removeClass('input-error');
+            hasta.popover('hide');
+        }
+        var chosen_container = $('#extension'+i+'_categoria_chosen');
+        var chosenval = $('#extension'+i+'_categoria').trigger('chosen-updated').val().length;
+        console.log(chosenval);
+        if (chosenval == 0){
+            chosen_container.attr("data-content", requiredFieldMessage);
+            chosen_container.addClass('input-error');
+            chosen_container.attr("data-valido", 'false');
+            chosen_container.popover('show');
+            valid = false;
+        }
+        else {
+            chosen_container.removeClass('input-error');
+            chosen_container.popover('hide');
+        }
+    }
+    return valid;
+
+}
+
+const validadoresSeptimoPaso = [
+    validaExtension
 ]
 // ESCRIBE AQUI TUS FUNCIONES
 
@@ -1092,6 +1137,9 @@ $(document).ready(function () {
             next_step = validadoresCorrectos(validadoresSextoPaso)
         }
 
+        else if (parent_fieldset.attr('id') === 'p7'){
+            next_step = validadoresCorrectos(validadoresSeptimoPaso)
+        }
 
 
 

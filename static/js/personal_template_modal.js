@@ -33,19 +33,12 @@ const inputs = [
     'fecha_inicio_4_add', 'fecha_final_4_add', 'cargo_hist_4_add', 'dependencia_hist_4_add', 'organizacion_4_add',
     'fecha_inicio_5_add', 'fecha_final_5_add', 'cargo_hist_5_add', 'dependencia_hist_5_add', 'organizacion_5_add',
     // Competencias
-    'competencia1_nombre',
-    'competencia2_nombre',
-    'competencia3_nombre',
-    'competencia4_nombre',
-    'competencia5_nombre',
-    'competencia6_nombre',
-    'competencia7_nombre',
-    'competencia8_nombre',
-    'competencia9_nombre',
-    'competencia10_nombre',
+    'competencia1_nombre', 'competencia2_nombre', 'competencia3_nombre', 'competencia4_nombre', 'competencia5_nombre',
+    'competencia6_nombre', 'competencia7_nombre', 'competencia8_nombre', 'competencia9_nombre', 'competencia10_nombre',
 ]
 
 const inputSelectorsAll = inputs.map(i => `[name="${i}"]`).join(',')
+    + ", .pop-field"
 
 // Funciones que validan toda la pagina 1 del formulario 
 function validaPaginaWeb () {
@@ -296,6 +289,7 @@ function validaFechaIngreso(){
 
 // Funcion que se encarga de voltear la fecha y se muestre en el formato pedido
 function voltearFecha(fecha){
+    if (!fecha) return "";
     if (fecha !== ""){
         var dia = fecha.substr(0,2);
         var mes = fecha.substr(3,2);
@@ -310,20 +304,32 @@ function voltearFecha(fecha){
     }
 }
 
+function comparaFechas(fechaini, fechafin) {
+    const fecha_inicio = voltearFecha(fechaini);
+    const fecha_final = voltearFecha(fechafin);
+    if (!fecha_inicio || !fecha_final) return true;
+    if( !moment(fecha_inicio).isSameOrBefore(fecha_final) ) {
+        return false
+    }
+    else {
+        return true;
+    }
+}
+
 function validaFechaSalida(){
     const $this = $('[name="fecha_salida_add"]');
     const fecha_inicio = voltearFecha($('[name="fecha_ingreso_add"]').val());
     const fecha_final = voltearFecha($this.val());
 
-    if (fecha_inicio !== "" && fecha_final !== "" && !moment(fecha_inicio).isSameOrBefore(fecha_final)){
-        $this.attr("data-content", "La fecha de egreso tiene que ser despues que la fecha de ingreso o igual a esta.");
-        $this.addClass('input-error');
+    if (fecha_inicio !== "" && fecha_final !== "" && !moment(fecha_inicio).issameorbefore(fecha_final)){
+        $this.attr("data-content", "la fecha de egreso tiene que ser despues que la fecha de ingreso o igual a esta.");
+        $this.addclass('input-error');
         $this.attr("data-valido", 'false');
         $this.popover('show');
         return false
     }
     else{
-        $this.removeClass('input-error');
+        $this.removeclass('input-error');
         $this.popover('hide');
         return true;
     }
@@ -898,6 +904,56 @@ const validadoresCuartoPaso = [
     validaCompetencia
 ]
 
+
+function validaEmpty(selector) {
+    if ( selector.val()==='' ) {
+        selector.attr('data-content', requiredFieldMessage);
+        selector.popover('show');
+        selector.addClass('input-error');
+        return false;
+    }
+    else {
+        selector.removeClass('input-error');
+        selector.popover('hide');
+        return true;
+    }
+}
+
+function validaAdministrativas(){
+    var valid=true;
+    for(var i=1; i<11; i++){
+        if($('#administrativa'+i+'-container').is(':hidden'))
+            continue;
+        var desde = $('#administrativa'+i+'_desde');
+        var hasta = $('#administrativa'+i+'_hasta');
+        var cargo = $('#administrativa'+i+'_cargo');
+        var institucion = $('#administrativa'+i+'_institucion');
+        valid = validaEmpty(desde) && valid;
+        valid = validaEmpty(hasta) && valid;
+        valid = validaEmpty(cargo) && valid;
+        valid = validaEmpty(institucion) && valid;
+        if (!comparaFechas(desde.val(), hasta.val())) {
+            hasta.attr("data-content", "La fecha de fin no puede ser antes de la fecha de inicio.")
+            hasta.addClass('input-error');
+            hasta.popover('toggle');
+            valid = false;
+        } else if(valid) {
+            hasta.removeClass('input-error');
+            hasta.popover('hide');
+        }
+
+    }
+    console.log(valid);
+    return valid;
+
+}
+
+
+
+
+const validadoresSextoPaso = [
+    validaAdministrativas
+]
 // ESCRIBE AQUI TUS FUNCIONES
 
 
@@ -1032,7 +1088,9 @@ $(document).ready(function () {
             next_step = validadoresCorrectos(validadoresCuartoPaso)
         }
 
-
+        else if (parent_fieldset.attr('id') === 'p6'){
+            next_step = validadoresCorrectos(validadoresSextoPaso)
+        }
 
 
 

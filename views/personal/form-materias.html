@@ -2,7 +2,7 @@
 <h5>Los campos con * son obligatorios</h5>
 
 {{ for i in range(1,6): }}
-<div class="materia-container" id="materia-container{{=i}}"{{if len(materia_list)<i and 1!=i: }}hidden{{pass}}>
+<div class="materia-container" id="materia-container{{=i}}"{{if len(materia_list)<i:}}hidden{{pass}}>
 <h4>Materia {{=i}}</h4>
     <div class="form-row">
         <div class="form-group">
@@ -101,7 +101,7 @@ var num_materia = {{=len(materia_list) or 1}}
         }
     }
     function remove_materia() {
-        if (num_materia > 1){
+        if (num_materia > 0){
             $('#materia-container'+num_materia).hide();
             $('#materia'+num_materia+'_area').val(['']).trigger("chosen:updated");
             $('#materia'+num_materia+'_fecha_inicio_materia').val('');

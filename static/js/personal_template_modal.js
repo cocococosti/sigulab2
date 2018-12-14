@@ -43,6 +43,13 @@ const inputs = [
     'competencia8_nombre',
     'competencia9_nombre',
     'competencia10_nombre',
+
+    // Materias
+    'materia1_nombre_materia', 'materia1_codigo', 'materia1_area', 
+    'materia2_nombre_materia', 'materia2_codigo', 'materia2_area', 
+    'materia3_nombre_materia', 'materia3_codigo', 'materia3_area', 
+    'materia4_nombre_materia', 'materia4_codigo', 'materia4_area', 
+    'materia5_nombre_materia', 'materia5_codigo', 'materia5_area', 
 ]
 
 const inputSelectorsAll = inputs.map(i => `[name="${i}"]`).join(',')
@@ -898,6 +905,97 @@ const validadoresCuartoPaso = [
     validaCompetencia
 ]
 
+
+function validaMaterias(){
+    var valid=true;
+    for(var i=1; i<6;i++){
+        if($('#materia-container'+i).is(':hidden'))
+            continue;
+
+        var nombre_materia = $('#materia'+i+'_nombre_materia');
+        var codigo = $('#materia'+i+'_codigo');
+        var fecha_inicio = $('#materia'+i+'_fecha_inicio_materia');
+        var fecha_final = $('#materia'+i+'_fecha_final_materia');
+        var chosenval = $('#materia'+i+'_area').trigger("chosen-updated").val().length;
+        chosen_container = $('#materia'+i+'_area_chosen');
+
+        if (chosenval == 0 && nombre_materia.val()==='' && codigo.val()==='' && fecha_inicio.val()==='' && fecha_final.val()===''){
+            chosen_container.removeClass('input-error');
+            chosen_container.popover('hide');
+            nombre_materia.removeClass('input-error');
+            nombre_materia.popover('hide');
+            codigo.removeClass('input-error');
+            codigo.popover('hide');
+            valid = valid && true;
+            continue;
+        }
+        else {
+            if (chosenval == 0){
+                chosen_container.attr("data-content", requiredFieldMessage);
+                chosen_container.addClass('input-error');
+                chosen_container.attr("data-valido", 'false');
+                chosen_container.popover('show');
+                valid = valid && false;
+            }
+            else {
+                chosen_container.removeClass('input-error');
+                chosen_container.popover('hide');
+                valid = valid && true;
+            }
+            if (nombre_materia.val()==='') {
+                nombre_materia.attr("data-content", requiredFieldMessage);
+                nombre_materia.popover('show');
+                nombre_materia.addClass('input-error');
+                valid = valid && false;
+            }
+            else {
+                nombre_materia.removeClass('input-error');
+                nombre_materia.popover('hide');
+                valid = valid && true;
+            }
+            if (codigo.val()==='') {
+                codigo.attr("data-content", requiredFieldMessage);
+                codigo.popover('show');
+                codigo.addClass('input-error');
+                valid = valid && false;
+            }
+            else {
+                codigo.removeClass('input-error');
+                codigo.popover('hide');
+                valid = valid && true;
+            }
+
+            if (fecha_inicio.val()==='') {
+                fecha_inicio.attr("data-content", requiredFieldMessage);
+                fecha_inicio.popover('show');
+                fecha_inicio.addClass('input-error');
+                valid = valid && false;
+            }
+            else {
+                fecha_inicio.removeClass('input-error');
+                fecha_inicio.popover('hide');
+                valid = valid && true;
+            }
+
+            if (fecha_final.val()==='') {
+                fecha_final.attr("data-content", requiredFieldMessage);
+                fecha_final.popover('show');
+                fecha_final.addClass('input-error');
+                valid = valid && false;
+            }
+            else {
+                fecha_final.removeClass('input-error');
+                fecha_final.popover('hide');
+                valid = valid && true;
+            }
+        }
+    }
+    return valid
+}
+const validadoresDecimoPaso = [
+    validaMaterias
+]
+
 // ESCRIBE AQUI TUS FUNCIONES
 
 
@@ -1030,6 +1128,10 @@ $(document).ready(function () {
 
         else if (parent_fieldset.attr('id') === 'p4'){
             next_step = validadoresCorrectos(validadoresCuartoPaso)
+        }
+
+        else if (parent_fieldset.attr('id') === 'p10'){
+            next_step = validadoresCorrectos(validadoresDecimoPaso)
         }
 
 

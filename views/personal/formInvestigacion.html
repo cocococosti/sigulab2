@@ -1,7 +1,7 @@
 <h3>Proyectos de Investigación (Máximo 10)</h3>
 <h5>Los campos con * son obligatorios</h5>
 {{ for i in range(1,11): }}
-<div class="proyecto-container" id="proyecto{{=i}}_cointaner"{{if len(proy_list)<i and 1!=i: }}hidden{{pass}}>
+<div class="proyecto-container" id="proyecto{{=i}}_cointaner"{{if len(proy_list)<i: }}hidden{{pass}}>
     <h5>Proyecto {{=i}}</h5>
     <div class="form-row">
         <div class="form-group">
@@ -119,7 +119,7 @@
 <a href="#"  id="remove_proy" onclick="remove_proy()">Quitar proyetencia</a>
 
 <script charset="utf-8">
-    var nump = {{=len(proy_list) or 1}};
+    var nump = {{=len(proy_list)}};
     function add_proy(){
         if(nump < 11){
             nump++;
@@ -130,7 +130,7 @@
         }
     }
     function remove_proy(){
-        if(nump > 1){
+        if(nump > 0){
             $('#proyecto'+nump+'_categoria').val(['']).trigger("chosen:updated");
             $('#proyecto'+nump+'_desde').val('');
             $('#proyecto'+nump+'_hasta').val('');

@@ -1,7 +1,7 @@
 <h4 class="titulosForm">Docencia - Trabajos Dirigidos (Máximo 5)</h4>
 
 {{ for i in range(1,6): }}
-<div class="trabajo-container" id="trabajo-container{{=i}}"{{if len(trabajo_list)<i and 1!=i:}}hidden{{pass}}>
+<div class="trabajo-container" id="trabajo-container{{=i}}"{{if len(trabajo_list)<i:}}hidden{{pass}}>
   <h5>Trabajo {{=i}}</h5>
   <div class="col-sm-11 col11Body">
 
@@ -9,8 +9,9 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label for="anio">Año:</label>
-                    <input value=" {{='' if len(trabajo_list)<i else trabajo_list[i-1].f_anio}}"
-                           type="text" class="form-control" name="trabajo{{=i}}_anio" id="trabajo{{=i}}_anio" placeholder="Ingrese año del trabajo" required/>
+                    <input value="{{='' if len(trabajo_list)<i else trabajo_list[i-1].f_anio}}"
+                           type="text" class="form-control pop-field" name="trabajo{{=i}}_anio" id="trabajo{{=i}}_anio" placeholder="Ingrese año del trabajo" data-placement="top"
+                           required/>
                 </div>
             </div>
           
@@ -19,7 +20,7 @@
               <label>Título del trabajo:</label>
               <input
                      value="{{='' if len(trabajo_list)<i else trabajo_list[i-1].f_titulo_trabajo}}"
-                     type="text" class="form-control" name="trabajo{{=i}}_titulo_trabajo" id="trabajo{{=i}}_titulo_trabajo" placeholder="Ingrese titulo del trabajo"/>
+                     type="text" class="form-control pop-field" name="trabajo{{=i}}_titulo_trabajo" id="trabajo{{=i}}_titulo_trabajo" placeholder="Ingrese titulo del trabajo" data-placement="top"/>
           </div>
           </div>
           
@@ -32,7 +33,7 @@
                   <label for="estudiantes">Estudiantes:</label>
                   <input
                       value="{{='' if len(trabajo_list)<i else trabajo_list[i-1].f_estudiantes}}"
-                      type="text" class="form-control" name="trabajo{{=i}}_estudiantes" id="trabajo{{=i}}_estudiantes" placeholder="Ingrese los estudiantes"/>
+                      type="text" class="form-control pop-field" name="trabajo{{=i}}_estudiantes" id="trabajo{{=i}}_estudiantes" placeholder="Ingrese los estudiantes" data-placement="top"/>
               </div>
           </div>
           <div class="col-sm-6">
@@ -40,7 +41,7 @@
                   <label for="institucion">Institución:</label>
                   <input
                       value="{{='' if len(trabajo_list)<i else trabajo_list[i-1].f_institucion}}"
-                      type="text" class="form-control" name="trabajo{{=i}}_institucion" id="trabajo{{=i}}_institucion" placeholder="Ingrese nombre de la institución"/>
+                      type="text" class="form-control pop-field" name="trabajo{{=i}}_institucion" id="trabajo{{=i}}_institucion" placeholder="Ingrese nombre de la institución" data-placement="top"/>
               </div>
           </div>
       </div>
@@ -49,9 +50,9 @@
               <div class="form-group">
                   <label for="trabajo{{=i}}_nivel">Nivel:</label>
                   <select
-                      class="form-control seleccion-competencia"
+                      class="form-control pop-field"
                       type="select" name="trabajo{{=i}}_nivel" id="trabajo{{=i}}_nivel"
-                      data-placeholder="Seleccione nivel de educación">
+                      data-placeholder="Seleccione nivel de educación" >
                       <option value=""> Seleccione una opcion</option>
                       {{ for niv in nivel: }}
                       <option
@@ -74,7 +75,7 @@
 <a href="#"  id="add_tdir" onclick="add_tdir()">Agregar Trabajo</a>
 <a href="#"  id="remove_tdir" onclick="remove_tdir()">Quitar Trabajo</a>
 <script charset="utf-8">
-    var num_tdir = {{=len(trabajo_list) or 1}}
+    var num_tdir = {{=len(trabajo_list)}}
     function add_tdir(){
         if(num_tdir < 6){
             num_tdir++;
@@ -82,7 +83,7 @@
         }
     }
     function remove_tdir() {
-        if(num_tdir > 1){
+        if(num_tdir > 0){
             $('#trabajo-container'+num_tdir).hide();
             $('#trabajo'+num_tdir+'_nivel').val(['']).trigger("chosen:updated");
             $('#trabajo'+num_tdir+'_anio').val('');

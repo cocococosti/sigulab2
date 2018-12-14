@@ -908,7 +908,7 @@ const validadoresCuartoPaso = [
 function validaEmpty(selector) {
     if ( selector.val()==='' ) {
         selector.attr('data-content', requiredFieldMessage);
-        selector.popover('show');
+        selector.popover('toggle');
         selector.addClass('input-error');
         return false;
     }
@@ -1080,14 +1080,79 @@ function validaMaterias(){
 const validadoresDecimoPaso = [
     validaMaterias
 ]
-// ESCRIBE AQUI TUS FUNCIONES
 
-// ESCRIBE ALGO COMO
-/*
-const validadoresSextoPaso = [
+function validaTrabajos(){
+    var valid=true;
+    for(var i=1; i<6; i++){
+        if($('#trabajo-container'+i).is(':hidden'))
+            continue;
+        var nivel = $('#trabajo'+i+'_nivel');
+        var anio = $('#trabajo'+i+'_anio');
+        var titulo = $('#trabajo'+i+'_titulo_trabajo');
+        var estudiantes = $('#trabajo'+i+'_estudiantes');
+        var institucion = $('#trabajo'+i+'_institucion');
+        valid = validaEmpty(nivel) && valid;
+        valid = validaEmpty(anio) && valid;
+        valid = validaEmpty(titulo) && valid;
+        valid = validaEmpty(estudiantes) && valid;
+        valid = validaEmpty(institucion) && valid;
+    }
+    return valid;
+
+}
+
+const validadoresUnDecimoPaso = [
+    validaTrabajos
 ]
-*/
 
+function validaProyectos(){
+    var valid=true;
+    for(var i=1; i<11; i++){
+        if($('#proyecto'+i+'-container').is(':hidden'))
+            continue;
+        var desde = $('#proyecto'+i+'_desde');
+        var hasta = $('#proyecto'+i+'_hasta');
+        var titulo = $('#proyecto'+i+'_titulo');
+        var resultados = $('#proyecto'+i+'_resultados');
+        var institucion = $('#proyecto'+i+'_institucion');
+        var responsabilidad = $('#proyecto'+i+'_responsabilidad');
+        valid = validaEmpty(desde) && valid;
+        valid = validaEmpty(hasta) && valid;
+        valid = validaEmpty(titulo) && valid;
+        valid = validaEmpty(resultados) && valid;
+        valid = validaEmpty(responsabilidad) && valid;
+        valid = validaEmpty(institucion) && valid;
+        if (!comparaFechas(desde.val(), hasta.val())) {
+            hasta.attr("data-content", "La fecha de fin no puede ser antes de la fecha de inicio.")
+            hasta.addClass('input-error');
+            hasta.popover('toggle');
+            valid = false;
+        } else if(valid) {
+            hasta.removeClass('input-error');
+            hasta.popover('hide');
+        }
+        var chosen_container = $('#proyecto'+i+'_categoria_chosen');
+        var chosenval = $('#proyecto'+i+'_categoria').trigger('chosen-updated').val().length;
+        console.log(chosenval);
+        if (chosenval == 0){
+            chosen_container.attr("data-content", requiredFieldMessage);
+            chosen_container.addClass('input-error');
+            chosen_container.attr("data-valido", 'false');
+            chosen_container.popover('show');
+            valid = false;
+        }
+        else {
+            chosen_container.removeClass('input-error');
+            chosen_container.popover('hide');
+        }
+    }
+    return valid;
+
+}
+
+const validadoresDuodecimoPaso = [
+    validaProyectos
+]
 
 
 
@@ -1200,6 +1265,10 @@ $(document).ready(function () {
             next_step = validadoresCorrectos(validadoresCuartoPaso)
         }
 
+        else if (parent_fieldset.attr('id') === 'p5'){
+            next_step = validadoresCorrectos(validadoresQuintoPaso)
+        }
+
         else if (parent_fieldset.attr('id') === 'p6'){
             next_step = validadoresCorrectos(validadoresSextoPaso)
         }
@@ -1214,6 +1283,10 @@ $(document).ready(function () {
 
         else if (parent_fieldset.attr('id') === 'p10'){
             next_step = validadoresCorrectos(validadoresDecimoPaso)
+        }
+
+        else if (parent_fieldset.attr('id') === 'p11'){
+            next_step = validadoresCorrectos(validadoresUnDecimoPaso)
         }
 
 
@@ -1278,7 +1351,7 @@ $(document).ready(function () {
         
         var parent_fieldset = $(this).parents('fieldset');
         
-        var enviar = validadoresCorrectos(validadoresQuintoPaso);
+        var enviar = validadoresCorrectos(validadoresDuodecimoPaso);
 
 
 

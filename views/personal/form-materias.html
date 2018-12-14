@@ -31,7 +31,7 @@
                 <label for="materia{{=i}}_fecha_inicio_materia">Desde:</label>
                 <input
                         value="{{='' if len(materia_list)<i else materia_list[i-1].f_fecha_inicio_materia.strftime('%d-%m-%Y')}}"
-                        class="form-control datepicker"
+                        class="form-control pop-field datepicker"
                         name="materia{{=i}}_fecha_inicio_materia" type="text"
                         id="materia{{=i}}_fecha_inicio_materia"
                         data-placement="bottom" data-trigger="manual"
@@ -45,7 +45,7 @@
             <label>Hasta:</label>
             <input
                     value="{{='' if len(materia_list)<i else materia_list[i-1].f_fecha_final_materia.strftime('%d-%m-%Y')}}"
-                    class="fcrm-control datepicker"
+                    class="form-control datepicker pop-field"
                     name="materia{{=i}}_fecha_final_materia" type="text"
                     id="materia{{=i}}_fecha_final_materia"
                     data-placement="bottom" data-trigger="manual"
@@ -60,7 +60,7 @@
                 <label for="materia{{=i}}_codigo">Código:</label>
                 <input
                    value="{{='' if len(materia_list)<i else materia_list[i-1].f_codigo}}"
-                   type="text" class="form-control"
+                   type="text" class="form-control pop-field"
                    name="materia{{=i}}_codigo"
                    id="materia{{=i}}_codigo"
                    data-toggle="popover" data-placement="bottom"
@@ -74,7 +74,7 @@
                 <label for="materia{{=i}}_nombre_materia">Materia:</label>
                 <input
                       value="{{='' if len(materia_list)<i else materia_list[i-1].f_nombre_materia}}"
-                      type="text" class="form-control"
+                      type="text" class="form-control pop-field"
                       name="materia{{=i}}_nombre_materia"
                       id="materia{{=i}}_nombre_materia"
                       data-toggle="popover" data-placement="bottom"

@@ -1036,21 +1036,51 @@ const validadoresNovenoPaso = [
     validaCursos
 ]
 
+function validaMaterias(){
+    var valid=true;
+    for(var i=1; i<6; i++){
+        if($('#materia-container'+i).is(':hidden'))
+            continue;
+        var desde = $('#materia'+i+'_fecha_inicio_materia');
+        var hasta = $('#materia'+i+'_fecha_final_materia');
+        var codigo = $('#materia'+i+'_codigo');
+        var nombre = $('#materia'+i+'_nombre_materia');
+        valid = validaEmpty(desde) && valid;
+        valid = validaEmpty(hasta) && valid;
+        valid = validaEmpty(codigo) && valid;
+        valid = validaEmpty(nombre) && valid;
+        if (!comparaFechas(desde.val(), hasta.val())) {
+            hasta.attr("data-content", "La fecha de fin no puede ser antes de la fecha de inicio.")
+            hasta.addClass('input-error');
+            hasta.popover('toggle');
+            valid = false;
+        } else if(valid) {
+            hasta.removeClass('input-error');
+            hasta.popover('hide');
+        }
+        var chosen_container = $('#materia'+i+'_area_chosen');
+        var chosenval = $('#materia'+i+'_area').trigger('chosen-updated').val().length;
+        console.log(chosenval);
+        if (chosenval == 0){
+            chosen_container.attr("data-content", requiredFieldMessage);
+            chosen_container.addClass('input-error');
+            chosen_container.attr("data-valido", 'false');
+            chosen_container.popover('show');
+            valid = false;
+        }
+        else {
+            chosen_container.removeClass('input-error');
+            chosen_container.popover('hide');
+        }
+    }
+    return valid;
+
+}
+
+const validadoresDecimoPaso = [
+    validaMaterias
+]
 // ESCRIBE AQUI TUS FUNCIONES
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // ESCRIBE ALGO COMO
 /*
@@ -1182,6 +1212,9 @@ $(document).ready(function () {
             next_step = validadoresCorrectos(validadoresNovenoPaso)
         }
 
+        else if (parent_fieldset.attr('id') === 'p10'){
+            next_step = validadoresCorrectos(validadoresDecimoPaso)
+        }
 
 
         /* AQUI VAN OTROS ELSE IF CON LOS PASOS POR EJEMPLO

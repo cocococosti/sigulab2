@@ -45,11 +45,11 @@ const inputs = [
     'competencia10_nombre',
 
     // Materias
-    'materia1_nombre_materia', 'materia1_codigo', 'materia1_area', 
-    'materia2_nombre_materia', 'materia2_codigo', 'materia2_area', 
-    'materia3_nombre_materia', 'materia3_codigo', 'materia3_area', 
-    'materia4_nombre_materia', 'materia4_codigo', 'materia4_area', 
-    'materia5_nombre_materia', 'materia5_codigo', 'materia5_area', 
+    'materia1_nombre_materia', 'materia1_codigo', 'materia1_area', 'materia1_fecha_inicio_materia', 'materia1_fecha_final_materia', 
+    'materia2_nombre_materia', 'materia2_codigo', 'materia2_area', 'materia2_fecha_inicio_materia', 'materia2_fecha_final_materia',
+    'materia3_nombre_materia', 'materia3_codigo', 'materia3_area', 'materia3_fecha_inicio_materia', 'materia3_fecha_final_materia',
+    'materia4_nombre_materia', 'materia4_codigo', 'materia4_area', 'materia4_fecha_inicio_materia', 'materia4_fecha_final_materia',
+    'materia5_nombre_materia', 'materia5_codigo', 'materia5_area', 'materia5_fecha_inicio_materia', 'materia5_fecha_final_materia',
 ]
 
 const inputSelectorsAll = inputs.map(i => `[name="${i}"]`).join(',')
@@ -914,18 +914,22 @@ function validaMaterias(){
 
         var nombre_materia = $('#materia'+i+'_nombre_materia');
         var codigo = $('#materia'+i+'_codigo');
-        var fecha_inicio = $('#materia'+i+'_fecha_inicio_materia');
-        var fecha_final = $('#materia'+i+'_fecha_final_materia');
+        var fecha_inicio_materia = $('#materia'+i+'_fecha_inicio_materia');
+        var fecha_final_materia = $('#materia'+i+'_fecha_final_materia');
         var chosenval = $('#materia'+i+'_area').trigger("chosen-updated").val().length;
         chosen_container = $('#materia'+i+'_area_chosen');
 
-        if (chosenval == 0 && nombre_materia.val()==='' && codigo.val()==='' && fecha_inicio.val()==='' && fecha_final.val()===''){
+        if (chosenval == 0 && nombre_materia.val()==='' && codigo.val()==='' && fecha_inicio_materia.val()==='' && fecha_final_materia.val()===''){
             chosen_container.removeClass('input-error');
             chosen_container.popover('hide');
             nombre_materia.removeClass('input-error');
             nombre_materia.popover('hide');
             codigo.removeClass('input-error');
             codigo.popover('hide');
+            fecha_inicio_materia.removeClass('input-error');
+            fecha_inicio_materia.popover('hide');
+            fecha_final_materia.removeClass('input-error');
+            fecha_final_materia.popover('hide');
             valid = valid && true;
             continue;
         }
@@ -942,6 +946,7 @@ function validaMaterias(){
                 chosen_container.popover('hide');
                 valid = valid && true;
             }
+
             if (nombre_materia.val()==='') {
                 nombre_materia.attr("data-content", requiredFieldMessage);
                 nombre_materia.popover('show');
@@ -953,6 +958,7 @@ function validaMaterias(){
                 nombre_materia.popover('hide');
                 valid = valid && true;
             }
+
             if (codigo.val()==='') {
                 codigo.attr("data-content", requiredFieldMessage);
                 codigo.popover('show');
@@ -965,29 +971,56 @@ function validaMaterias(){
                 valid = valid && true;
             }
 
-            if (fecha_inicio.val()==='') {
-                fecha_inicio.attr("data-content", requiredFieldMessage);
-                fecha_inicio.popover('show');
-                fecha_inicio.addClass('input-error');
+            if (fecha_inicio_materia.val()==="") {
+                fecha_inicio_materia.attr("data-content", requiredFieldMessage);
+                fecha_inicio_materia.popover('show');
+                fecha_inicio_materia.addClass('input-error');
                 valid = valid && false;
             }
             else {
-                fecha_inicio.removeClass('input-error');
-                fecha_inicio.popover('hide');
+                fecha_inicio_materia.removeClass('input-error');
+                fecha_inicio_materia.popover('hide');
                 valid = valid && true;
             }
 
-            if (fecha_final.val()==='') {
-                fecha_final.attr("data-content", requiredFieldMessage);
-                fecha_final.popover('show');
-                fecha_final.addClass('input-error');
+            if (fecha_final_materia.val()==="") {
+                fecha_final_materia.attr("data-content", requiredFieldMessage);
+                fecha_final_materia.popover('show');
+                fecha_final_materia.addClass('input-error');
                 valid = valid && false;
             }
             else {
-                fecha_final.removeClass('input-error');
-                fecha_final.popover('hide');
+                fecha_final_materia.removeClass('input-error');
+                fecha_final_materia.popover('hide');
                 valid = valid && true;
             }
+
+            if (!moment(voltearFecha(fecha_inicio_materia.val())).isSameOrBefore(moment().format("YYYY-MM-DD"))){
+                fecha_inicio_materia.attr("data-content", 'La fecha tiene que ser antes de la fecha de hoy u hoy');
+                fecha_inicio_materia.addClass('input-error');
+                fecha_inicio_materia.attr("data-valido", 'false');
+                fecha_inicio_materia.popover('show');
+                valid = valid && false;
+            }
+            else{
+                fecha_inicio_materia.removeClass('input-error');
+                fecha_inicio_materia.popover('hide');
+                valid = valid && true;
+            }
+
+            if (fecha_inicio_materia !== "" && fecha_final_materia !== "" && (!moment(fecha_inicio_materia).isSameOrBefore(fecha_final_materia) || !moment(fecha_final_materia).isSameOrBefore(moment().format("YYYY-MM-DD")) ) ){
+                fecha_final_materia.attr("data-content", "La fecha de egreso tiene que ser despues que la fecha de ingreso o igual a esta");
+                fecha_final_materia.addClass('input-error');
+                fecha_final_materia.attr("data-valido", 'false');
+                fecha_final_materia.popover('show');
+                valid = valid && false;
+            }
+            else{
+                fecha_final_materia.removeClass('input-error');
+                fecha_final_materia.popover('hide');
+                valid = valid && true;
+            }
+
         }
     }
     return valid

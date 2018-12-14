@@ -11,9 +11,9 @@
                 <select
                         class="form-control seleccion-competencia"
                         type="select" name="materia{{=i}}_area"
-                        id="materia{{=i}}_area"
-                        data-placeholder="Seleccione las categorías que apliquen">
-                        <option value""> Seleccione una opcion</option>
+                        id="materia{{=i}}_area" 
+                        data-placeholder="Seleccione una opción">
+                        <option value""> Seleccione una opción</option>
                         {{ for comp in competencias: }}
                         <option
                             {{ if i<=len(materia_list):}}

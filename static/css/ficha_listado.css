@@ -44,10 +44,12 @@ th {
 	background-color: #337ab7; 
 	border-color: #337ab7;
 	color: white;
+	border-radius: 50%;
 }
 
 .botonesListado:hover {
 	color: white;
+	border-radius: 50%;
 }
 
 #containerAgregar{
@@ -184,4 +186,19 @@ th {
 	margin: auto;
 	top: 50%;
     transform: translateY(-50%);
+}
+
+.boton-sigulab {
+    background-color: #337ab7 !important;
+    margin: 0 !important;
+}
+
+#example_filter {
+	float: left;
+	text-align: left;
+}
+
+#dt-button{
+	padding-bottom: 5px;
+
 }

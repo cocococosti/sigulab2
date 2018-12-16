@@ -42,7 +42,7 @@
 	.col1Body{
 		padding-left: 10px !important;
 		background-color: #505050;
-		height: 675px !important;
+		height: 100% !important;
 	}
 
 	#nuevoServicio{
@@ -72,7 +72,9 @@
 
 	}
 
-	#formularioCarga input{ 
+	#formularioCarga input,
+	#formularioDevolucion input,
+	#formularioMantenimientoV input {
 		border-top: 0px !important;
 		border-left: 300px !important;
 		border-right: 0px !important;
@@ -82,7 +84,9 @@
 		background-color: transparent;
 	}
 
-	#formularioCarga select{ 
+	#formularioCarga select,
+	#formularioDevolucion select,
+	#formularioMantenimientoV select {
 		border-top: 0px;
 		border-left: 0px;
 		border-right: 0px;
@@ -90,7 +94,6 @@
 		border-radius: 0px;
 		border-bottom-width: 2px;
 		background-color: transparent;
-
 	}
 
 	#formularioEdit input{ 

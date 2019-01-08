@@ -246,6 +246,7 @@ h3 {
     padding-left: 0 !important;
     padding-right: 0 !important;
     font-family: 'Roboto', sans-serif !important;
+    height: 600px !important;
 }
 
 .form-top {
@@ -338,5 +339,7 @@ form.registration-form fieldset {
     position:absolute;
     bottom: 1% !important;
     right:8% !important;
-    width: 50px !important;
+}
+.textFormBox{
+    height: 600px !important; 
 }

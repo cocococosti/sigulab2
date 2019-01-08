@@ -222,7 +222,7 @@
       <!-- Modal Body -->
       <div class="modal-body addBody">
         <div class="row addRow">
-          <div class="col-md-12 form-box">
+          <div class="col-md-12 form-box textFormBox">
             <!-- Inicio Form -->
             <form id="formularioEdit" class="registration-form" method="post">
 
@@ -308,7 +308,7 @@
 
                           <div class="form-group">
                             <select class="form-control" type="select" id="espacio" name="espacio" required>
-                              <option value="" selected hidden >Espacio Fisico*</option>
+                              <option value="" selected hidden >Espacio Fisico Solicitante*</option>
                               {{for esp in espacios:}}
                               <option value="{{=esp.id}}">{{=esp.codigo}}</option>
                               {{pass}}

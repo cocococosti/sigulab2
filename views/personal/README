@@ -1,0 +1,57 @@
+
+###################################################################
+#                   											  #
+#		Información importante sobre el módulo de personal        #
+# 																  #
+###################################################################
+
+> Validaciones de los formularios en el modal:
+sigulab2/static/js/personal_template_modal.js
+
+Controller:
+personal.py
+
+Model:
+personal.py
+
+View:
+> Los view de cada form a partir de competencias (paso 4) se encuentran en archivos independientes. El archivo principal es form_agregar.html
+
+> Los view de cada tab de una ficha se encuentran en archivos independientes.
+	> ficha.html
+		>> datos.html
+		>> docencia.html
+			>>> materias.html
+			>>> trabajos-dirigidos.html
+			>>> Ponencias (no implementado)
+		>> academicas.html
+			>>> docencia.html
+			>>> investigación.html
+			>>> extension.html
+		>> administrativas.html
+		>> educacion.html
+			>>> estudios.html
+			>>> eventos-formacion.html
+			>>> Reconocimientos (no implementado)
+		>> laboral.html
+			>>> hisorial.html
+			>>> Comisiones (no implementado)
+			>>> Reconocimientos (no implementado)
+
+> El view con los campos de filtrado de busqueda es busqueda.html
+
+> El view para mostrar los resultados de la busqueda e INICIALIZAR EL DATATABLE es resultado_busqueda.html
+Lo que hacemos es incluir en el data table todas las columnas necesarias para la busqueda y usar la funcionalidad de filtrado del data table, luego se oculta las columnas que so sean relevantes para el cliente. Dentro de ese mismo script se maneja los botones y el formato del reporte generado.
+
+> El view con el listado general es listado_estilo.html, alli se inicializa el datatable correspondiente.
+
+> BITACORA
+view: gestion/bitacora_general.html
+model: modelos_base.py
+controller: gestion.py
+
+Es importante que los otros modulos respeten la firma al agregar un registro a la bitacora (nombre del responsable, correo, modulo). En el controlador se maneja el caso de que la firma sea erronea dejando el campo en blanco.
+
+Autor:
+Constanza Abarca
+Para cualquier duda, escribir a 13-10000@usb.ve
